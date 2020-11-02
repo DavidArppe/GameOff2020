@@ -924,28 +924,6 @@ MonoBehaviour:
   rimMeshLoose: {fileID: 0}
   detachedTireMaterial: {fileID: 0}
   detachedRimMaterial: {fileID: 0}
---- !u!114 &1511824115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521606213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf92e57a9edd9af4caa9b9985e3a1453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accelAxis: Accel
-  brakeAxis: Brake
-  steerAxis: Horizontal
-  ebrakeAxis: Ebrake
-  boostButton: Boost
-  upshiftButton: Upshift
-  downshiftButton: Downshift
-  pitchAxis: Vertical
-  yawAxis: Spin
-  rollAxis: Horizontal
 --- !u!114 &1511825287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2857,8 +2835,8 @@ GameObject:
   - component: {fileID: 1511913321}
   - component: {fileID: 1524709031}
   - component: {fileID: 1511855737}
-  - component: {fileID: 1511824115}
   - component: {fileID: 1511825287}
+  - component: {fileID: 1521606214}
   m_Layer: 9
   m_Name: Drift Car
   m_TagString: Untagged
@@ -2866,6 +2844,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1521606214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521606213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616802b112b83ce459e5901b3dc2b377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1521606763
 GameObject:
   m_ObjectHideFlags: 0
