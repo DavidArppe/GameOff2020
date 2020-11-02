@@ -32560,7 +32560,7 @@ GameObject:
   - component: {fileID: 9085271129682560891}
   - component: {fileID: 9085271129671304885}
   - component: {fileID: 9085271129682585195}
-  - component: {fileID: 9085271129682488033}
+  - component: {fileID: 4680056670978610688}
   - component: {fileID: 9085271129676541524}
   m_Layer: 9
   m_Name: Player
@@ -32786,7 +32786,7 @@ MonoBehaviour:
   detectJump: 1
   detectFlips: 1
   engine: {fileID: 9085271129682478339}
---- !u!114 &9085271129682488033
+--- !u!114 &4680056670978610688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32795,19 +32795,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085271129676541527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf92e57a9edd9af4caa9b9985e3a1453, type: 3}
+  m_Script: {fileID: 11500000, guid: 616802b112b83ce459e5901b3dc2b377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelAxis: Accel
-  brakeAxis: Brake
-  steerAxis: Horizontal
-  ebrakeAxis: Ebrake
-  boostButton: Boost
-  upshiftButton: Upshift
-  downshiftButton: Downshift
-  pitchAxis: Vertical
-  yawAxis: Spin
-  rollAxis: Horizontal
 --- !u!114 &9085271129676541524
 MonoBehaviour:
   m_ObjectHideFlags: 0

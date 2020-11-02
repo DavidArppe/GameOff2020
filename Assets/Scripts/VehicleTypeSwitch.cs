@@ -23,7 +23,7 @@ public class VehicleTypeSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Reset Position"))
+        if (UnityInputModule.instance.controls.Player.Switch.ReadValue<float>() > 0.5f)
         {
             vehicleParent.hover = !vehicleParent.hover;
             
