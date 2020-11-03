@@ -128,7 +128,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""id"": ""197eb7da-7fc3-4492-b874-87552db25a53"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Holding(duration=1,pressPoint=0.5)""
                 }
             ],
             ""bindings"": [
@@ -334,7 +334,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""cb49f34d-dff2-4df7-97ba-9951715afa51"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""SlowTap(duration=1)"",
+                    ""interactions"": ""Holding(duration=1,pressPoint=0.5)"",
                     ""processors"": """",
                     ""groups"": ""Main"",
                     ""action"": ""Switch"",

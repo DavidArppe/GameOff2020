@@ -149,8 +149,6 @@ namespace RVP
         //Drive the vehicle
         void ApplyFloatDrive()
         {
-            Debug.LogFormat("{0} : {1}", Mathf.Clamp(targetSpeed, -1, 1) * targetForce, steerRate);
-
             rbHover.AddForceAtPosition(
                 trHover.TransformDirection(
                     Mathf.Clamp(targetSpeed, -1, 1) * targetForce * steerFactor * flippedSideFactorHover - contactPoint.relativeVelocity.x * sideFriction,

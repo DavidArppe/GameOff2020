@@ -41,7 +41,6 @@ public class VehicleTypeSwitch : MonoBehaviour
 
     private float       hoverLerpTarget = 1.0f;
     private float       hoverLerpValue = 1.0f;
-    private float       holdToSwitchTimer = 0.0f;
 
     public float        holdToSwitchDurationSeconds = 1.0f;
 
@@ -60,12 +59,11 @@ public class VehicleTypeSwitch : MonoBehaviour
         // Setup callbacks for the controls
         UnityInputModule.instance.controls.Player.Switch.canceled += context =>
         {
-            Debug.Log("Context Canceled A: " + context.canceled);
+            Debug.Log("Pressed");
             OnSwitch(); // Switch on cancel. If not canceled, swap between JET
         };
         UnityInputModule.instance.controls.Player.Switch.performed += context =>
         {
-            Debug.Log("Context Canceled B: " + context.canceled); 
             ToggleVehicleBit(VehicleType.JET); 
         };
 
