@@ -42,6 +42,9 @@ public class GranadeWeapon : MonoBehaviour, IWeapon
     {
         var proj = Instantiate(ProjectlePrefab, Parent.RigidBody.position + new Vector3(0.0f, 1.0f, 0.0f), Parent.RigidBody.rotation);
         var projRigidBody = proj.GetComponent<Rigidbody>();
+        var projProjectle = proj.GetComponent<IProjectile>();
+        projProjectle.FromWeapon = this;
+
         projRigidBody.velocity = Parent.RigidBody.velocity;
         // projRigidBody.angularVelocity = ;
         projRigidBody.AddForce(transform.forward * ProjectileSpeed, ForceMode.Impulse);

@@ -4,4 +4,5 @@ public interface IProjectile
     bool HitScan { get; } // TODO - Turn into enum for projectile/raycast
     int FragCount { get; }
     float BaseDamage { get; }
+    IWeapon FromWeapon { get; set; }
 }
