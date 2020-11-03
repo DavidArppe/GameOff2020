@@ -1,12 +1,11 @@
 using UnityEngine;
-using System.Collections;
-using RVP;
 using UnityEngine.InputSystem;
+using RVP;
+
+//Class for setting the input with the input manager
 
 [RequireComponent(typeof(VehicleParent))]
 [DisallowMultipleComponent]
-
-//Class for setting the input with the input manager
 public class UnityInputModule : MonoBehaviour
 {
 
