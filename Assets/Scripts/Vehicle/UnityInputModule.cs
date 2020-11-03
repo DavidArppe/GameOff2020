@@ -27,6 +27,7 @@ public class UnityInputModule : MonoBehaviour
     public ControlActions controls;
 
     private VehicleParent vp;
+    private CameraControl cam;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class UnityInputModule : MonoBehaviour
     void Start()
     {
         vp = GetComponent<VehicleParent>();
+        cam = Camera.main.GetComponent<CameraControl>();
     }
 
     void FixedUpdate()
@@ -60,5 +62,9 @@ public class UnityInputModule : MonoBehaviour
         vp.SetYaw(controls.Player.Yaw.ReadValue<float>());
         vp.SetRoll(controls.Player.Roll.ReadValue<float>());
         vp.SetRoll(controls.Player.Roll.ReadValue<float>());
+
+        var camStick = controls.Player.Camera.ReadValue<Vector2>();
+        Debug.Log(camStick);
+        cam.SetInput(camStick.x, camStick.y);
     }
 }
