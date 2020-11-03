@@ -22121,7 +22121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignition: 1
-  power: 5
+  power: 20
   inputCurve:
     serializedVersion: 2
     m_Curve:
@@ -22200,7 +22200,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 22.5
+      time: 10
       value: 0
       inSlope: 0
       outSlope: 0
@@ -22212,10 +22212,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   wheels:
-  - {fileID: 9085271129676352086}
-  - {fileID: 9085271129676361440}
-  - {fileID: 9085271129676515814}
-  - {fileID: 9085271129676371944}
+  - {fileID: 332297545}
+  - {fileID: 1053139038}
+  - {fileID: 1379119367}
+  - {fileID: 1110703317}
+  actualSpeed: 1.5
 --- !u!82 &9085271129530737562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22356,7 +22357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085271129676730443}
-  - component: {fileID: 9085271129676352086}
+  - component: {fileID: 332297545}
   m_Layer: 9
   m_Name: suspensionRL
   m_TagString: Untagged
@@ -22379,7 +22380,7 @@ Transform:
   m_Father: {fileID: 9085271130044292822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9085271129676352086
+--- !u!114 &332297545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22388,12 +22389,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085271129676352081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef827b0efe869644a7675870566d431, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c4293bbce362fe469225eb1cb34b086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 3
+  hoverDistance: 5
   bufferDistance: 0.5
-  floatForce: 5
+  floatForce: 10
   bufferFloatForce: 10
   floatForceCurve:
     serializedVersion: 2
@@ -22423,7 +22424,7 @@ MonoBehaviour:
   floatDampening: 0.3
   brakeForce: 0.2
   ebrakeForce: 0.5
-  steerFactor: -2
+  steerFactor: 15
   sideFriction: 1
   visualWheel: {fileID: 9085271129676837043}
   visualTiltRate: 10
@@ -22700,7 +22701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085271129676725181}
-  - component: {fileID: 9085271129676361440}
+  - component: {fileID: 1053139038}
   m_Layer: 9
   m_Name: suspensionFR
   m_TagString: Untagged
@@ -22723,7 +22724,7 @@ Transform:
   m_Father: {fileID: 9085271130044292822}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9085271129676361440
+--- !u!114 &1053139038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22732,12 +22733,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085271129676361443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef827b0efe869644a7675870566d431, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c4293bbce362fe469225eb1cb34b086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 3
+  hoverDistance: 5
   bufferDistance: 0.5
-  floatForce: 5
+  floatForce: 10
   bufferFloatForce: 10
   floatForceCurve:
     serializedVersion: 2
@@ -22767,7 +22768,7 @@ MonoBehaviour:
   floatDampening: 0.3
   brakeForce: 0.2
   ebrakeForce: 0.5
-  steerFactor: 2
+  steerFactor: 15
   sideFriction: 1
   visualWheel: {fileID: 9085271129676739327}
   visualTiltRate: 10
@@ -22785,7 +22786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085271129676731189}
-  - component: {fileID: 9085271129676371944}
+  - component: {fileID: 1110703317}
   m_Layer: 9
   m_Name: suspensionFL
   m_TagString: Untagged
@@ -22808,7 +22809,7 @@ Transform:
   m_Father: {fileID: 9085271130044292822}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9085271129676371944
+--- !u!114 &1110703317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22817,12 +22818,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085271129676371947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef827b0efe869644a7675870566d431, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c4293bbce362fe469225eb1cb34b086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 3
+  hoverDistance: 5
   bufferDistance: 0.5
-  floatForce: 5
+  floatForce: 10
   bufferFloatForce: 10
   floatForceCurve:
     serializedVersion: 2
@@ -22852,7 +22853,7 @@ MonoBehaviour:
   floatDampening: 0.3
   brakeForce: 0.2
   ebrakeForce: 0.5
-  steerFactor: 2
+  steerFactor: 15
   sideFriction: 1
   visualWheel: {fileID: 9085271129676825259}
   visualTiltRate: 10
@@ -27673,7 +27674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085271129676764665}
-  - component: {fileID: 9085271129676515814}
+  - component: {fileID: 1379119367}
   m_Layer: 9
   m_Name: suspensionRR
   m_TagString: Untagged
@@ -27696,7 +27697,7 @@ Transform:
   m_Father: {fileID: 9085271130044292822}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9085271129676515814
+--- !u!114 &1379119367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27705,12 +27706,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085271129676515809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef827b0efe869644a7675870566d431, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c4293bbce362fe469225eb1cb34b086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverDistance: 3
+  hoverDistance: 5
   bufferDistance: 0.5
-  floatForce: 5
+  floatForce: 10
   bufferFloatForce: 10
   floatForceCurve:
     serializedVersion: 2
@@ -27740,7 +27741,7 @@ MonoBehaviour:
   floatDampening: 0.3
   brakeForce: 0.2
   ebrakeForce: 0.5
-  steerFactor: -2
+  steerFactor: 15
   sideFriction: 1
   visualWheel: {fileID: 9085271129676817535}
   visualTiltRate: 10
@@ -33082,10 +33083,10 @@ MonoBehaviour:
   - {fileID: 1871145675}
   - {fileID: 605664156}
   hoverWheels:
-  - {fileID: 9085271129676352086}
-  - {fileID: 9085271129676361440}
-  - {fileID: 9085271129676515814}
-  - {fileID: 9085271129676371944}
+  - {fileID: 332297545}
+  - {fileID: 1053139038}
+  - {fileID: 1379119367}
+  - {fileID: 1110703317}
   wheelGroups: []
   hover: 1
   suspensionCenterOfMass: 0
@@ -33111,7 +33112,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085271129676541527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 950cf8b6abec9974792705495dd652de, type: 3}
   m_Name: 
@@ -33768,11 +33769,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   steerCurveStretch: 1
-  steeredWheels:
-  - {fileID: 9085271129676352086}
-  - {fileID: 9085271129676361440}
-  - {fileID: 9085271129676515814}
-  - {fileID: 9085271129676371944}
+  steeredFrontWheels:
+  - {fileID: 1110703317}
+  - {fileID: 1053139038}
+  steeredRearWheels:
+  - {fileID: 332297545}
+  - {fileID: 1379119367}
+  steerSpeed: 0.5
   rotate: 0
   maxDegreesRotation: 0
   rotationOffset: 0

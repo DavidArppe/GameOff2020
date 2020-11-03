@@ -58,8 +58,16 @@ public class VehicleTypeSwitch : MonoBehaviour
         tireScreech     = gameObject.GetComponentInChildren<RVP.TireScreech>();
 
         // Setup callbacks for the controls
-        UnityInputModule.instance.controls.Player.Switch.canceled += context => OnSwitch(); // Switch on release
-        UnityInputModule.instance.controls.Player.Switch.canceled += context => { holdToSwitchTimer = 0.0f; };
+        UnityInputModule.instance.controls.Player.Switch.canceled += context =>
+        {
+            Debug.Log("Context Canceled A: " + context.canceled);
+            OnSwitch(); // Switch on cancel. If not canceled, swap between JET
+        };
+        UnityInputModule.instance.controls.Player.Switch.performed += context =>
+        {
+            Debug.Log("Context Canceled B: " + context.canceled); 
+            ToggleVehicleBit(VehicleType.JET); 
+        };
 
         // If both Hover and Car have their bits matching, then toggle one. We can only initialize with one enabled. They are mutually exclusive
         if (HasVehicleBit(VehicleType.HOVER) == HasVehicleBit(VehicleType.CAR)) 
@@ -69,11 +77,6 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         // Don't switch, just initialize
         OnSwitch(false);
-    }
-
-    private void Update()
-    {
-        OnHoldToSwitch();
     }
 
     private void LateUpdate()
@@ -97,24 +100,6 @@ public class VehicleTypeSwitch : MonoBehaviour
     void ToggleVehicleBit(VehicleType typeToToggle)
     {
         vehicleType ^= typeToToggle;
-    }
-
-    // TODO: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Interactions.html#hold
-    void OnHoldToSwitch()
-    {
-        if (UnityInputModule.instance.controls.Player.Switch.ReadValue<float>() > 0.5f)
-        {
-            if (holdToSwitchTimer > 1.0f) return; // Force the button to be released before switching again
-
-            holdToSwitchTimer += Time.deltaTime / holdToSwitchDurationSeconds;
-
-            if (holdToSwitchTimer > 1.0f)
-            {
-                ToggleVehicleBit(VehicleType.JET);
-
-                holdToSwitchTimer = 0.0f;
-            }
-        }
     }
 
     void OnSwitch(bool doToggle = true)

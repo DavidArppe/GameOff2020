@@ -19,8 +19,8 @@ namespace RVP
 
         [Tooltip("Horizontal stretch of the steer curve")]
         public float steerCurveStretch = 1;
-        public HoverWheel[] steeredFrontWheels;
-        public HoverWheel[] steeredRearWheels;
+        public HoverTankWheel[] steeredFrontWheels;
+        public HoverTankWheel[] steeredRearWheels;
         public float steerSpeed = 0.5f;
 
         [Header("Visual")]
@@ -45,12 +45,12 @@ namespace RVP
 
             float steerDirection = UnityInputModule.instance.controls.Player.TankTurn.ReadValue<float>() * steerSpeed;
 
-            foreach (HoverWheel curWheel in steeredFrontWheels)
+            foreach (HoverTankWheel curWheel in steeredFrontWheels)
             {
                 curWheel.steerRate = (steerAmount + steerDirection) * steerRate;
             }
 
-            foreach (HoverWheel curWheel in steeredRearWheels)
+            foreach (HoverTankWheel curWheel in steeredRearWheels)
             {
                 curWheel.steerRate = (steerAmount - steerDirection) * steerRate;
             }

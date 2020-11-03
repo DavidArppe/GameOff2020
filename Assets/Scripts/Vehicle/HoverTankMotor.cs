@@ -13,7 +13,9 @@ namespace RVP
 
         [Tooltip("Curve which calculates the driving force based on the speed of the vehicle, x-axis = speed, y-axis = force")]
         public AnimationCurve forceCurve = AnimationCurve.EaseInOut(0, 1, 50, 0);
-        public HoverWheel[] wheels;
+        public HoverTankWheel[] wheels;
+
+        public float actualSpeed = 1.5f;
 
         public override void FixedUpdate()
         {
@@ -24,13 +26,13 @@ namespace RVP
             actualInput = inputCurve.Evaluate(Mathf.Abs(actualAccel)) * Mathf.Sign(actualAccel);
 
             //Set hover wheel speeds and forces
-            foreach (HoverWheel curWheel in wheels)
+            foreach (HoverTankWheel curWheel in wheels)
             {
                 if (ignition)
                 {
                     float boostEval = boostPowerCurve.Evaluate(Mathf.Abs(vp.localVelocity.z));
-                    curWheel.targetSpeed = actualInput * forceCurve.keys[forceCurve.keys.Length - 1].time * (boosting ? 1 + boostEval : 1);
-                    curWheel.targetForce = Mathf.Abs(actualInput) * forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z) - (boosting ? boostEval : 0)) * power * (boosting ? 1 + boostEval : 1) * health;
+                    curWheel.targetSpeed = actualInput * actualSpeed;
+                    curWheel.targetForce = Mathf.Abs(actualInput) * health;
                 }
                 else
                 {
