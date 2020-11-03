@@ -128,7 +128,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""id"": ""197eb7da-7fc3-4492-b874-87552db25a53"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Holding""
                 }
             ],
             ""bindings"": [
