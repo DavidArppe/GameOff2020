@@ -59,7 +59,6 @@ public class VehicleTypeSwitch : MonoBehaviour
         // Setup callbacks for the controls
         UnityInputModule.instance.controls.Player.Switch.canceled += context =>
         {
-            Debug.Log("Pressed");
             OnSwitch(); // Switch on cancel. If not canceled, swap between JET
         };
         UnityInputModule.instance.controls.Player.Switch.performed += context =>

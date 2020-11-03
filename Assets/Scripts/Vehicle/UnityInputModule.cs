@@ -23,15 +23,25 @@ public class UnityInputModule : MonoBehaviour
     }
 
     [HideInInspector]
-    public ControlActions controls;
+    public ControlActions controls
+    {
+        get
+        {
+            if (_controls == null)
+            {
+#if !UNITY_EDITOR
+                HoldingInteraction.Initialize();
+#endif
+                _controls = new ControlActions();
+            }
+            return _controls;
+        }
+    }
+
+    private ControlActions _controls = null;
 
     private VehicleParent vp;
     private CameraControl cam;
-
-    private void Awake()
-    {
-        controls = new ControlActions();
-    }
 
     private void OnEnable()
     {

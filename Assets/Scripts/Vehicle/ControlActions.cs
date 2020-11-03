@@ -334,7 +334,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""cb49f34d-dff2-4df7-97ba-9951715afa51"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Holding(duration=1,pressPoint=0.5)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Main"",
                     ""action"": ""Switch"",

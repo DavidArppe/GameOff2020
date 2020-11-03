@@ -25,32 +25,24 @@ using UnityEngine;
 /// </example>
 /// </remarks>
 ///
-#if UNITY_EDITOR
-[InitializeOnLoad]
-public static class HoldingActivatorEditor
-{
-    static HoldingActivatorEditor()
-    {
-        InputSystem.RegisterInteraction<HoldingInteraction>();
-    }
-}
-#endif
-
-#if UNITY_STANDALONE
-public static class HoldingActivatorPlayer
-{
-    [RuntimeInitializeOnLoadMethod]
-    static void Activate()
-    {
-        InputSystem.RegisterInteraction<HoldingInteraction>();
-    }
-}
-#endif
 
 [Preserve]
 [DisplayName("Holding")]
+#if UNITY_EDITOR
+[InitializeOnLoad]
+#endif
 public class HoldingInteraction : IInputInteraction
 {
+    static HoldingInteraction()
+    {
+        InputSystem.RegisterInteraction<HoldingInteraction>();
+    }
+
+    public static void Initialize()
+    {
+        // Calls the static constructor consequently
+    }
+
     /// <summary>
     /// Duration in seconds that the control must be pressed for the hold to register.
     /// </summary>
