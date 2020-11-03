@@ -82,7 +82,7 @@ public class HoldingInteraction : IInputInteraction
     {
         if (context.timerHasExpired)
         {
-            context.PerformedAndStayPerformed();
+            context.Performed();
             return;
         }
 
@@ -103,7 +103,7 @@ public class HoldingInteraction : IInputInteraction
                 // We do this regardless of what state the control changed to.
                 if (context.time - m_TimePressed >= durationOrDefault)
                 {
-                    context.PerformedAndStayPerformed();
+                    context.Performed();
                 }
                 else if (!context.ControlIsActuated())
                 {
