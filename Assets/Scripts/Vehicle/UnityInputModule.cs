@@ -63,6 +63,6 @@ public class UnityInputModule : MonoBehaviour
         vp.SetRoll(controls.Player.Roll.ReadValue<float>());
 
         var camStick = controls.Player.Camera.ReadValue<Vector2>();
-        cam.SetInput(camStick.x, camStick.y);
+        //cam.SetInput(camStick.x, camStick.y);
     }
 }

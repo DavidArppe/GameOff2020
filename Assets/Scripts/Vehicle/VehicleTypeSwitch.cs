@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(RVP.VehicleParent), typeof(RVP.VehicleAssist))]
 public class VehicleTypeSwitch : MonoBehaviour
 {
     [Flags]
@@ -15,36 +16,48 @@ public class VehicleTypeSwitch : MonoBehaviour
     }
 
     public VehicleType vehicleType = VehicleType.JET;
-
-    public RVP.GasMotor             gasMotor;
-    public RVP.HoverTankMotor       hoverMotor;
-
-    public RVP.SteeringControl      regularSteer;
-    public RVP.HoverTankSteer       hoverSteer;
+    
+    [Header("Required Variables")]
     public GameObject               hoverWheels;
     public GameObject               regularWheels;
 
-    public RVP.Transmission         transmission;
-    public RVP.TireScreech          tireScreech;
+    public Transform[]              regularWheelTransforms;
+    public Transform[]              hoverWheelTransforms;
+    public Transform[]              visualWheelTransforms;
+    
+    private RVP.VehicleParent       vehicleParent;
+    private RVP.VehicleAssist       vehicleAssist;
 
-    public RVP.VehicleParent        vehicleParent;
+    private RVP.GasMotor            gasMotor;
+    private RVP.HoverTankMotor      hoverMotor;
+    private RVP.SteeringControl     regularSteer;
+    private RVP.HoverTankSteer      hoverSteer;
+    private RVP.Transmission        transmission;
+    private RVP.TireScreech         tireScreech;
 
-    public Transform[] regularWheelTransforms;
-    public Transform[] hoverWheelTransforms;
-    public Transform[] visualWheelTransforms;
+    [Header("Tweakable Variables")]
+    public float        hoverCenterOfGravity = -0.3f;
+    public float        regularCenterOfGravity = -0.1f;
 
-    public float hoverCenterOfGravity = -0.3f;
-    public float regularCenterOfGravity = -0.1f;
+    private float       hoverLerpTarget = 1.0f;
+    private float       hoverLerpValue = 1.0f;
+    private float       holdToSwitchTimer = 0.0f;
 
-    private float hoverLerpTarget = 1.0f;
-    private float hoverLerpValue = 1.0f;
-
-    private float holdToSwitchTimer = 0.0f;
-
-    public float holdToSwitchDurationSeconds = 1.0f;
+    public float        holdToSwitchDurationSeconds = 1.0f;
 
     private void Start()
     {
+        // Initialize the variables we can initialize like this
+        vehicleParent   = gameObject.GetComponent<RVP.VehicleParent>();
+        vehicleAssist   = gameObject.GetComponent<RVP.VehicleAssist>();
+        gasMotor        = gameObject.GetComponentInChildren<RVP.GasMotor>();
+        hoverMotor      = gameObject.GetComponentInChildren<RVP.HoverTankMotor>();
+        regularSteer    = gameObject.GetComponentInChildren<RVP.SteeringControl>();
+        hoverSteer      = gameObject.GetComponentInChildren<RVP.HoverTankSteer>();
+        transmission    = gameObject.GetComponentInChildren<RVP.Transmission>();
+        tireScreech     = gameObject.GetComponentInChildren<RVP.TireScreech>();
+
+        // Setup callbacks for the controls
         UnityInputModule.instance.controls.Player.Switch.canceled += context => OnSwitch(); // Switch on release
         UnityInputModule.instance.controls.Player.Switch.canceled += context => { holdToSwitchTimer = 0.0f; };
 
@@ -138,6 +151,7 @@ public class VehicleTypeSwitch : MonoBehaviour
             vehicleParent.burnoutSpin = 0;
             vehicleParent.holdEbrakePark = false;
 
+            vehicleAssist.enabled = false;
             vehicleParent.centerOfMassOffset = Vector3.up * hoverCenterOfGravity;
             vehicleParent.SetCenterOfMass();
         }
@@ -159,6 +173,7 @@ public class VehicleTypeSwitch : MonoBehaviour
             vehicleParent.burnoutSpin = 5;
             vehicleParent.holdEbrakePark = true;
 
+            vehicleAssist.enabled = true;
             vehicleParent.centerOfMassOffset = Vector3.up * -regularCenterOfGravity;
             vehicleParent.SetCenterOfMass();
         }

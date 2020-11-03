@@ -22450,7 +22450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9085271129676823725
 Transform:
   m_ObjectHideFlags: 0
@@ -32568,7 +32568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9085271129676818679
 Transform:
   m_ObjectHideFlags: 0
@@ -32936,7 +32936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9085271129676738407
 Transform:
   m_ObjectHideFlags: 0
@@ -33075,7 +33075,7 @@ MonoBehaviour:
   burnoutThreshold: -1
   burnoutSpin: 0
   burnoutSmoothness: 0.5
-  engine: {fileID: 0}
+  engine: {fileID: 5410851320706407212}
   wheels:
   - {fileID: 2143165219}
   - {fileID: 1571271979}
@@ -33268,15 +33268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fc459893a08c34cafa2392b61f00c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gasMotor: {fileID: 9085271129682478339}
-  hoverMotor: {fileID: 0}
-  regularSteer: {fileID: 9085271129682568725}
-  hoverSteer: {fileID: 9085271129044201496}
+  vehicleType: 2
   hoverWheels: {fileID: 9085271130044292817}
   regularWheels: {fileID: 9085271129603208038}
-  transmission: {fileID: 9085271129682508117}
-  tireScreech: {fileID: 9085271129682551211}
-  vehicleParent: {fileID: 9085271129682546265}
   regularWheelTransforms:
   - {fileID: 1257632689}
   - {fileID: 113982763}
@@ -33292,8 +33286,9 @@ MonoBehaviour:
   - {fileID: 7574803147542336391}
   - {fileID: 7901532197251294311}
   - {fileID: 1330247641474947109}
-  hoverCenterOfGravity: -0.3
+  hoverCenterOfGravity: -0.6
   regularCenterOfGravity: -0.1
+  holdToSwitchDurationSeconds: 1
 --- !u!1 &9085271129676553779
 GameObject:
   m_ObjectHideFlags: 0
@@ -33452,7 +33447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9085271129676731543
 Transform:
   m_ObjectHideFlags: 0

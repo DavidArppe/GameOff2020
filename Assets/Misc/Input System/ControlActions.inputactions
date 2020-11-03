@@ -30,6 +30,30 @@
                     "interactions": ""
                 },
                 {
+                    "name": "TankStrafe",
+                    "type": "Value",
+                    "id": "055cf113-3c51-49a7-bd87-ccc80c442d18",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TankAccelerate",
+                    "type": "Value",
+                    "id": "3a143e59-c738-4fd2-9694-5596757f4a76",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TankTurn",
+                    "type": "Value",
+                    "id": "443643dc-2134-4529-8a42-f516298c78b9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Ebreak",
                     "type": "Button",
                     "id": "c985acd9-636c-4c29-b8cc-02e3334e1572",
@@ -303,6 +327,105 @@
                     "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "4ffb4fc8-2126-4c6d-82e0-57af5eef8d29",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankStrafe",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c375963f-181c-4d0e-978a-8c5d4c4b4640",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankStrafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1182c998-126c-4a77-858d-c80186b7bc7a",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankStrafe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "6745c8f2-3a7e-41d6-b484-60a0a90e9afe",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankAccelerate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f4b612e4-2e74-4ffe-9edc-35cb7bc6752c",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankAccelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "91837812-8e8f-41ef-bb96-66e7a7adfb25",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankAccelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "bb3d4479-7bc6-4e0e-afaf-d07a262bc76c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TankTurn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "25afd327-0e0c-4151-a175-37fcacc9e551",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "298c6915-f60d-47f6-a731-82c3e460d7e3",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "TankTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

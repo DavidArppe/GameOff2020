@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/ControlActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Misc/Input System/ControlActions.inputactions'
 
 using System;
 using System.Collections;
@@ -38,6 +38,30 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""name"": ""Steer"",
                     ""type"": ""Value"",
                     ""id"": ""4710ec03-fee2-461d-8c2f-5a71c35a8562"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TankStrafe"",
+                    ""type"": ""Value"",
+                    ""id"": ""055cf113-3c51-49a7-bd87-ccc80c442d18"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TankAccelerate"",
+                    ""type"": ""Value"",
+                    ""id"": ""3a143e59-c738-4fd2-9694-5596757f4a76"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TankTurn"",
+                    ""type"": ""Value"",
+                    ""id"": ""443643dc-2134-4529-8a42-f516298c78b9"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -316,6 +340,105 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""4ffb4fc8-2126-4c6d-82e0-57af5eef8d29"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankStrafe"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c375963f-181c-4d0e-978a-8c5d4c4b4640"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankStrafe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1182c998-126c-4a77-858d-c80186b7bc7a"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankStrafe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6745c8f2-3a7e-41d6-b484-60a0a90e9afe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankAccelerate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f4b612e4-2e74-4ffe-9edc-35cb7bc6752c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankAccelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""91837812-8e8f-41ef-bb96-66e7a7adfb25"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankAccelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""bb3d4479-7bc6-4e0e-afaf-d07a262bc76c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TankTurn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""25afd327-0e0c-4151-a175-37fcacc9e551"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""298c6915-f60d-47f6-a731-82c3e460d7e3"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""TankTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -339,6 +462,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
         m_Player_Accelerate = m_Player.FindAction("Accelerate", throwIfNotFound: true);
         m_Player_Break = m_Player.FindAction("Break", throwIfNotFound: true);
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
+        m_Player_TankStrafe = m_Player.FindAction("TankStrafe", throwIfNotFound: true);
+        m_Player_TankAccelerate = m_Player.FindAction("TankAccelerate", throwIfNotFound: true);
+        m_Player_TankTurn = m_Player.FindAction("TankTurn", throwIfNotFound: true);
         m_Player_Ebreak = m_Player.FindAction("Ebreak", throwIfNotFound: true);
         m_Player_Pitch = m_Player.FindAction("Pitch", throwIfNotFound: true);
         m_Player_Yaw = m_Player.FindAction("Yaw", throwIfNotFound: true);
@@ -399,6 +525,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Accelerate;
     private readonly InputAction m_Player_Break;
     private readonly InputAction m_Player_Steer;
+    private readonly InputAction m_Player_TankStrafe;
+    private readonly InputAction m_Player_TankAccelerate;
+    private readonly InputAction m_Player_TankTurn;
     private readonly InputAction m_Player_Ebreak;
     private readonly InputAction m_Player_Pitch;
     private readonly InputAction m_Player_Yaw;
@@ -414,6 +543,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
         public InputAction @Accelerate => m_Wrapper.m_Player_Accelerate;
         public InputAction @Break => m_Wrapper.m_Player_Break;
         public InputAction @Steer => m_Wrapper.m_Player_Steer;
+        public InputAction @TankStrafe => m_Wrapper.m_Player_TankStrafe;
+        public InputAction @TankAccelerate => m_Wrapper.m_Player_TankAccelerate;
+        public InputAction @TankTurn => m_Wrapper.m_Player_TankTurn;
         public InputAction @Ebreak => m_Wrapper.m_Player_Ebreak;
         public InputAction @Pitch => m_Wrapper.m_Player_Pitch;
         public InputAction @Yaw => m_Wrapper.m_Player_Yaw;
@@ -440,6 +572,15 @@ public class @ControlActions : IInputActionCollection, IDisposable
                 @Steer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
                 @Steer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
                 @Steer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
+                @TankStrafe.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankStrafe;
+                @TankStrafe.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankStrafe;
+                @TankStrafe.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankStrafe;
+                @TankAccelerate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankAccelerate;
+                @TankAccelerate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankAccelerate;
+                @TankAccelerate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankAccelerate;
+                @TankTurn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankTurn;
+                @TankTurn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankTurn;
+                @TankTurn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTankTurn;
                 @Ebreak.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEbreak;
                 @Ebreak.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEbreak;
                 @Ebreak.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEbreak;
@@ -477,6 +618,15 @@ public class @ControlActions : IInputActionCollection, IDisposable
                 @Steer.started += instance.OnSteer;
                 @Steer.performed += instance.OnSteer;
                 @Steer.canceled += instance.OnSteer;
+                @TankStrafe.started += instance.OnTankStrafe;
+                @TankStrafe.performed += instance.OnTankStrafe;
+                @TankStrafe.canceled += instance.OnTankStrafe;
+                @TankAccelerate.started += instance.OnTankAccelerate;
+                @TankAccelerate.performed += instance.OnTankAccelerate;
+                @TankAccelerate.canceled += instance.OnTankAccelerate;
+                @TankTurn.started += instance.OnTankTurn;
+                @TankTurn.performed += instance.OnTankTurn;
+                @TankTurn.canceled += instance.OnTankTurn;
                 @Ebreak.started += instance.OnEbreak;
                 @Ebreak.performed += instance.OnEbreak;
                 @Ebreak.canceled += instance.OnEbreak;
@@ -519,6 +669,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
         void OnAccelerate(InputAction.CallbackContext context);
         void OnBreak(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
+        void OnTankStrafe(InputAction.CallbackContext context);
+        void OnTankAccelerate(InputAction.CallbackContext context);
+        void OnTankTurn(InputAction.CallbackContext context);
         void OnEbreak(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);

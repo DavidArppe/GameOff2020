@@ -20,7 +20,7 @@ namespace RVP
             base.FixedUpdate();
 
             //Get proper input
-            float actualAccel = vp.brakeIsReverse ? vp.accelInput - vp.brakeInput : vp.accelInput;
+            float actualAccel = UnityInputModule.instance.controls.Player.TankAccelerate.ReadValue<float>();
             actualInput = inputCurve.Evaluate(Mathf.Abs(actualAccel)) * Mathf.Sign(actualAccel);
 
             //Set hover wheel speeds and forces
