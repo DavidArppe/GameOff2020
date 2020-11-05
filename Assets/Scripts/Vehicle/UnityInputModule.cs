@@ -3,12 +3,9 @@ using UnityEngine.InputSystem;
 using RVP;
 
 //Class for setting the input with the input manager
-
-[RequireComponent(typeof(VehicleParent))]
 [DisallowMultipleComponent]
 public class UnityInputModule : MonoBehaviour
 {
-
     private static UnityInputModule _inputModule;
     public static UnityInputModule instance
     {
@@ -40,7 +37,19 @@ public class UnityInputModule : MonoBehaviour
 
     private ControlActions _controls = null;
 
-    private VehicleParent vp;
+    public VehicleParent vehicleParent
+    {
+        get
+        {
+            if (_vehicleParent == null)
+            {
+                _vehicleParent = FindObjectOfType<VehicleParent>();
+            }
+            return _vehicleParent;
+        }
+    }
+    private VehicleParent _vehicleParent;
+
     private CameraControl cam;
 
     private void OnEnable()
@@ -53,26 +62,20 @@ public class UnityInputModule : MonoBehaviour
         controls.Disable();
     }
 
-    void Start()
-    {
-        vp = GetComponent<VehicleParent>();
-        cam = Camera.main.GetComponent<CameraControl>();
-    }
-
     void FixedUpdate()
     {
-        //Get constant inputs
-        vp.SetAccel(controls.Player.Accelerate.ReadValue<float>());
-        vp.SetBrake(controls.Player.Break.ReadValue<float>());
-        vp.SetSteer(controls.Player.Steer.ReadValue<float>());
-        vp.SetEbrake(controls.Player.Ebreak.ReadValue<float>());
-        vp.SetBoost(controls.Player.Boost.ReadValue<float>() > 0);
-        vp.SetPitch(controls.Player.Pitch.ReadValue<float>());
-        vp.SetYaw(controls.Player.Yaw.ReadValue<float>());
-        vp.SetRoll(controls.Player.Roll.ReadValue<float>());
-        vp.SetRoll(controls.Player.Roll.ReadValue<float>());
-
-        var camStick = controls.Player.Camera.ReadValue<Vector2>();
-        //cam.SetInput(camStick.x, camStick.y);
+        if (vehicleParent)
+        {
+            //Get constant inputs
+            vehicleParent.SetAccel(controls.Player.Accelerate.ReadValue<float>());
+            vehicleParent.SetBrake(controls.Player.Break.ReadValue<float>());
+            vehicleParent.SetSteer(controls.Player.Steer.ReadValue<float>());
+            vehicleParent.SetEbrake(controls.Player.Ebreak.ReadValue<float>());
+            vehicleParent.SetBoost(controls.Player.Boost.ReadValue<float>() > 0);
+            vehicleParent.SetPitch(controls.Player.Pitch.ReadValue<float>());
+            vehicleParent.SetYaw(controls.Player.Yaw.ReadValue<float>());
+            vehicleParent.SetRoll(controls.Player.Roll.ReadValue<float>());
+            vehicleParent.SetRoll(controls.Player.Roll.ReadValue<float>());
+        }
     }
 }

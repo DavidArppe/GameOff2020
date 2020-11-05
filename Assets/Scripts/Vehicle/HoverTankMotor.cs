@@ -14,8 +14,9 @@ namespace RVP
         [Tooltip("Curve which calculates the driving force based on the speed of the vehicle, x-axis = speed, y-axis = force")]
         public AnimationCurve forceCurve = AnimationCurve.EaseInOut(0, 1, 50, 0);
         public HoverTankWheel[] wheels;
+        public HoverTankSteer steer;
 
-        public float actualSpeed = 1.5f;
+        public float actualSpeed = 15f;
 
         public override void FixedUpdate()
         {
@@ -31,7 +32,7 @@ namespace RVP
                 if (ignition)
                 {
                     float boostEval = boostPowerCurve.Evaluate(Mathf.Abs(vp.localVelocity.z));
-                    curWheel.targetSpeed = actualInput * actualSpeed;
+                    curWheel.targetSpeed = actualInput * actualSpeed * 0.1f;
                     curWheel.targetForce = Mathf.Abs(actualInput) * health;
                 }
                 else
@@ -49,7 +50,8 @@ namespace RVP
             //Set engine pitch
             if (snd && ignition)
             {
-                targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput) * 0.5f) * (1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)));
+                targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput)) * 
+                    Mathf.Max(1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)), 1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.x)));
             }
 
             base.Update();

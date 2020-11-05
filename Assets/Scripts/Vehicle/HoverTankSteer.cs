@@ -11,6 +11,7 @@ namespace RVP
     {
         Transform tr;
         VehicleParent vp;
+        public float flipOverForce = 50.0f;
         public float steerRate = 1;
         float steerAmount;
 
@@ -30,10 +31,29 @@ namespace RVP
         public float rotationOffset;
         float steerRot;
 
+        private Rigidbody parentRigidbody;
+
+        private bool stabilizeOrientation = true;
+
+        public void ToggleJetHover(bool isJet)
+        {
+            stabilizeOrientation = !isJet;
+
+            foreach (HoverTankWheel wheel in steeredFrontWheels)
+            {
+                wheel.applyFloatDriveUnscaled = !isJet;
+            }
+            foreach (HoverTankWheel wheel in steeredRearWheels)
+            {
+                wheel.applyFloatDriveUnscaled = !isJet;
+            }
+        }
+
         void Start()
         {
             tr = transform;
             vp = tr.GetTopmostParentComponent<VehicleParent>();
+            parentRigidbody = vp.GetComponent<Rigidbody>();
         }
 
         void FixedUpdate()
@@ -42,6 +62,14 @@ namespace RVP
             float rbSpeed = vp.localVelocity.z / steerCurveStretch;
             float steerLimit = steerCurve.Evaluate(Mathf.Abs(rbSpeed));
             steerAmount = vp.steerInput * steerLimit;
+
+            var hoverMotor = vp.engine as HoverTankMotor;
+
+            if (stabilizeOrientation)
+            {
+                var rot = Quaternion.FromToRotation(transform.up, Vector3.up);
+                parentRigidbody.AddTorque(new Vector3(rot.x, rot.y, rot.z) * flipOverForce);
+            }
 
             float steerDirection = UnityInputModule.instance.controls.Player.TankTurn.ReadValue<float>() * steerSpeed;
 

@@ -23,6 +23,9 @@ namespace RVP
         Rigidbody detachedBodyHover;
         MeshFilter detachFilterHover;
 
+        Rigidbody parentRigidbody;
+        public bool applyFloatDriveUnscaled;
+
         void Start()
         {
             trHover = transform;
@@ -46,6 +49,8 @@ namespace RVP
                 detachedBodyHover.mass = mass;
                 detachedWheelHover.SetActive(false);
             }
+
+            parentRigidbody = vpHover.GetComponent<Rigidbody>();
         }
 
         void Update()
@@ -75,7 +80,10 @@ namespace RVP
             if (grounded && doFloat && connected)
             {
                 ApplyFloat();
-                ApplyFloatDrive();
+                //if (applyFloatDrive)
+                //{
+                    ApplyFloatDrive();
+                //}
             }
         }
 
@@ -149,11 +157,19 @@ namespace RVP
         //Drive the vehicle
         void ApplyFloatDrive()
         {
+            float jetSpeedModifier = 1.0f;
+            if (!applyFloatDriveUnscaled)
+            {
+                var hoverMotor = vpHover.engine as HoverTankMotor;
+                var relativeVelocity = vpHover.transform.InverseTransformDirection(vpHover.rb.velocity);
+                jetSpeedModifier = 1.0f - Utilities.ActualSmoothstep(VehicleTypeSwitch.jetAnimationStartVel, VehicleTypeSwitch.jetAnimationEndVel, relativeVelocity.z);
+            }
+
             rbHover.AddForceAtPosition(
                 trHover.TransformDirection(
                     Mathf.Clamp(targetSpeed, -1, 1) * targetForce * steerFactor * flippedSideFactorHover - contactPoint.relativeVelocity.x * sideFriction,
                     0,
-                    -steerRate * steerFactor * flippedSideFactorHover - contactPoint.relativeVelocity.z * sideFriction) * (1 - compressionHover),
+                    -steerRate * steerFactor * flippedSideFactorHover - contactPoint.relativeVelocity.z * sideFriction) * (1 - compressionHover) * jetSpeedModifier,
                 trHover.position,
                 vpHover.wheelForceMode);
         }
