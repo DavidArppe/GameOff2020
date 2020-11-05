@@ -22239,6 +22239,7 @@ MonoBehaviour:
   brakeDrag: 2
   jetDrag: 0.1
   jetAngularDrag: 5
+  topSpeed: 100
   hoverFlipOverForce: 1000
   m_AirBrakesEffect: 3
   m_DragIncreaseFactor: 0.001
