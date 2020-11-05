@@ -334,6 +334,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e33cb74b36f03154fbe8044f3d5a7842, type: 3}
+--- !u!4 &926213131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 173650822505787554, guid: 210fcb544cad79448ac52ab927b4f846,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840644105685840588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &966751516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8738787592077801707, guid: 210fcb544cad79448ac52ab927b4f846,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840644105685840588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035767947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5731282684015025784, guid: 210fcb544cad79448ac52ab927b4f846,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840644105685840588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fc459893a08c34cafa2392b61f00c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137600033
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,18 +434,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1224194615 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5731282683118600244, guid: 210fcb544cad79448ac52ab927b4f846,
-    type: 3}
-  m_PrefabInstance: {fileID: 1840644105685840588}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4566f4bd97210bb40ae078c123211942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1840644105685840588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,46 +441,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 161123673471219565, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: turnTorques.x
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 161123673471219565, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: turnTorques.z
-      value: 22.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 161123673471219565, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_AirBrakesEffect
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3554263686621278194, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3554263686621278194, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3554263686621278194, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3554263686621278194, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731282684015025784, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: vehicleType
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5731282684015025787, guid: 210fcb544cad79448ac52ab927b4f846,
         type: 3}
       propertyPath: m_Name
@@ -529,11 +501,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8830417933143632640, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: steer
-      value: 
-      objectReference: {fileID: 1224194615}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210fcb544cad79448ac52ab927b4f846, type: 3}
 --- !u!4 &1840644105685840589 stripped
@@ -549,10 +516,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 650321117, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
-      propertyPath: m_Target
+    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
+      propertyPath: target
       value: 
       objectReference: {fileID: 1840644105685840589}
+    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
+      propertyPath: carSettings.target
+      value: 
+      objectReference: {fileID: 966751516}
+    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
+      propertyPath: hoverTankSettings.target
+      value: 
+      objectReference: {fileID: 926213131}
+    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
+      propertyPath: jetSettings.target
+      value: 
+      objectReference: {fileID: 1840644105685840589}
+    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
+      propertyPath: switcher
+      value: 
+      objectReference: {fileID: 1035767947}
     - target: {fileID: 4011574872516991010, guid: 828766ab7464fcd449ebb38b45c3fc5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -613,16 +596,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 4011574872528100202, guid: 828766ab7464fcd449ebb38b45c3fc5f,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 6197748255716425181}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
---- !u!4 &6197748255716425181 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5731282684015283985, guid: 210fcb544cad79448ac52ab927b4f846,
-    type: 3}
-  m_PrefabInstance: {fileID: 1840644105685840588}
-  m_PrefabAsset: {fileID: 0}

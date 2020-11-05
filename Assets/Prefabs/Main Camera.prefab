@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4011574872518620018}
   - component: {fileID: 4011574872528975890}
   - component: {fileID: 4011574872516452286}
-  - component: {fileID: 4011574872528100202}
-  - component: {fileID: 650321117}
+  - component: {fileID: 1213086799}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -94,26 +93,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4011574872517325734}
   m_Enabled: 1
---- !u!114 &4011574872528100202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011574872517325734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e217891e04d34f04e8f2efd7958d8bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  height: 1.5
-  distance: 9.5
-  stayFlat: 0
-  castMask:
-    serializedVersion: 2
-    m_Bits: 1
---- !u!114 &650321117
+--- !u!114 &1213086799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,17 +102,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 4011574872517325734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d3968294210ba4a9d2bb96dfa74a16, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eccbbdca137acc479a3f57a875f37cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_AutoTargetPlayer: 0
-  m_UpdateType: 0
-  m_MoveSpeed: 30
-  m_TurnSpeed: 20
-  m_RollSpeed: 0.4
-  m_FollowVelocity: 0
-  m_FollowTilt: 1
-  m_SpinTurnLimit: 0
-  m_TargetVelocityLowerLimit: 4
-  m_SmoothTurnTime: 0.2
+  target: {fileID: 0}
+  updateType: 0
+  carSettings:
+    target: {fileID: 0}
+    cameraVerticalFOV: 60
+    spinTurnLimit: 0
+    followTilt: 1
+    moveSpeed: 30
+    turnSpeed: 20
+    rollSpeed: 20
+  hoverTankSettings:
+    target: {fileID: 0}
+    cameraVerticalFOV: 60
+    spinTurnLimit: 0
+    followTilt: 1
+    moveSpeed: 50
+    turnSpeed: 50
+    rollSpeed: 50
+  jetSettings:
+    target: {fileID: 0}
+    cameraVerticalFOV: 60
+    spinTurnLimit: 0
+    followTilt: 1
+    moveSpeed: 30
+    turnSpeed: 20
+    rollSpeed: 20
+  switcher: {fileID: 0}

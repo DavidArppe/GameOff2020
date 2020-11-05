@@ -15,21 +15,24 @@ public class VehicleTypeSwitch : MonoBehaviour
         CAR = 4,
     }
 
+    // Public Required Variables
     public VehicleType vehicleType = VehicleType.JET;
     
-    [Header("Required Variables")]
-    public GameObject               hoverWheels;
-    public GameObject               regularWheels;
+    public GameObject   hoverWheels;
+    public GameObject   regularWheels;
 
-    public Transform[]              regularWheelTransforms;
-    public Transform[]              hoverWheelTransforms;
-    public Transform[]              jetWheelTransforms;
-    public Transform[]              visualWheelTransforms;
-    
+    public Transform[]  regularWheelTransforms;
+    public Transform[]  hoverWheelTransforms;
+    public Transform[]  jetWheelTransforms;
+    public Transform[]  visualWheelTransforms;
+
+    public Transform leftWing;
+    public Transform rightWing;
+
+    // Variables we can initialize in Start
     private new Rigidbody           rigidbody;
     private RVP.VehicleParent       vehicleParent;
     private RVP.VehicleAssist       vehicleAssist;
-
     private RVP.GasMotor            gasMotor;
     private RVP.HoverTankMotor      hoverMotor;
     private RVP.SteeringControl     regularSteer;
@@ -38,27 +41,25 @@ public class VehicleTypeSwitch : MonoBehaviour
     private RVP.TireScreech         tireScreech;
     private JetMotorAndController   jetController;
 
-    public Transform               leftWing;
-    public Transform               rightWing;
+    // Tweakable variables
+    public float hovercraftHoverDistance    = 5.0f;
+    public float regularCenterOfGravity     = -0.1f;
+    public float hoverCenterOfGravity       = -0.3f;
+    public float jetHoverDistance           = 20.0f;
 
-    [Header("Tweakable Variables")]
-    public float        hoverCenterOfGravity = -0.3f;
-    public float        regularCenterOfGravity = -0.1f;
+    // Private / Hidden variables
+    [HideInInspector] 
+    public float  isHoverLerpValue      = 1.0f;
+    [HideInInspector] 
+    public float  isJetLerpValue        = 1.0f;
+    private float isHoverLerpTarget     = 1.0f;
+    private float isJetLerpTarget       = 1.0f;
+    private float originalAngularDrag   = 0.0f;
+    private float originalDrag          = 0.0f;
 
-    public float        jetHoverDistance = 20.0f;
-    public float        hovercraftHoverDistance = 5.0f;
-
-    // Linear interpolation values
-    private float       isHoverLerpTarget = 1.0f;
-    private float       isHoverLerpValue = 1.0f;
-
-    private float       isJetLerpTarget = 1.0f;
-    private float       isJetLerpValue = 1.0f;
-    public const float jetAnimationStartVel    = 15.0f;
-    public const float jetAnimationEndVel      = 35.0f;
-
-    private float originalDrag;
-    private float originalAngularDrag;
+    // Constant variables
+    public const float JET_ANIMATION_START_VELOCITY = 15.0f;
+    public const float JET_ANIMATION_END_VELOCITY   = 35.0f;
 
     private void Start()
     {
@@ -82,12 +83,17 @@ public class VehicleTypeSwitch : MonoBehaviour
         UnityInputModule.instance.controls.Player.Switch.performed += context =>
         {
             ToggleVehicleBit(VehicleType.JET);
-            OnSwitch(false, HasVehicleBit(VehicleType.JET) ? VehicleType.HOVER : VehicleType.NONE);
-            jetController.gameObject.SetActive(HasVehicleBit(VehicleType.JET));
-            isJetLerpTarget = HasVehicleBit(VehicleType.JET) ? 1.0f : 0.0f;
-            rigidbody.drag = HasVehicleBit(VehicleType.JET) ? jetController.jetDrag : originalDrag;
-            rigidbody.angularDrag = HasVehicleBit(VehicleType.JET) ? jetController.jetAngularDrag : originalAngularDrag;
-            hoverSteer.ToggleJetHover(HasVehicleBit(VehicleType.JET));
+            bool isJetInternal = HasVehicleBit(VehicleType.JET);
+
+            OnSwitch(false, isJetInternal ? VehicleType.HOVER : VehicleType.NONE);
+            hoverSteer.ToggleJetHover(isJetInternal);
+            
+            jetController.gameObject.SetActive(isJetInternal);
+
+            isJetLerpTarget         = isJetInternal ? 1.0f : 0.0f;
+            rigidbody.drag          = isJetInternal ? jetController.jetDrag : originalDrag;
+            rigidbody.angularDrag   = isJetInternal ? jetController.jetAngularDrag : originalAngularDrag;
+            rigidbody.centerOfMass  = isJetInternal ? Vector3.zero : rigidbody.centerOfMass; // TODO: Try a controllable transform?
         };
 
         // If both Hover and Car have their bits matching, then toggle one. We can only initialize with one enabled. They are mutually exclusive
@@ -96,15 +102,17 @@ public class VehicleTypeSwitch : MonoBehaviour
             ToggleVehicleBit(VehicleType.HOVER);
         }
 
+        bool isJet = HasVehicleBit(VehicleType.JET);
+
         // Don't switch, just initialize. Force hover initialize if it's a jet.
-        OnSwitch(false, HasVehicleBit(VehicleType.JET) ? VehicleType.HOVER : VehicleType.NONE);
+        OnSwitch(false, isJet ? VehicleType.HOVER : VehicleType.NONE);
 
-        jetController.gameObject.SetActive(HasVehicleBit(VehicleType.JET));
+        jetController.gameObject.SetActive(isJet);
 
-        isJetLerpTarget = HasVehicleBit(VehicleType.JET) ? 1.0f : 0.0f;
-        isHoverLerpTarget = HasVehicleBit(VehicleType.HOVER) ? 1.0f : 0.0f;
-        rigidbody.drag = HasVehicleBit(VehicleType.JET) ? jetController.jetDrag : originalDrag;
-        rigidbody.angularDrag = HasVehicleBit(VehicleType.JET) ? jetController.jetAngularDrag : originalAngularDrag;
+        isJetLerpTarget         = isJet ? 1.0f : 0.0f;
+        isHoverLerpTarget       = HasVehicleBit(VehicleType.HOVER) ? 1.0f : 0.0f;
+        rigidbody.drag          = isJet ? jetController.jetDrag : originalDrag;
+        rigidbody.angularDrag   = isJet ? jetController.jetAngularDrag : originalAngularDrag;
     }
 
     private void LateUpdate()
@@ -115,7 +123,7 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         var relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
-        var jetAnimate01 = Utilities.ActualSmoothstep(jetAnimationStartVel, jetAnimationEndVel, relativeVelocity.z);
+        var jetAnimate01 = Utilities.ActualSmoothstep(JET_ANIMATION_START_VELOCITY, JET_ANIMATION_END_VELOCITY, relativeVelocity.z);
 
         // Interpolate to the jet wheels, only if it's a jet AND the speed is over a threshold
         float realHoverLerp = Mathf.SmoothStep(0.0f, 1.0f, isHoverLerpValue);
