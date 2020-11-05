@@ -34,10 +34,12 @@ namespace RVP
         private Rigidbody parentRigidbody;
 
         private bool stabilizeOrientation = true;
+        public bool disableMoveBackwards = false;
 
         public void ToggleJetHover(bool isJet)
         {
             stabilizeOrientation = !isJet;
+            disableMoveBackwards = isJet;
 
             foreach (HoverTankWheel wheel in steeredFrontWheels)
             {

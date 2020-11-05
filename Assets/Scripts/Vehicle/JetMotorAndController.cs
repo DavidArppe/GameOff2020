@@ -75,7 +75,7 @@ public class JetMotorAndController : MonoBehaviour
 
         // Throttle has to move slowly so that the plane still accelerates slowly using high
         // drag physics. Without them, the plane would change speed almost instantly.
-        throttleValue = Mathf.MoveTowards(throttleValue, throttleTarget, ((acceleration + brakeAccel) / FORCE_MULT) * Time.deltaTime);
+        throttleValue = Mathf.MoveTowards(throttleValue, throttleTarget, ((acceleration + brakeAccel) / FORCE_MULT) * Time.deltaTime * throttleSpeedUpTime);
 
 
         var localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
@@ -114,6 +114,8 @@ public class JetMotorAndController : MonoBehaviour
 
     [SerializeField] private float m_AerodynamicEffect = 0.02f;   // How much aerodynamics affect the speed of the aeroplane.
     private float aeroFactor;
+    private float throttleSpeedUpTime = 4.0f;
+
     private void CaluclateAerodynamicEffect(float forwardSpeed)
     {
         // "Aerodynamic" calculations. This is a very simple approximation of the effect that a plane

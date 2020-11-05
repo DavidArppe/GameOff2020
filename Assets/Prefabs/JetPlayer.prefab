@@ -22232,7 +22232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleParent: {fileID: 5731282684026322549}
-  turnTorques: {x: 20, y: 10, z: 10}
+  turnTorques: {x: 45, y: 10, z: 22.5}
   bankTorque: 10
   maxThrust: 200
   acceleration: 10
@@ -22241,7 +22241,7 @@ MonoBehaviour:
   jetAngularDrag: 5
   topSpeed: 100
   hoverFlipOverForce: 1000
-  m_AirBrakesEffect: 3
+  m_AirBrakesEffect: 12
   m_DragIncreaseFactor: 0.001
   m_AerodynamicEffect: 0.04
 --- !u!1 &5731282684015022125
@@ -22546,7 +22546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fc459893a08c34cafa2392b61f00c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleType: 4
+  vehicleType: 5
   hoverWheels: {fileID: 5731282684249747197}
   regularWheels: {fileID: 5731282684088877898}
   regularWheelTransforms:
@@ -33721,6 +33721,7 @@ MonoBehaviour:
   rotate: 0
   maxDegreesRotation: 0
   rotationOffset: 0
+  disableMoveBackwards: 0
 --- !u!1 &5731282684813104056
 GameObject:
   m_ObjectHideFlags: 0
@@ -33861,7 +33862,7 @@ MonoBehaviour:
   - {fileID: 3574950768982020210}
   - {fileID: 3574950770788319531}
   - {fileID: 3574950770519870713}
-  steer: {fileID: 0}
+  steer: {fileID: 5731282683118600244}
   actualSpeed: 15
 --- !u!82 &5731282684813104054
 AudioSource:
@@ -34289,13 +34290,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7570448706483626045}
-  m_LocalRotation: {x: 0.052335896, y: 0, z: 0, w: 0.9986295}
-  m_LocalPosition: {x: 0, y: 2.25, z: -5.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5731282684015283985}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 6, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7975904091054181317
 GameObject:
   m_ObjectHideFlags: 0

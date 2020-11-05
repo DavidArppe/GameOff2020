@@ -24,7 +24,15 @@ namespace RVP
 
             //Get proper input
             float actualAccel = UnityInputModule.instance.controls.Player.TankAccelerate.ReadValue<float>();
-            actualInput = inputCurve.Evaluate(Mathf.Abs(actualAccel)) * Mathf.Sign(actualAccel);
+
+            if (steer.disableMoveBackwards)
+            {
+                actualInput = inputCurve.Evaluate(Mathf.Abs(actualAccel)) * Mathf.Clamp01(actualAccel);
+            }
+            else
+            {
+                actualInput = inputCurve.Evaluate(Mathf.Abs(actualAccel)) * Mathf.Sign(actualAccel);
+            }
 
             //Set hover wheel speeds and forces
             foreach (HoverTankWheel curWheel in wheels)
