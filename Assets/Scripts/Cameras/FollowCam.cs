@@ -20,7 +20,7 @@ public class FollowCam : PivotBasedCameraRig
         public Vector3 originalTargetOffsetFromPivot;
     }
     
-    public float rotationSpeed = 100.0f;
+    public Vector2 rotationSpeed = new Vector2(150.0f, 50.0f);
 
     public FollowCamSettings carSettings;
     public FollowCamSettings hoverTankSettings;
@@ -93,6 +93,7 @@ public class FollowCam : PivotBasedCameraRig
     void RotateCamera(Vector2 rotateAmount)
     {
         rotationAboutPivot += rotateAmount * Time.deltaTime * rotationSpeed;
+        rotationAboutPivot.y = Mathf.Clamp(rotationAboutPivot.y, -80.0f, 80.0f);
 
         var dirToPoint = interpolatedTargetPosition - interpolatedPivotPosition;
 
@@ -117,15 +118,15 @@ public class FollowCam : PivotBasedCameraRig
     {
         CalculateInterpolatedCameraValues(carSettings, hoverTankSettings, jetSettings);
 
-        float speedCalculatedRotationSpeed = Mathf.Clamp01(Mathf.InverseLerp(1.0f, 50.0f, rigid.velocity.magnitude)) * 250.0f;
+        Vector2 speedCalculatedRotationSpeed = Mathf.Clamp01(Mathf.InverseLerp(1.0f, 50.0f, rigid.velocity.magnitude)) * rotationSpeed;
 
         Vector2 rotateAmount = UnityInputModule.instance.controls.Player.Camera.ReadValue<Vector2>();
         RotateCamera(rotateAmount);
 
-        float inputScaler = 1.0f - Utilities.ActualSmoothstep(0.05f, 0.15f, Mathf.Max(Mathf.Abs(rotateAmount.x), Mathf.Abs(rotateAmount.y)));
+        float inputScaler = 1.0f - Utilities.ActualSmoothstep(0.05f, 0.15f, Mathf.Max(Mathf.Abs(rotateAmount.x), Mathf.Abs(rotateAmount.y))) * 0.5f;
         rotationAboutPivot = new Vector2(
-            Mathf.SmoothDampAngle(rotationAboutPivot.x, 0.0f, ref currentVelX, 0.2f, speedCalculatedRotationSpeed * inputScaler),
-            Mathf.SmoothDampAngle(rotationAboutPivot.y, 0.0f, ref currentVelY, 0.2f, speedCalculatedRotationSpeed * inputScaler));
+            Mathf.SmoothDampAngle(rotationAboutPivot.x, 0.0f, ref currentVelX, 0.2f, speedCalculatedRotationSpeed.x * inputScaler),
+            Mathf.SmoothDampAngle(rotationAboutPivot.y, 0.0f, ref currentVelY, 0.2f, speedCalculatedRotationSpeed.y * inputScaler));
 
         // if no target, or no time passed then we quit early, as there is nothing to do
         if (!(deltaTime > 0) || target == null)

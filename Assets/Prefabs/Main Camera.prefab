@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4011574872516991010}
   - component: {fileID: 4011574872518620018}
   - component: {fileID: 4011574872528975890}
-  - component: {fileID: 4011574872516452286}
   - component: {fileID: 1213086799}
+  - component: {fileID: 908368820072744251}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -85,14 +85,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4011574872517325734}
   m_Enabled: 1
---- !u!81 &4011574872516452286
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011574872517325734}
-  m_Enabled: 1
 --- !u!114 &1213086799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,17 +99,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   updateType: 0
-  rotationSpeed: 250
+  rotationSpeed: {x: 150, y: 80}
   carSettings:
     target: {fileID: 0}
     pivot: {fileID: 0}
     cameraVerticalFOV: 60
     spinTurnLimit: 0
     followTilt: 1
-    moveSpeed: 30
+    moveSpeed: 20
     turnSpeed: 20
     rollSpeed: 20
-    originalTargetOffsetFromPivot: {x: 0, y: 1.26, z: -11.940001}
+    originalTargetOffsetFromPivot: {x: 0, y: 1.26, z: -12.200001}
   hoverTankSettings:
     target: {fileID: 0}
     pivot: {fileID: 0}
@@ -127,15 +119,29 @@ MonoBehaviour:
     moveSpeed: 50
     turnSpeed: 50
     rollSpeed: 50
-    originalTargetOffsetFromPivot: {x: 0, y: 2.28, z: -10.780001}
+    originalTargetOffsetFromPivot: {x: 0, y: 2.28, z: -11.040001}
   jetSettings:
     target: {fileID: 0}
     pivot: {fileID: 0}
     cameraVerticalFOV: 60
     spinTurnLimit: 0
     followTilt: 1
-    moveSpeed: 30
+    moveSpeed: 50
     turnSpeed: 20
     rollSpeed: 20
-    originalTargetOffsetFromPivot: {x: 0, y: 0.55999994, z: -10.74}
+    originalTargetOffsetFromPivot: {x: 0, y: 0.55999994, z: -11}
   switcher: {fileID: 0}
+--- !u!114 &908368820072744251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011574872517325734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1

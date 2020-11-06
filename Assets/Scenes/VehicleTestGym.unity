@@ -459,16 +459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3554263686621278194, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3921222296687979700, guid: 210fcb544cad79448ac52ab927b4f846,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.82
-      objectReference: {fileID: 0}
     - target: {fileID: 5731282684015025787, guid: 210fcb544cad79448ac52ab927b4f846,
         type: 3}
       propertyPath: m_Name
@@ -576,14 +566,6 @@ PrefabInstance:
       propertyPath: switcher
       value: 
       objectReference: {fileID: 1035767947}
-    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
-      propertyPath: rotationSpeed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213086799, guid: 828766ab7464fcd449ebb38b45c3fc5f, type: 3}
-      propertyPath: jetSettings.originalTargetOffsetFromPivot.y
-      value: 1.3500001
-      objectReference: {fileID: 0}
     - target: {fileID: 4011574872516991010, guid: 828766ab7464fcd449ebb38b45c3fc5f,
         type: 3}
       propertyPath: m_LocalPosition.x

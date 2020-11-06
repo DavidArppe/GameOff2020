@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.davidarppe.randomationvehiclephysicspackage": {
-      "version": "https://github.com/DavidArppe/RandomationVehiclePhysicsPackage.git",
+      "version": "file:com.davidarppe.randomationvehiclephysicspackage",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "ea04785131798a070e4f800694d97cb85344f41f"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
