@@ -107,28 +107,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   updateType: 0
+  rotationSpeed: 250
   carSettings:
     target: {fileID: 0}
+    pivot: {fileID: 0}
     cameraVerticalFOV: 60
     spinTurnLimit: 0
     followTilt: 1
     moveSpeed: 30
     turnSpeed: 20
     rollSpeed: 20
+    originalTargetOffsetFromPivot: {x: 0, y: 1.26, z: -11.940001}
   hoverTankSettings:
     target: {fileID: 0}
+    pivot: {fileID: 0}
     cameraVerticalFOV: 60
     spinTurnLimit: 0
     followTilt: 1
     moveSpeed: 50
     turnSpeed: 50
     rollSpeed: 50
+    originalTargetOffsetFromPivot: {x: 0, y: 2.28, z: -10.780001}
   jetSettings:
     target: {fileID: 0}
+    pivot: {fileID: 0}
     cameraVerticalFOV: 60
     spinTurnLimit: 0
     followTilt: 1
     moveSpeed: 30
     turnSpeed: 20
     rollSpeed: 20
+    originalTargetOffsetFromPivot: {x: 0, y: 0.55999994, z: -10.74}
   switcher: {fileID: 0}

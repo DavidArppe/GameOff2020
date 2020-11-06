@@ -58,8 +58,8 @@ public class VehicleTypeSwitch : MonoBehaviour
     private float originalDrag          = 0.0f;
 
     // Constant variables
-    public const float JET_ANIMATION_START_VELOCITY = 15.0f;
-    public const float JET_ANIMATION_END_VELOCITY   = 35.0f;
+    public const float JET_ANIMATION_START_VELOCITY = 5.0f;
+    public const float JET_ANIMATION_END_VELOCITY   = 25.0f;
 
     private void Start()
     {
@@ -90,6 +90,7 @@ public class VehicleTypeSwitch : MonoBehaviour
             
             jetController.gameObject.SetActive(isJetInternal);
 
+            if (isJetInternal) jetController.targetThrottleValue = rigidbody.velocity.magnitude / jetController.topSpeed;
             isJetLerpTarget         = isJetInternal ? 1.0f : 0.0f;
             rigidbody.drag          = isJetInternal ? jetController.jetDrag : originalDrag;
             rigidbody.angularDrag   = isJetInternal ? jetController.jetAngularDrag : originalAngularDrag;
@@ -123,7 +124,7 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         var relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
-        var jetAnimate01 = Utilities.ActualSmoothstep(JET_ANIMATION_START_VELOCITY, JET_ANIMATION_END_VELOCITY, relativeVelocity.z);
+        var jetAnimate01 = Utilities.ActualSmoothstep(JET_ANIMATION_START_VELOCITY, JET_ANIMATION_END_VELOCITY, relativeVelocity.magnitude);// z);
 
         // Interpolate to the jet wheels, only if it's a jet AND the speed is over a threshold
         float realHoverLerp = Mathf.SmoothStep(0.0f, 1.0f, isHoverLerpValue);

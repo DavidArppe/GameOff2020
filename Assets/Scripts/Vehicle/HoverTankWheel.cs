@@ -162,7 +162,7 @@ namespace RVP
             {
                 var hoverMotor = vpHover.engine as HoverTankMotor;
                 var relativeVelocity = vpHover.transform.InverseTransformDirection(vpHover.rb.velocity);
-                jetSpeedModifier = 1.0f - Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, relativeVelocity.z);
+                jetSpeedModifier = 1.0f - Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, relativeVelocity.magnitude);// z);
             }
 
             rbHover.AddForceAtPosition(

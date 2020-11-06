@@ -21,8 +21,12 @@ public class JetMotorAndController : MonoBehaviour
     public float brakeDrag          = 5.0f;
     public float topSpeed           = 200.0f;
     public float jetDrag            = 0.1f;
+    [Range(0.0f, 1.0f)]
+    public float idleSpeedInput     = 0.5f;
 
     private const float FORCE_MULT      = 100.0f;
+    [HideInInspector]
+    public float targetThrottleValue   = 0.0f;
     private float throttleSpeedUpTime   = 4.0f;
     private float throttleValue         = 0.0f;
 
@@ -76,20 +80,47 @@ public class JetMotorAndController : MonoBehaviour
     /// </summary>
     private void Move(float roll, float pitch, float accel, float deccel)
     {
-        float throttleTarget = accel;
         float brakePower = brakeDrag * deccel;
         float brakeAccel = brakeDrag * brakePower;
+        
+        // Target an idle speed
+        if (accel > 0.05f)
+        {
+            // If input thrust is over half pressed, OR the idle speed is lower than the input thrust, move to the input thrust
+            if (accel > idleSpeedInput || accel > targetThrottleValue)
+            {
+                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, accel, Time.deltaTime);
+            }
+            // Otherwise, move to the idle input of 0.5
+            else
+            {
+                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.5f, Time.deltaTime * 0.1f);
+            }
+        }
+        else if (deccel > 0.05f)
+        {
+            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.0f, Time.deltaTime * 0.4f);
+        }
+        else if (targetThrottleValue > idleSpeedInput)
+        {
+            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, idleSpeedInput, Time.deltaTime * 0.02f);
+        }
 
-        throttleValue = Mathf.MoveTowards(throttleValue, throttleTarget, ((acceleration + brakeAccel) / FORCE_MULT) * Time.deltaTime * throttleSpeedUpTime);
+        throttleValue = Mathf.MoveTowards(throttleValue, targetThrottleValue, ((acceleration + brakeAccel)) * Time.deltaTime * throttleSpeedUpTime);
+
+        Debug.Log("Target throttle value : " + targetThrottleValue);
 
         var localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
         var forwardSpeed = Mathf.Max(0, localVelocity.z);
 
-        CalculateDrag(brakeAccel, forwardSpeed);
-        CaluclateAerodynamicEffect(forwardSpeed);
+        CalculateDrag(brakeAccel, localVelocity.magnitude);
+        CaluclateAerodynamicEffect(localVelocity.magnitude);
 
         // Main input to the rigidbody
-        rigidbody.AddRelativeForce((Vector3.forward * maxThrust * aeroFactor * throttleValue * FORCE_MULT) / rigidbody.mass, ForceMode.Acceleration);
+        rigidbody.AddRelativeForce((
+            (Vector3.forward * maxThrust * throttleValue * FORCE_MULT)                              // Driven Forces
+            + (Vector3.forward * aeroFactor))      // Passive Forces
+            / rigidbody.mass, ForceMode.Acceleration);
         
         Vector3 scaledTorque = new Vector3(Mathf.Min(pitch, Mathf.Lerp(0.2f, 1.0f, Utilities.ActualSmoothstep(15.0f, 20.0f, forwardSpeed))), 0.0f, -roll); 
         scaledTorque.Scale(turnTorques);
@@ -101,7 +132,7 @@ public class JetMotorAndController : MonoBehaviour
         rigidbody.AddRelativeTorque(Vector3.up * bankFactor * aeroFactor * bankTorque * FORCE_MULT, ForceMode.Force);
 
         // Clamp the velocity
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, topSpeed);
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, Mathf.Max(50.0f, topSpeed * targetThrottleValue));
     }
 
     /// <summary>
