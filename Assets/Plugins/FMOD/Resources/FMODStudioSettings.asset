@@ -380,7 +380,7 @@ MonoBehaviour:
   MasterBanks:
   - common
   Banks:
-  - car
+  - playerSounds
   BanksToLoad:
   - 
   LiveUpdatePort: 9264

@@ -29,6 +29,9 @@ public class VehicleTypeSwitch : MonoBehaviour
     public Transform leftWing;
     public Transform rightWing;
 
+    public FMODUnity.StudioEventEmitter windSoundEmitter;
+    public FMODUnity.StudioEventEmitter hoverSoundEmitter;
+
     // Variables we can initialize in Start
     private new Rigidbody           rigidbody;
     private RVP.VehicleParent       vehicleParent;
@@ -90,7 +93,7 @@ public class VehicleTypeSwitch : MonoBehaviour
             
             jetController.gameObject.SetActive(isJetInternal);
 
-            if (isJetInternal) jetController.targetThrottleValue = rigidbody.velocity.magnitude / jetController.topSpeed;
+            if (isJetInternal) jetController.targetInputValue = rigidbody.velocity.magnitude / jetController.topSpeed;
             isJetLerpTarget         = isJetInternal ? 1.0f : 0.0f;
             rigidbody.drag          = isJetInternal ? jetController.jetDrag : originalDrag;
             rigidbody.angularDrag   = isJetInternal ? jetController.jetAngularDrag : originalAngularDrag;
@@ -123,8 +126,9 @@ public class VehicleTypeSwitch : MonoBehaviour
         isJetLerpValue = Mathf.MoveTowards(isJetLerpValue, isJetLerpTarget, Time.deltaTime * 2.0f);
 
         var relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
+        float relativeMagnitude = relativeVelocity.magnitude;
 
-        var jetAnimate01 = Utilities.ActualSmoothstep(JET_ANIMATION_START_VELOCITY, JET_ANIMATION_END_VELOCITY, relativeVelocity.magnitude);// z);
+        var jetAnimate01 = Utilities.ActualSmoothstep(JET_ANIMATION_START_VELOCITY, JET_ANIMATION_END_VELOCITY * 2.0f, relativeMagnitude);// z);
 
         // Interpolate to the jet wheels, only if it's a jet AND the speed is over a threshold
         float realHoverLerp = Mathf.SmoothStep(0.0f, 1.0f, isHoverLerpValue);
@@ -139,7 +143,10 @@ public class VehicleTypeSwitch : MonoBehaviour
 
             visualWheelTransforms[i].position = toJetWheelPos;
             visualWheelTransforms[i].rotation = toJetWheelRot;
+            visualWheelTransforms[i].Rotate(Vector3.forward, Mathf.Repeat(Time.realtimeSinceStartup * 1080.0f, 360.0f) * Mathf.Max(realJetWheelLerp, realHoverLerp), Space.Self);
         }
+
+        windSoundEmitter.SetParameter("speed", relativeMagnitude * 1.5f);
 
         // TODO: Use the animator for this? Makes it more expandable
         leftWing.localPosition = Vector3.Lerp(Vector3.right * 4.0f, Vector3.zero, isJetLerpValue);
@@ -147,6 +154,21 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         leftWing.localScale = Vector3.Lerp(new Vector3(0.5f, 1.0f, 1.0f), Vector3.one, isJetLerpValue);
         rightWing.localScale = Vector3.Lerp(new Vector3(0.5f, 1.0f, 1.0f), Vector3.one, isJetLerpValue);
+
+        // Audio settings: Lerp and stuff
+        float isCarLerpValue = (1.0f - isHoverLerpValue) * (1.0f - isJetLerpValue);
+        gasMotor.bodyNoiseVolume = isCarLerpValue;
+        gasMotor.engineVolume = isCarLerpValue;
+        gasMotor.wheelsVolume = isCarLerpValue;
+        gasMotor.bodyNoiseSoundEmitter.EventInstance.setVolume(isCarLerpValue);
+        gasMotor.engineSoundEmitter.EventInstance.setVolume(isCarLerpValue);
+        gasMotor.wheelsSoundEmitter.EventInstance.setVolume(isCarLerpValue);
+
+        jetController.jetNoiseVolume = isJetLerpValue;
+        jetController.jetSoundEmitter.EventInstance.setVolume(isJetLerpValue);
+
+        hoverSoundEmitter.SetParameter("input", Utilities.ActualSmoothstep(0.0f, 20.0f, relativeMagnitude));
+        hoverSoundEmitter.EventInstance.setVolume(Mathf.Max(isJetLerpValue, isHoverLerpValue));
     }
 
     bool HasVehicleBit(VehicleType typeToCheck)

@@ -44,11 +44,12 @@ namespace RVP
 
         public override void Update()
         {
-            //Set engine pitch
-            if (snd && ignition)
-            {
-                targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput) * 0.5f) * (1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)));
-            }
+            // TODO: Hover Motor Sound?
+            // if (snd && ignition)
+            // {
+            //     targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput)) * 
+            //         Mathf.Max(1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)), 1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.x)));
+            // }
 
             base.Update();
         }

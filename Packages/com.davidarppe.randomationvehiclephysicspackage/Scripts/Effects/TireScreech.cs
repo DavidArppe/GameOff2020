@@ -3,14 +3,14 @@ using System.Collections;
 
 namespace RVP
 {
-    [RequireComponent(typeof(AudioSource))]
     [DisallowMultipleComponent]
     [AddComponentMenu("RVP/Effects/Tire Screech Audio", 1)]
 
     //Class for playing tire screech sounds
     public class TireScreech : MonoBehaviour
     {
-        AudioSource snd;
+        public FMODUnity.StudioEventEmitter tireScreechEmitter;
+
         VehicleParent vp;
         Wheel[] wheels;
         float slipThreshold;
@@ -18,7 +18,6 @@ namespace RVP
 
         void Start()
         {
-            snd = GetComponent<AudioSource>();
             vp = transform.GetTopmostParentComponent<VehicleParent>();
             wheels = new Wheel[vp.wheels.Length];
 
@@ -71,30 +70,27 @@ namespace RVP
                 }
             }
 
-            //Set audio clip based on number of wheels popped
-            if (surfaceType != null)
-            {
-                snd.clip = allPopped ? surfaceType.rimSnd : (nonePopped ? surfaceType.tireSnd : surfaceType.tireRimSnd);
-            }
-
             //Set sound volume and pitch
             if (screechAmount > 0)
             {
-                if (!snd.isPlaying)
+                if (!tireScreechEmitter.IsPlaying())
                 {
-                    snd.Play();
-                    snd.volume = 0;
+                    tireScreechEmitter.Play();
+                    tireScreechEmitter.EventInstance.setVolume(0);
                 }
                 else
                 {
-                    snd.volume = Mathf.Lerp(snd.volume, screechAmount * ((vp.groundedWheels * 1.0f) / (wheels.Length * 1.0f)), 2 * Time.deltaTime);
-                    snd.pitch = Mathf.Lerp(snd.pitch, 0.5f + screechAmount * 0.9f, 2 * Time.deltaTime);
+                    tireScreechEmitter.EventInstance.getVolume(out float volume);
+                    tireScreechEmitter.EventInstance.getPitch(out float pitch);
+
+                    tireScreechEmitter.EventInstance.setVolume(Mathf.Lerp(volume, screechAmount * ((vp.groundedWheels * 1.0f) / (wheels.Length * 1.0f)), 2 * Time.deltaTime));
+                    tireScreechEmitter.EventInstance.setPitch(Mathf.Lerp(pitch, 0.5f + screechAmount * 0.9f, 2 * Time.deltaTime));
                 }
             }
-            else if (snd.isPlaying)
+            else if (tireScreechEmitter.IsPlaying())
             {
-                snd.volume = 0;
-                snd.Stop();
+                tireScreechEmitter.Stop();
+                tireScreechEmitter.EventInstance.setVolume(0);
             }
         }
     }

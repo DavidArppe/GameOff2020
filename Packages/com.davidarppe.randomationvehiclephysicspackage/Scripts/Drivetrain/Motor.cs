@@ -14,19 +14,7 @@ namespace RVP
         public AnimationCurve inputCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
         protected float actualInput;//Input after applying the input curve
 
-        protected AudioSource snd;
-
-        [Header("Engine Audio")]
-
-        public float minPitch;
-        public float maxPitch;
-        [System.NonSerialized]
-        public float targetPitch;
-        protected float pitchFactor;
-        protected float airPitch;
-
         [Header("Nitrous Boost")]
-
         public bool canBoost = true;
         [System.NonSerialized]
         public bool boosting;
@@ -38,10 +26,6 @@ namespace RVP
         public AnimationCurve boostPowerCurve = AnimationCurve.EaseInOut(0, 0.1f, 50, 0.2f);
         public float maxBoost = 1;
         public float boostBurnRate = 0.01f;
-        public AudioSource boostLoopSnd;
-        AudioSource boostSnd;//AudioSource for boostStart and boostEnd
-        public AudioClip boostStart;
-        public AudioClip boostEnd;
         public ParticleSystem[] boostParticles;
 
         [Header("Damage")]
@@ -57,24 +41,6 @@ namespace RVP
         public virtual void Start()
         {
             vp = transform.GetTopmostParentComponent<VehicleParent>();
-
-            //Get engine sound
-            snd = GetComponent<AudioSource>();
-            if (snd)
-            {
-                snd.pitch = minPitch;
-            }
-
-            //Get boost sound
-            if (boostLoopSnd)
-            {
-                GameObject newBoost = Instantiate(boostLoopSnd.gameObject, boostLoopSnd.transform.position, boostLoopSnd.transform.rotation) as GameObject;
-                boostSnd = newBoost.GetComponent<AudioSource>();
-                boostSnd.transform.parent = boostLoopSnd.transform;
-                boostSnd.transform.localPosition = Vector3.zero;
-                boostSnd.transform.localRotation = Quaternion.identity;
-                boostSnd.loop = false;
-            }
 
             if (smoke)
             {
@@ -112,52 +78,33 @@ namespace RVP
                 boostReleased = true;
             }
 
-            if (boostLoopSnd && boostSnd)
-            {
-                if (boosting && !boostLoopSnd.isPlaying)
-                {
-                    boostLoopSnd.Play();
-                }
-                else if (!boosting && boostLoopSnd.isPlaying)
-                {
-                    boostLoopSnd.Stop();
-                }
-
-                if (boosting && !boostPrev)
-                {
-                    boostSnd.clip = boostStart;
-                    boostSnd.Play();
-                }
-                else if (!boosting && boostPrev)
-                {
-                    boostSnd.clip = boostEnd;
-                    boostSnd.Play();
-                }
-            }
+            // TODO: FMOD Boost Sound?
+            // if (boostLoopSnd && boostSnd)
+            // {
+            //     if (boosting && !boostLoopSnd.isPlaying)
+            //     {
+            //         boostLoopSnd.Play();
+            //     }
+            //     else if (!boosting && boostLoopSnd.isPlaying)
+            //     {
+            //         boostLoopSnd.Stop();
+            //     }
+            // 
+            //     if (boosting && !boostPrev)
+            //     {
+            //         boostSnd.clip = boostStart;
+            //         boostSnd.Play();
+            //     }
+            //     else if (!boosting && boostPrev)
+            //     {
+            //         boostSnd.clip = boostEnd;
+            //         boostSnd.Play();
+            //     }
+            // }
         }
 
         public virtual void Update()
         {
-            //Set engine sound properties
-            if (!ignition)
-            {
-                targetPitch = 0;
-            }
-
-            if (snd)
-            {
-                if (ignition && health > 0)
-                {
-                    snd.enabled = true;
-                    snd.pitch = Mathf.Lerp(snd.pitch, Mathf.Lerp(minPitch, maxPitch, targetPitch), 20 * Time.deltaTime) + Mathf.Sin(Time.time * 200 * (1 - health)) * (1 - health) * 0.1f * damagePitchWiggle;
-                    snd.volume = Mathf.Lerp(snd.volume, 0.3f + targetPitch * 0.7f, 20 * Time.deltaTime);
-                }
-                else
-                {
-                    snd.enabled = false;
-                }
-            }
-
             //Play boost particles
             if (boostParticles.Length > 0)
             {

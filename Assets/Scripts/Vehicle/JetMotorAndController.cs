@@ -9,6 +9,9 @@ public class JetMotorAndController : MonoBehaviour
 
     private new Rigidbody rigidbody;
 
+    public FMODUnity.StudioEventEmitter jetSoundEmitter;
+    [HideInInspector] public float jetNoiseVolume = 1.0f;
+
     public Vector3 turnTorques      = new Vector3(60.0f, 10.0f, 90.0f);
     public float dragIncreaseFactor = 0.001f; 
     public float hoverFlipOverForce = 50.0f;
@@ -26,8 +29,10 @@ public class JetMotorAndController : MonoBehaviour
 
     private const float FORCE_MULT      = 100.0f;
     [HideInInspector]
-    public float targetThrottleValue   = 0.0f;
     private float throttleSpeedUpTime   = 4.0f;
+    public float targetInputValue       = 0.0f;
+    private float inputValue            = 0.0f;
+    public float targetThrottleValue    = 0.0f;
     private float throttleValue         = 0.0f;
 
     private float originalAngularDrag;  
@@ -49,6 +54,14 @@ public class JetMotorAndController : MonoBehaviour
     {
         originalAngularDrag = rigidbody.angularDrag;
         originalDrag = rigidbody.drag;
+    }
+
+    private void LateUpdate()
+    {
+        jetSoundEmitter.SetParameter("input", inputValue);
+        jetSoundEmitter.SetParameter("throttle", targetThrottleValue);
+
+        jetSoundEmitter.EventInstance.setVolume(jetNoiseVolume);
     }
 
     /// <summary>
@@ -87,28 +100,30 @@ public class JetMotorAndController : MonoBehaviour
         if (accel > 0.05f)
         {
             // If input thrust is over half pressed, OR the idle speed is lower than the input thrust, move to the input thrust
-            if (accel > idleSpeedInput || accel > targetThrottleValue)
-            {
-                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, accel, Time.deltaTime);
-            }
+            if (accel > idleSpeedInput || accel > targetInputValue)
+                targetInputValue = Mathf.MoveTowards(targetInputValue, accel, Time.deltaTime);
             // Otherwise, move to the idle input of 0.5
             else
-            {
-                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.5f, Time.deltaTime * 0.1f);
-            }
+                targetInputValue = Mathf.MoveTowards(targetInputValue, 0.5f, Time.deltaTime * 0.1f);
+
+            // Do the same for the throttle value, which speeds down slower
+            if (accel > idleSpeedInput || accel > targetThrottleValue)
+                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, accel, Time.deltaTime);
+            else
+                targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.5f, Time.deltaTime * 0.2f);
         }
         else if (deccel > 0.05f)
         {
+            targetInputValue = Mathf.MoveTowards(targetInputValue, 0.0f, Time.deltaTime * 0.4f);
             targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.0f, Time.deltaTime * 0.4f);
         }
-        else if (targetThrottleValue > idleSpeedInput)
+        else if (targetInputValue > idleSpeedInput)
         {
-            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, idleSpeedInput, Time.deltaTime * 0.02f);
+            targetInputValue = Mathf.MoveTowards(targetInputValue, idleSpeedInput, Time.deltaTime * 0.02f);
+            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, idleSpeedInput, Time.deltaTime * 0.15f);
         }
 
-        throttleValue = Mathf.MoveTowards(throttleValue, targetThrottleValue, ((acceleration + brakeAccel)) * Time.deltaTime * throttleSpeedUpTime);
-
-        Debug.Log("Target throttle value : " + targetThrottleValue);
+        inputValue = Mathf.MoveTowards(inputValue, targetInputValue, ((acceleration + brakeAccel)) * Time.deltaTime * throttleSpeedUpTime);
 
         var localVelocity = transform.InverseTransformDirection(rigidbody.velocity);
         var forwardSpeed = Mathf.Max(0, localVelocity.z);
@@ -118,8 +133,8 @@ public class JetMotorAndController : MonoBehaviour
 
         // Main input to the rigidbody
         rigidbody.AddRelativeForce((
-            (Vector3.forward * maxThrust * throttleValue * FORCE_MULT)                              // Driven Forces
-            + (Vector3.forward * aeroFactor))      // Passive Forces
+            (Vector3.forward * maxThrust * inputValue * FORCE_MULT)     // Driven Forces
+            + (Vector3.forward * aeroFactor))                           // Passive Forces
             / rigidbody.mass, ForceMode.Acceleration);
         
         Vector3 scaledTorque = new Vector3(Mathf.Min(pitch, Mathf.Lerp(0.2f, 1.0f, Utilities.ActualSmoothstep(15.0f, 20.0f, forwardSpeed))), 0.0f, -roll); 
@@ -132,7 +147,7 @@ public class JetMotorAndController : MonoBehaviour
         rigidbody.AddRelativeTorque(Vector3.up * bankFactor * aeroFactor * bankTorque * FORCE_MULT, ForceMode.Force);
 
         // Clamp the velocity
-        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, Mathf.Max(50.0f, topSpeed * targetThrottleValue));
+        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, Mathf.Max(50.0f, topSpeed * targetInputValue));
     }
 
     /// <summary>
@@ -154,7 +169,7 @@ public class JetMotorAndController : MonoBehaviour
     /// </summary>
     private void CaluclateAerodynamicEffect(float forwardSpeed)
     {
-        if (rigidbody.velocity.magnitude > 0)
+        if (rigidbody.velocity.magnitude > 10.0f)
         {
             aeroFactor = Vector3.Dot(transform.forward, rigidbody.velocity.normalized);
             aeroFactor *= aeroFactor;

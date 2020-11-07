@@ -446,6 +446,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568597268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5160157837458028061, guid: 210fcb544cad79448ac52ab927b4f846,
+    type: 3}
+  m_PrefabInstance: {fileID: 1840644105685840588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1892553311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1892553311, guid: 210fcb544cad79448ac52ab927b4f846,
@@ -459,6 +471,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5160157837458028061, guid: 210fcb544cad79448ac52ab927b4f846,
+        type: 3}
+      propertyPath: Params.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160157837458028061, guid: 210fcb544cad79448ac52ab927b4f846,
+        type: 3}
+      propertyPath: Event
+      value: event:/vehicles/playerVehicle/hover_ext
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731282684015025784, guid: 210fcb544cad79448ac52ab927b4f846,
+        type: 3}
+      propertyPath: hoverSoundEmitter
+      value: 
+      objectReference: {fileID: 1568597268}
     - target: {fileID: 5731282684015025787, guid: 210fcb544cad79448ac52ab927b4f846,
         type: 3}
       propertyPath: m_Name

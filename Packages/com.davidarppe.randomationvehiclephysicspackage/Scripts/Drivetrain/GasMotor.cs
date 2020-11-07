@@ -31,14 +31,34 @@ namespace RVP
         public float driveDividePower = 3;
         float actualAccel;
 
-        [Header("Transmission")]
+        [Header("FMOD Audio")]
+        public FMODUnity.StudioEventEmitter bodyNoiseSoundEmitter;
+        public FMODUnity.StudioEventEmitter engineSoundEmitter;
+        public FMODUnity.StudioEventEmitter wheelsSoundEmitter;
+        [HideInInspector] public float bodyNoiseVolume = 1.0f;
+        [HideInInspector] public float engineVolume = 1.0f;
+        [HideInInspector] public float wheelsVolume = 1.0f;
 
+        public bool rpmIncreaseBetweenShifts;
+        public float rpmInertia = 2.0f;
+
+        [System.NonSerialized]
+        public float targetPitch;
+        protected float pitchFactor;
+        protected float airPitch;
+
+        [Header("Transmission")]
         public GearboxTransmission transmission;
         [System.NonSerialized]
         public bool shifting;
 
-        [Tooltip("Increase sound pitch between shifts")]
-        public bool pitchIncreaseBetweenShift;
+        private float currentCompressionVelocity    = 0.0f;
+        private float smoothTargetCompression       = 0.0f;
+        private float compression                   = 0.0f;
+        private float smoothTargetPitch             = 0.0f;
+        private float pitchVelocity                 = 0.0f;
+        private float smoothedThrottleVelocity      = 0.0f;
+        private float smoothedThrottleInput         = 0.0f;
 
         public override void Start()
         {
@@ -115,19 +135,6 @@ namespace RVP
             }
         }
 
-        public override void Update()
-        {
-            //Set audio pitch
-            if (snd && ignition)
-            {
-                airPitch = vp.groundedWheels > 0 || actualAccel != 0 ? 1 : Mathf.Lerp(airPitch, 0, 0.5f * Time.deltaTime);
-                pitchFactor = (actualAccel != 0 || vp.groundedWheels == 0 ? 1 : 0.5f) * (shifting ? (pitchIncreaseBetweenShift ? Mathf.Sin((transmission.shiftTime / transmission.shiftDelay) * Mathf.PI) : Mathf.Min(transmission.shiftDelay, Mathf.Pow(transmission.shiftTime, 2)) / transmission.shiftDelay) : 1) * airPitch;
-                targetPitch = Mathf.Abs((targetDrive.feedbackRPM * 0.001f) / maxRPM) * pitchFactor;
-            }
-
-            base.Update();
-        }
-
         public void GetMaxRPM()
         {
             maxRPM = torqueCurve.keys[torqueCurve.length - 1].time;
@@ -144,6 +151,49 @@ namespace RVP
                     }
                 }
             }
+        }
+
+        public override void Update()
+        {
+            //Set audio pitch
+            if (ignition)
+            {
+                airPitch = vp.groundedWheels > 0 && actualAccel != 0 ? 1 : (vp.groundedWheels < 1 && actualAccel != 0) ? 1.05f : Mathf.Lerp(airPitch, 0, 0.5f * Time.deltaTime);
+                pitchFactor = (actualAccel != 0 || vp.groundedWheels == 0 ? 1 : 0.75f) * (shifting ? (rpmIncreaseBetweenShifts ? Mathf.Sin((transmission.shiftTime / transmission.shiftDelay) * Mathf.PI) : Mathf.Min(transmission.shiftDelay, Mathf.Pow(transmission.shiftTime, 2)) / transmission.shiftDelay) : 1) * airPitch;
+                targetPitch = Mathf.Abs((targetDrive.feedbackRPM * 0.001f) / maxRPM) * pitchFactor;
+                smoothTargetPitch = Mathf.SmoothDamp(smoothTargetPitch, targetPitch, ref pitchVelocity, rpmInertia);
+
+                engineSoundEmitter.SetParameter("rpms", Mathf.LerpUnclamped(1350.0f, 6200.0f, Mathf.Clamp(smoothTargetPitch, 0.0f, 1.05f)));
+            }
+            else
+            {
+                engineSoundEmitter.SetParameter("rpms", targetDrive.rpm);
+            }
+
+            float speed = vp.rb.velocity.magnitude;
+
+            compression = compression * 0.999f;
+            foreach (var wheel in vp.wheels)
+            {
+                if (wheel.suspensionParent)
+                {
+                    compression = Mathf.Max(compression, 1.0f - wheel.suspensionParent.compression);
+                }
+            }
+
+            float impactCompression = Mathf.SmoothStep(0.0f, 1.0f, Mathf.InverseLerp(0.775f, 1.0f, compression));
+            float speedCompression = Mathf.SmoothStep(0.0f, 1.0f, Mathf.InverseLerp(5.0f, 60.0f, speed));
+            compression = Mathf.Max(impactCompression * 0.5f, speedCompression * 0.2f);
+            smoothTargetCompression = Mathf.SmoothDamp(smoothTargetCompression, compression, ref currentCompressionVelocity, 0.05f);
+
+            smoothedThrottleInput = Mathf.SmoothDamp(smoothedThrottleInput, actualInput, ref smoothedThrottleVelocity, rpmInertia);
+
+            engineSoundEmitter.SetParameter("throttle", smoothedThrottleInput);
+            wheelsSoundEmitter.SetParameter("speed", vp.groundedWheels > 0 ? speed : 0.0f);
+            bodyNoiseSoundEmitter.SetParameter("susp_travel_speed", smoothTargetCompression * 0.75f);
+            bodyNoiseSoundEmitter.EventInstance.setVolume(bodyNoiseVolume * (Mathf.SmoothStep(0.0f, 1.0f, Mathf.InverseLerp(15.0f, 60.0f, speed)) * 0.4f + 0.6f));
+
+            base.Update();
         }
     }
 }
