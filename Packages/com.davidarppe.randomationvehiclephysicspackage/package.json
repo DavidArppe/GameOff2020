@@ -1,0 +1,17 @@
+{
+    "name": "com.davidarppe.randomationvehiclephysicspackage",
+    "version": "0.1.1",
+    "unity": "2020.1",
+    "displayName": "Randomation Vehicle Physics",
+    "description": "A cool vehicle physics library.",
+    "keywords": [
+        "vehicles",
+        "physics",
+        "randomation"
+    ],
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DavidArppe/RandomationVehiclePhysicsPackage.git"
+    }
+}

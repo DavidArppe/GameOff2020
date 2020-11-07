@@ -55,12 +55,12 @@ namespace RVP
 
         public override void Update()
         {
-            //Set engine pitch
-            if (snd && ignition)
-            {
-                targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput)) * 
-                    Mathf.Max(1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)), 1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.x)));
-            }
+            // //Set engine pitch
+            // if (snd && ignition)
+            // {
+            //     targetPitch = Mathf.Max(Mathf.Abs(actualInput), Mathf.Abs(vp.steerInput)) * 
+            //         Mathf.Max(1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.z)), 1 - forceCurve.Evaluate(Mathf.Abs(vp.localVelocity.x)));
+            // }
 
             base.Update();
         }
