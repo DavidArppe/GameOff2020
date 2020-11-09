@@ -50,6 +50,7 @@ public class FollowCam : PivotBasedCameraRig
     private float currentVelX, currentVelY;
     private Vector3 expectedPositionNoClip;
 
+    public FMODUnity.StudioEventEmitter mainMusicEmitter;
 
     private void Start()
     {
@@ -61,6 +62,11 @@ public class FollowCam : PivotBasedCameraRig
         hoverTankSettings.originalTargetOffsetFromPivot = hoverTankSettings.target.position - hoverTankSettings.pivot.position;
         carSettings.originalTargetOffsetFromPivot       = carSettings.target.position - carSettings.pivot.position;
         jetSettings.originalTargetOffsetFromPivot       = jetSettings.target.position - jetSettings.pivot.position;
+    }
+
+    private void LateUpdate()
+    {
+        mainMusicEmitter.SetParameter("is_in_space", Mathf.Clamp01(Mathf.InverseLerp(750.0f, 1250.0f, transform.position.y)));
     }
 
     // Basic 3 way interpolation. Not quite bilinear, but since we likely won't have 3-way transitions, this is fine.
@@ -159,6 +165,9 @@ public class FollowCam : PivotBasedCameraRig
         {
             transform.position = expectedPositionNoClip;
         }
+
+        targetCamera.transform.position += Random.insideUnitSphere * 0.01f * Utilities.ActualSmoothstep(40.0f, 80.0f, rigid.velocity.magnitude);
+        targetCamera.transform.Rotate(Vector3.forward, Random.Range(-0.15f, 0.15f) * Utilities.ActualSmoothstep(80.0f, 150.0f, rigid.velocity.magnitude), Space.Self);
     }
 
     protected override void FollowTarget(float deltaTime)

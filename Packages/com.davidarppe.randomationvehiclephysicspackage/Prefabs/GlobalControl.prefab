@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7345b3e32a5414c8841c266e581ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quickRestart: 1
+  quickRestart: 0
   wheelCastMask:
     serializedVersion: 2
     m_Bits: 4294965961

@@ -50,6 +50,10 @@ namespace RVP
         public float tireFadeTime;
         public static float tireFadeTimeStatic;
 
+        [Range(0.0f, 1.0f)]
+        public float vehiclesVolume = 1.0f;
+        public static float vehiclesVolumeStatic = 1.0f;
+
         void Start()
         {
             initialFixedTime = Time.fixedDeltaTime;
@@ -63,6 +67,7 @@ namespace RVP
             tireMarkGapStatic = tireMarkGap;
             tireMarkHeightStatic = tireMarkHeight;
             tireFadeTimeStatic = tireFadeTime;
+            vehiclesVolumeStatic = vehiclesVolume;
         }
 
         void Update()
@@ -76,6 +81,8 @@ namespace RVP
                     Time.fixedDeltaTime = initialFixedTime;
                 }
             }
+
+            vehiclesVolumeStatic = vehiclesVolume;
         }
 
         void FixedUpdate()

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6526d5adf8f7d7a4eb24834e1e6ea876
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_atmospherePostEffect: {fileID: 2100000, guid: 73cc7972037fa8345b5efb2965caad14,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
