@@ -1,0 +1,698 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac38ee321f44054c96eafa3726045d0, type: 3}
+  m_Name: Noise
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 114865589349061370}
+  - {fileID: 114185556205299746}
+  - {fileID: 114335477730404332}
+  - {fileID: 114810616535475486}
+  - {fileID: 114699012559079392}
+  - {fileID: 2148630928038978756}
+  - {fileID: 7865820405095893054}
+  - {fileID: 0}
+--- !u!114 &114185556205299746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf187feaa2cd374fb6b1b99349c79ec, type: 3}
+  m_Name: MaskNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -776, y: -264}
+  ports:
+    keys:
+    - Generator1
+    - Generator2
+    - Mask
+    - Output
+    values:
+    - _fieldName: Generator1
+      _node: {fileID: 114185556205299746}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 114865589349061370}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: Generator2
+      _node: {fileID: 114185556205299746}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 114699012559079392}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: Mask
+      _node: {fileID: 114185556205299746}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 114810616535475486}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 114185556205299746}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Noise
+        node: {fileID: 114335477730404332}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 1
+  Output: {fileID: 0}
+  Generator1: {fileID: 0}
+  Generator2: {fileID: 0}
+  Mask: {fileID: 0}
+--- !u!114 &114335477730404332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7bd016656de9f4da4973fa2d684812, type: 3}
+  m_Name: EndNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -408, y: -168}
+  ports:
+    keys:
+    - Noise
+    - Biomes
+    values:
+    - _fieldName: Noise
+      _node: {fileID: 114335477730404332}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 114185556205299746}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: Biomes
+      _node: {fileID: 114335477730404332}
+      _typeQualifiedName: Terra.Graph.Biome.BiomeCombinerNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 2148630928038978756}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+  Noise: {fileID: 0}
+  Biomes: {fileID: 0}
+--- !u!114 &114651074658027484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eccb72e68f8671947922a37f1559e14a, type: 3}
+  m_Name: NoisePreviewNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 168, y: -8}
+  ports:
+    keys:
+    - Input
+    values:
+    - _fieldName: Input
+      _node: {fileID: 114651074658027484}
+      _typeQualifiedName: Terra.Graph.Noise.AbsGeneratorNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 114185556205299746}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+  Input: {fileID: 0}
+  <PreviewTexture>k__BackingField: {fileID: 0}
+  <TextureNeedsUpdating>k__BackingField: 0
+--- !u!114 &114699012559079392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec9f8f505468a40b61dadd88b5bd35, type: 3}
+  m_Name: RidgeNoiseNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1096, y: -440}
+  ports:
+    keys:
+    - Exponent
+    - Offset
+    - Gain
+    - Frequency
+    - Lacunarity
+    - OctaveCount
+    - Output
+    - Tiling
+    - Period
+    values:
+    - _fieldName: Exponent
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Offset
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Gain
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Frequency
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Lacunarity
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: OctaveCount
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Generator2
+        node: {fileID: 114185556205299746}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Tiling
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Period
+      _node: {fileID: 114699012559079392}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 1
+  Output: {fileID: 0}
+  Frequency: 1.16666
+  Lacunarity: 4.36
+  OctaveCount: 6
+  Tiling: 1
+  Period: 1
+  Exponent: 1
+  Offset: 0.88
+  Gain: 1.82
+--- !u!114 &114810616535475486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58330aa42bd5cf249beb97bf34a29ee2, type: 3}
+  m_Name: PinkNoiseNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1208, y: -40}
+  ports:
+    keys:
+    - Persistence
+    - Frequency
+    - Lacunarity
+    - OctaveCount
+    - Output
+    - Tiling
+    - Period
+    values:
+    - _fieldName: Persistence
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Frequency
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Lacunarity
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: OctaveCount
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Mask
+        node: {fileID: 114185556205299746}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Tiling
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Period
+      _node: {fileID: 114810616535475486}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 1
+  Output: {fileID: 0}
+  Frequency: 0.235
+  Lacunarity: 1.61
+  OctaveCount: 3
+  Tiling: 1
+  Period: 1
+  Persistence: 1
+--- !u!114 &114865589349061370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec9f8f505468a40b61dadd88b5bd35, type: 3}
+  m_Name: RidgeNoiseNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1336, y: -440}
+  ports:
+    keys:
+    - Exponent
+    - Offset
+    - Gain
+    - Frequency
+    - Lacunarity
+    - OctaveCount
+    - Output
+    - Tiling
+    - Period
+    values:
+    - _fieldName: Exponent
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Offset
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Gain
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Frequency
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Lacunarity
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: OctaveCount
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Output
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Generator1
+        node: {fileID: 114185556205299746}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Tiling
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Period
+      _node: {fileID: 114865589349061370}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 1
+  Output: {fileID: 0}
+  Frequency: 0.5
+  Lacunarity: 2.17
+  OctaveCount: 6
+  Tiling: 1
+  Period: 1
+  Exponent: 1
+  Offset: 1
+  Gain: 2
+--- !u!114 &2148630928038978756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363e5b5fc5545c149bc084a445370b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -520, y: 40}
+  ports:
+    keys:
+    - Output
+    - Biome 1
+    - Biome 2
+    - Biome 3
+    values:
+    - _fieldName: Output
+      _node: {fileID: 2148630928038978756}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Biomes
+        node: {fileID: 114335477730404332}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Biome 1
+      _node: {fileID: 2148630928038978756}
+      _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Output
+        node: {fileID: 7865820405095893054}
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: Biome 2
+      _node: {fileID: 2148630928038978756}
+      _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 1
+    - _fieldName: Biome 3
+      _node: {fileID: 2148630928038978756}
+      _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 1
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 1
+  Output:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _dynamic: 0
+  DidAddPort: 0
+  Sampler:
+    _combiner: {fileID: 2148630928038978756}
+  Mix: 0
+  _serializedActivePorts:
+  - _fieldName: Biome 1
+    _node: {fileID: 2148630928038978756}
+    _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections:
+    - fieldName: Output
+      node: {fileID: 7865820405095893054}
+    _direction: 0
+    _connectionType: 1
+    _dynamic: 1
+  - _fieldName: Biome 2
+    _node: {fileID: 2148630928038978756}
+    _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections: []
+    _direction: 0
+    _connectionType: 1
+    _dynamic: 1
+  - _fieldName: Biome 3
+    _node: {fileID: 2148630928038978756}
+    _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    connections: []
+    _direction: 0
+    _connectionType: 1
+    _dynamic: 1
+--- !u!114 &7865820405095893054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0a43041e1f4554b8a6fa280bd7cf33, type: 3}
+  m_Name: BiomeNode
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -776, y: 40}
+  ports:
+    keys:
+    - Output
+    - SplatDetails
+    - Trees
+    - Grass
+    - Objects
+    - Blend
+    - HeightmapGenerator
+    - TemperatureGenerator
+    - MoistureGenerator
+    values:
+    - _fieldName: Output
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Biome.BiomeNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Biome 1
+        node: {fileID: 2148630928038978756}
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: SplatDetails
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Biome.SplatDetailNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Trees
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Biome.TreeDetailNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Grass
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Biome.GrassDetailNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Objects
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Biome.ObjectDetailNode, Assembly-CSharp, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: Blend
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: HeightmapGenerator
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: TemperatureGenerator
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+    - _fieldName: MoistureGenerator
+      _node: {fileID: 7865820405095893054}
+      _typeQualifiedName: Terra.Graph.Generators.AbsGeneratorNode, Assembly-CSharp,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+  PreviewTexture: {fileID: 0}
+  PreviewTextureSize: 100
+  IsPreviewDropdown: 0
+  Output: {fileID: 0}
+  Name: Default
+  PreviewColor: {r: 0, g: 0, b: 0, a: 0}
+  SplatDetails: {fileID: 0}
+  Trees: {fileID: 0}
+  Grass: {fileID: 0}
+  Objects: {fileID: 0}
+  Blend: 1
+  HeightmapGenerator: {fileID: 0}
+  UseHeightmap: 0
+  HeightmapMinMaxMask: {x: 0, y: 1}
+  TemperatureGenerator: {fileID: 0}
+  UseTemperature: 0
+  TemperatureMinMaxMask: {x: 0, y: 1}
+  MoistureGenerator: {fileID: 0}
+  UseMoisture: 0
+  MoistureMinMaxMask: {x: 0, y: 1}

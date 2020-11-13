@@ -10,7 +10,7 @@ public class CarAirControl : MonoBehaviour
     public float pitchPower = 10.0f;
     public float rollPower = 10.0f;
 
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
 
     private void Start()
     {

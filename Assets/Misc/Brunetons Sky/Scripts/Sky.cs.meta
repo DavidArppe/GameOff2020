@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e3fcaf4603edabf4881d3d20fe2c6f0d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_starTexture: {fileID: 8900000, guid: ed5f75db75069c249b4883950ad0387c, type: 3}
+  - m_skyMapMaterial: {fileID: 2100000, guid: db29346ac868f344c830027c995e32f5, type: 2}
+  - m_skyMaterial: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
+  - m_postEffectMaterial: {fileID: 2100000, guid: 73cc7972037fa8345b5efb2965caad14,
+      type: 2}
+  - m_sun: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -33,7 +33,6 @@ public class JetMotorAndController : MonoBehaviour
     public float targetInputValue       = 0.0f;
     private float inputValue            = 0.0f;
     public float targetThrottleValue    = 0.0f;
-    private float throttleValue         = 0.0f;
 
     private float originalAngularDrag;  
     private float originalDrag;         
@@ -61,7 +60,7 @@ public class JetMotorAndController : MonoBehaviour
         jetSoundEmitter.SetParameter("input", inputValue);
         jetSoundEmitter.SetParameter("throttle", targetThrottleValue);
 
-        jetSoundEmitter.EventInstance.setVolume(jetNoiseVolume);
+        jetSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * jetNoiseVolume);
     }
 
     /// <summary>

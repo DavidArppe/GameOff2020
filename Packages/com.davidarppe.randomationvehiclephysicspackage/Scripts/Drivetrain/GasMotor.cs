@@ -191,7 +191,11 @@ namespace RVP
             engineSoundEmitter.SetParameter("throttle", smoothedThrottleInput);
             wheelsSoundEmitter.SetParameter("speed", vp.groundedWheels > 0 ? speed : 0.0f);
             bodyNoiseSoundEmitter.SetParameter("susp_travel_speed", smoothTargetCompression * 0.75f);
-            bodyNoiseSoundEmitter.EventInstance.setVolume(bodyNoiseVolume * (Mathf.SmoothStep(0.0f, 1.0f, Mathf.InverseLerp(15.0f, 60.0f, speed)) * 0.4f + 0.6f));
+
+            float speedModifier = (Mathf.SmoothStep(0.0f, 1.0f, Mathf.InverseLerp(15.0f, 60.0f, speed)) * 0.4f + 0.6f);
+            bodyNoiseSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * bodyNoiseVolume * speedModifier);
+            engineSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic);
+            wheelsSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic);
 
             base.Update();
         }

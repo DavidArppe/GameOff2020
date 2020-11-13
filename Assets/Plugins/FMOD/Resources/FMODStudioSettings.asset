@@ -380,6 +380,7 @@ MonoBehaviour:
   MasterBanks:
   - common
   Banks:
+  - Music
   - playerSounds
   BanksToLoad:
   - 
@@ -637,7 +638,7 @@ MonoBehaviour:
       Value: 1
       HasValue: 1
     Overlay:
-      Value: 1
+      Value: 0
       HasValue: 1
     Logging:
       Value: 0

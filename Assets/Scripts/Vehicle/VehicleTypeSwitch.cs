@@ -64,6 +64,8 @@ public class VehicleTypeSwitch : MonoBehaviour
     public const float JET_ANIMATION_START_VELOCITY = 5.0f;
     public const float JET_ANIMATION_END_VELOCITY   = 25.0f;
 
+    private float originalVehicleVolume;
+
     private void Start()
     {
         // Initialize the variables we can initialize like this
@@ -77,6 +79,8 @@ public class VehicleTypeSwitch : MonoBehaviour
         transmission    = gameObject.GetComponentInChildren<RVP.Transmission>();
         tireScreech     = gameObject.GetComponentInChildren<RVP.TireScreech>();
         jetController   = gameObject.GetComponentInChildren<JetMotorAndController>();
+
+        originalVehicleVolume = RVP.GlobalControl.vehiclesVolumeStatic;
 
         originalDrag = rigidbody.drag;
         originalAngularDrag = rigidbody.angularDrag;
@@ -146,7 +150,9 @@ public class VehicleTypeSwitch : MonoBehaviour
             visualWheelTransforms[i].Rotate(Vector3.forward, Mathf.Repeat(Time.realtimeSinceStartup * 1080.0f, 360.0f) * Mathf.Max(realJetWheelLerp, realHoverLerp), Space.Self);
         }
 
+        RVP.GlobalControl.vehiclesVolumeStatic = Mathf.Lerp(originalVehicleVolume * 0.333f, originalVehicleVolume, Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
         windSoundEmitter.SetParameter("speed", relativeMagnitude * 1.5f);
+        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
 
         // TODO: Use the animator for this? Makes it more expandable
         leftWing.localPosition = Vector3.Lerp(Vector3.right * 4.0f, Vector3.zero, isJetLerpValue);
@@ -160,15 +166,15 @@ public class VehicleTypeSwitch : MonoBehaviour
         gasMotor.bodyNoiseVolume = isCarLerpValue;
         gasMotor.engineVolume = isCarLerpValue;
         gasMotor.wheelsVolume = isCarLerpValue;
-        gasMotor.bodyNoiseSoundEmitter.EventInstance.setVolume(isCarLerpValue);
-        gasMotor.engineSoundEmitter.EventInstance.setVolume(isCarLerpValue);
-        gasMotor.wheelsSoundEmitter.EventInstance.setVolume(isCarLerpValue);
+        gasMotor.bodyNoiseSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
+        gasMotor.engineSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
+        gasMotor.wheelsSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
 
         jetController.jetNoiseVolume = isJetLerpValue;
-        jetController.jetSoundEmitter.EventInstance.setVolume(isJetLerpValue);
+        jetController.jetSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isJetLerpValue);
 
         hoverSoundEmitter.SetParameter("input", Utilities.ActualSmoothstep(0.0f, 20.0f, relativeMagnitude));
-        hoverSoundEmitter.EventInstance.setVolume(Mathf.Max(isJetLerpValue, isHoverLerpValue));
+        hoverSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * Mathf.Max(isJetLerpValue, isHoverLerpValue));
     }
 
     bool HasVehicleBit(VehicleType typeToCheck)
@@ -227,6 +233,8 @@ public class VehicleTypeSwitch : MonoBehaviour
         tireScreech.gameObject.SetActive(false);
         regularSteer.gameObject.SetActive(false);
         transmission.gameObject.SetActive(false);
+
+        tireScreech.tireScreechEmitter.Stop();
     }
 
     void EnableHovercraftSettings()
@@ -269,6 +277,8 @@ public class VehicleTypeSwitch : MonoBehaviour
         vehicleParent.holdEbrakePark        = true;
         vehicleParent.burnoutThreshold      = 0.9f;
         vehicleParent.centerOfMassOffset    = Vector3.up * -regularCenterOfGravity;
+
+        tireScreech.tireScreechEmitter.Play();
 
         vehicleParent.SetCenterOfMass();
     }
