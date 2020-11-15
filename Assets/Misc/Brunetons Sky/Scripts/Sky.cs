@@ -21,8 +21,6 @@ namespace BrunetonsAtmosphere
         const int INSCATTER_DEPTH = 32;
         const int INSCATTER_CHANNELS = 4;
 
-        public bool m_showSkyMap = false;
-
         public string m_filePath = "/Bruneton";
 
         public Cubemap m_starTexture = null;
@@ -107,23 +105,11 @@ namespace BrunetonsAtmosphere
 
             m_skyMapMaterial.SetFloat("_ApplyHDR", 0);
             Graphics.Blit(null, m_skyMap, m_skyMapMaterial);
-
-            if (m_showSkyMap)
-            {
-                m_skyMapMaterial.SetFloat("_ApplyHDR", 1);
-                Graphics.Blit(null, m_displaySkyMap, m_skyMapMaterial);
-            }
         }
 
         private void Update()
         {
             UpdateMaterials();
-        }
-
-        private void OnGUI()
-        {
-            if (!m_showSkyMap) return;
-            GUI.DrawTexture(new Rect(0, 0, 256, 256), m_displaySkyMap);
         }
 
         public void UpdateMat(Material mat)

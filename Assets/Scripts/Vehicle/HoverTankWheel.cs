@@ -157,13 +157,15 @@ namespace RVP
         //Drive the vehicle
         void ApplyFloatDrive()
         {
+            if (!applyFloatDriveUnscaled) return;
+
             float jetSpeedModifier = 1.0f;
-            if (!applyFloatDriveUnscaled)
-            {
-                var hoverMotor = vpHover.engine as HoverTankMotor;
-                var relativeVelocity = vpHover.transform.InverseTransformDirection(vpHover.rb.velocity);
-                jetSpeedModifier = 1.0f - Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, relativeVelocity.magnitude);// z);
-            }
+            //if (!applyFloatDriveUnscaled)
+            //{
+            //    var hoverMotor = vpHover.engine as HoverTankMotor;
+            //    var relativeVelocity = vpHover.transform.InverseTransformDirection(vpHover.rb.velocity);
+            //    jetSpeedModifier = 1.0f - Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, relativeVelocity.magnitude);// z);
+            //}
 
             rbHover.AddForceAtPosition(
                 trHover.TransformDirection(

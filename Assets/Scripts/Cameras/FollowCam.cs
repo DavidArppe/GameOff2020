@@ -183,12 +183,12 @@ public class FollowCam : PivotBasedCameraRig
             Vector2 rotateAmount = UnityInputModule.instance.controls.Player.Camera.ReadValue<Vector2>();
             rotateAmount.y *= -1.0f;
 
-            if (switcher.isJetLerpValue > 0.5f)
-            {
-                float jetModifier = Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, velocityMagnitude);
-                rotateAmount.x *= jetModifier;
-                rotationAboutPivot.x = Mathf.MoveTowardsAngle(rotationAboutPivot.x, 0.0f, (1.0f - jetModifier) * rotationSpeed.x * 2.0f);
-            }
+            //if (switcher.isJetLerpValue > 0.5f)
+            //{
+            //    float jetModifier = Utilities.ActualSmoothstep(VehicleTypeSwitch.JET_ANIMATION_START_VELOCITY, VehicleTypeSwitch.JET_ANIMATION_END_VELOCITY, velocityMagnitude);
+            //    rotateAmount.x *= jetModifier;
+            //    rotationAboutPivot.x = Mathf.MoveTowardsAngle(rotationAboutPivot.x, 0.0f, (1.0f - jetModifier) * rotationSpeed.x * 2.0f);
+            //}
 
             // To mimic GTA, this "splits" the axis. One axis will have less trouble being a primary rotation axis
             Vector2 adjustedRotationAmount = rotateAmount;
@@ -211,7 +211,6 @@ public class FollowCam : PivotBasedCameraRig
             interpolatedPivotPosition += Vector3.up * 2.0f;
             RotateCamera(rotateAmount, new Vector2(-25.0f, 25.0f));
             interpolatedPivotPosition -= Vector3.up * 2.0f;
-
         }
 
         // if no target, or no time passed then we quit early, as there is nothing to do

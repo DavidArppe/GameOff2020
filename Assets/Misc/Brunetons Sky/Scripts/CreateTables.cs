@@ -53,9 +53,9 @@ namespace BrunetonsAtmosphere
 
         //You can change these
         //The radius of the planet (Rg), radius of the atmosphere (Rt)
-        private const float Rg = 6360.0f;
-        private const float Rt = 6420.0f;
-        private const float RL = 6421.0f;
+        private const float Rg = 6360.0f;// 100.0f
+        private const float Rt = 6420.0f;// 108.5f
+        private const float RL = 6421.0f;// 109.5f
 
         //Dimensions of the tables
         private const int TRANSMITTANCE_W = 256;
@@ -81,7 +81,7 @@ namespace BrunetonsAtmosphere
 
         //Half heights for the atmosphere air density (HR) and particle density (HM)
         //This is the height in km that half the particles are found below
-        private const float HR = 8.0f;
+        private const float HR = 3.0f;
         private const float HM = 1.2f;
 
 		RenderTexture m_transmittanceT;
@@ -89,7 +89,7 @@ namespace BrunetonsAtmosphere
 		RenderTexture[] m_irradianceT, m_inscatterT;
 
 		//This is where the tables will be saved to
-		public string m_filePath = "/BrunetonsAtmosphere/Textures";
+		public string m_filePath = "/StreamingAssets/Bruneton";
 
 		public ComputeShader m_copyInscatter1, m_copyInscatterN, m_copyIrradiance;
 		public ComputeShader m_inscatter1, m_inscatterN, m_inscatterS;
@@ -366,15 +366,24 @@ namespace BrunetonsAtmosphere
 
 		void OnDestroy()
 		{
-			Destroy(m_transmittanceT);
-            Destroy(m_irradianceT[0]);
-            Destroy(m_irradianceT[1]);
-            Destroy(m_inscatterT[0]);
-            Destroy(m_inscatterT[1]);
-            Destroy(m_deltaET);
-            Destroy(m_deltaSRT);
-            Destroy(m_deltaSMT);
-            Destroy(m_deltaJT);
+            if (m_transmittance != null || 
+                m_irradianceT != null || 
+                m_inscatterT != null || 
+                m_deltaET != null || 
+                m_deltaSRT != null || 
+                m_deltaSMT != null || 
+                m_deltaJT != null)
+            {
+			    Destroy(m_transmittanceT);
+                Destroy(m_irradianceT[0]);
+                Destroy(m_irradianceT[1]);
+                Destroy(m_inscatterT[0]);
+                Destroy(m_inscatterT[1]);
+                Destroy(m_deltaET);
+                Destroy(m_deltaSRT);
+                Destroy(m_deltaSMT);
+                Destroy(m_deltaJT);
+            }
 		}
 
         private void Swap(RenderTexture[] texs)

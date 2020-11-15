@@ -28,9 +28,6 @@ Shader "BrunetonsAtmosphere/PostEffectAtmosphericScattering"
 			float4x4 _FrustumCorners;
 			float4 _MainTex_TexelSize;
 
-			//The scattering tables are based on real world sizes.
-			//Your game world will probably be smaller. This will scale up
-			//the size and has the effect of making the scattering stronger.
 			float _Scale;
 						
 			struct v2f 
@@ -74,39 +71,20 @@ Shader "BrunetonsAtmosphere/PostEffectAtmosphericScattering"
 				//This is not the best method but its easy.
 				if (depth == 1.0) return col;
 
-				float3 vec = (worldPos - _WorldSpaceCameraPos);
+                float3 vec = (worldPos - _WorldSpaceCameraPos);
                 float3 dir = normalize(vec);
                 float3 len = length(vec);
 
-                float3 scatter; float angle = 0.003f;
+                float3 scatter; float angle = 0.03f;
 
-                if (abs(dir.y) < angle)
-                {
-                    float3 dirNoY = normalize(float3(dir.x, 0.0f, dir.z));
-                
-                    float3 extinctionU = float3(0, 0, 0);
-                    float3 extinctionD = float3(0, 0, 0);
-                    
-                    worldPos = normalize(dirNoY + float3(0.0f, angle, 0.0f)) * len + _WorldSpaceCameraPos;
-                    float3 inscatterU = InScattering(_WorldSpaceCameraPos * _Scale, worldPos * _Scale, extinctionU, 1.0);
-                    
-                    worldPos = normalize(dirNoY - float3(0.0f, angle, 0.0f)) * len + _WorldSpaceCameraPos;
-                    float3 inscatterD = InScattering(_WorldSpaceCameraPos * _Scale, worldPos * _Scale, extinctionD, 1.0);
-                
-                    scatter = lerp(col.rgb * extinctionD + inscatterD, col.rgb * extinctionU + inscatterU, smoothstep(-angle, angle, dir.y));
-                }
-                else
-                {
-				    float3 extinction = float3(0,0,0);
-				    float3 inscatter = InScattering(_WorldSpaceCameraPos * _Scale, worldPos * _Scale, extinction, 1.0);
-				
-				    scatter = col.rgb * extinction + inscatter;
-                }
-				
-                // //return float4(dir, 1.0f);
-                // //return float4((len / 8000.0f).xxx, 1.0f);
-                // return float4(hdr(scatter), 1.0f);
-                return float4(lerp(col, hdr(scatter), smoothstep(0.0f, 100.0f, len)), 1.0f);
+                float3 extinction = float3(0, 0, 0);
+                float3 inscatter = InScattering(_WorldSpaceCameraPos, worldPos, extinction, _Scale);
+
+                scatter = col.rgb * extinction + inscatter;
+
+                float3 outColor = hdr(scatter);
+
+                return float4(scatter, 1.0f);
 			    
 			}
 			ENDCG

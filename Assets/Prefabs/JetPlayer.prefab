@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 9123387113301333371}
   - component: {fileID: 116063511558739195}
   - component: {fileID: 113200069245677464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FLTread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 6299320570152004803}
   - component: {fileID: 3879303001834296718}
   - component: {fileID: 5936957005658963659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rightTurbine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 3401647894821036589}
   - component: {fileID: 9136556217021737034}
   - component: {fileID: 5647748386405487831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FRRim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,6 +814,70 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2063271258179329701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906217844055143237}
+  - component: {fileID: 7033479727559635564}
+  m_Layer: 9
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &906217844055143237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063271258179329701}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9147639432149347469}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!215 &7033479727559635564
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063271258179329701}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 1
+  m_RefreshMode: 1
+  m_TimeSlicingMode: 1
+  m_Resolution: 32
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 50, y: 50, z: 50}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 8000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &2077517000930791185
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +919,7 @@ GameObject:
   - component: {fileID: 4770817305131273963}
   - component: {fileID: 6122197484439035939}
   - component: {fileID: 599717714436158050}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: reflectors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +1004,7 @@ GameObject:
   - component: {fileID: 8299769405893041235}
   - component: {fileID: 6515511820912277964}
   - component: {fileID: 8745989096811315074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1087,7 @@ GameObject:
   - component: {fileID: 1689947271099481824}
   - component: {fileID: 4184470276949343053}
   - component: {fileID: 7383075284094316682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: leftTurbine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1108,7 +1172,7 @@ GameObject:
   - component: {fileID: 8161334124236714151}
   - component: {fileID: 8594114045319303333}
   - component: {fileID: 2938124335462072115}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mainHatchEntrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1193,7 +1257,7 @@ GameObject:
   - component: {fileID: 2224420679202430834}
   - component: {fileID: 3172624111706081822}
   - component: {fileID: 7743843782351713719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FRTread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1455,7 @@ GameObject:
   - component: {fileID: 6251273820941399625}
   - component: {fileID: 8489036248679930267}
   - component: {fileID: 1588018782397915485}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RLRim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1540,7 @@ GameObject:
   - component: {fileID: 8589584797844584158}
   - component: {fileID: 8106649719499167847}
   - component: {fileID: 4939249428292197030}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fuelTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4041170612117313595}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Details
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1781,7 @@ GameObject:
   - component: {fileID: 4884548374073265026}
   - component: {fileID: 3439085362448917761}
   - component: {fileID: 1005434056980024213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RRRim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1802,7 +1866,7 @@ GameObject:
   - component: {fileID: 8475247764041581591}
   - component: {fileID: 3910752206071908508}
   - component: {fileID: 5467642779891020468}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RLTread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1817,7 +1881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3517372309020776314}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.440892e-15, y: 1.110223e-16, z: 0.24173841}
+  m_LocalPosition: {x: 0, y: 1.110223e-16, z: 0.389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6251273820941399625}
@@ -1883,7 +1947,7 @@ GameObject:
   - component: {fileID: 8343919841840757995}
   - component: {fileID: 6247376815563498343}
   - component: {fileID: 3656723507565616959}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: headlights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7166,7 +7230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950768974257503}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000000923872}
-  m_LocalPosition: {x: 0, y: -0.20000002, z: 0}
+  m_LocalPosition: {x: 0.00012779237, y: -0.1998969, z: 0.000055909113}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3574950769808120550}
@@ -7247,7 +7311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950769383722246}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000000923872}
-  m_LocalPosition: {x: 0, y: -0.20000002, z: 0}
+  m_LocalPosition: {x: 0.00001525879, y: -0.19998583, z: 0.0000051855986}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3574950770577818886}
@@ -7328,7 +7392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950769526871833}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000050663954}
-  m_LocalPosition: {x: 0, y: -0.20000002, z: 0}
+  m_LocalPosition: {x: -0.00008356568, y: -0.19993123, z: -0.000035345598}
   m_LocalScale: {x: 0.50000006, y: 0.5, z: 0.50000006}
   m_Children: []
   m_Father: {fileID: 3574950768810312631}
@@ -22582,7 +22646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950770390238108}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000050663954}
-  m_LocalPosition: {x: 0, y: -0.20000002, z: 0}
+  m_LocalPosition: {x: -0.00001597404, y: -0.1999872, z: -0.0000066161247}
   m_LocalScale: {x: 0.50000006, y: 0.5, z: 0.50000006}
   m_Children: []
   m_Father: {fileID: 3574950770075069198}
@@ -23044,7 +23108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3587903347100869095}
-  m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: 0.70710695}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -0.6999998, y: -0.49500003, z: 1.1970005}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -23052,7 +23116,7 @@ Transform:
   - {fileID: 3574950770246783206}
   m_Father: {fileID: 9147701417825196178}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!33 &1476707307375668770
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23157,7 +23221,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964092392488057492}
-  m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: 0.70710695}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -0.6999998, y: -0.49500003, z: -1.2779999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -23165,7 +23229,7 @@ Transform:
   - {fileID: 3574950769564325971}
   m_Father: {fileID: 9147701417825196178}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!33 &4975674954180275782
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23247,6 +23311,7 @@ Transform:
   - {fileID: 5731282684015329895}
   - {fileID: 5731282684015359737}
   - {fileID: 5731282684015317213}
+  - {fileID: 906217844055143237}
   m_Father: {fileID: 5731282684015283985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23457,7 +23522,7 @@ GameObject:
   - component: {fileID: 5738074992279960961}
   - component: {fileID: 4748277805739606991}
   - component: {fileID: 251789167699965746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FLRim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23624,7 +23689,7 @@ GameObject:
   - component: {fileID: 210902425628818243}
   - component: {fileID: 2992115357512752593}
   - component: {fileID: 8915237601267474634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: turretBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23942,7 +24007,7 @@ GameObject:
   - component: {fileID: 5283833777542030630}
   - component: {fileID: 7523220598929437092}
   - component: {fileID: 3460051900219941548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rearDiffuser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24024,7 +24089,7 @@ GameObject:
   - component: {fileID: 2239052038673995064}
   - component: {fileID: 2812816732489353849}
   - component: {fileID: 4970341532398420024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24293,7 +24358,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5731282684015025787}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 225
   m_Drag: 0.02
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -35662,7 +35727,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6175174960716920301}
-  m_LocalRotation: {x: -0, y: -0.7071063, z: -0, w: 0.7071073}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.6999998, y: -0.49500003, z: 1.197}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -35670,7 +35735,7 @@ Transform:
   - {fileID: 3574950770181922855}
   m_Father: {fileID: 9147701417825196178}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &4778636489827416960
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35731,7 +35796,7 @@ GameObject:
   - component: {fileID: 2035150718324657378}
   - component: {fileID: 1183649815328965943}
   - component: {fileID: 3676503337230512784}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rearShocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35820,7 +35885,7 @@ GameObject:
   - component: {fileID: 8034032015032512660}
   - component: {fileID: 4764736413621987700}
   - component: {fileID: 2109882298782853545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RRTread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35835,7 +35900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6644374404425896635}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.440892e-15, y: 1.110223e-16, z: 0.24173841}
+  m_LocalPosition: {x: 4.440892e-15, y: 1.110223e-16, z: 0.389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4884548374073265026}
@@ -35901,7 +35966,7 @@ GameObject:
   - component: {fileID: 5903035555856821828}
   - component: {fileID: 9104719246513588057}
   - component: {fileID: 8872880606908151368}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36290,7 +36355,7 @@ GameObject:
   - component: {fileID: 2831696798894949291}
   - component: {fileID: 5493441618392246970}
   - component: {fileID: 2611742537244257015}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: frontShocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36423,7 +36488,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7975904091054181317}
-  m_LocalRotation: {x: -0, y: -0.7071063, z: -0, w: 0.7071073}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.6999998, y: -0.49500003, z: -1.2779999}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -36431,7 +36496,7 @@ Transform:
   - {fileID: 3574950768703053795}
   m_Father: {fileID: 9147701417825196178}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &6814547323279986928
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -36592,7 +36657,7 @@ GameObject:
   - component: {fileID: 6197727498226310494}
   - component: {fileID: 4228596201049634563}
   - component: {fileID: 9106666322841443258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: grille
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36673,7 +36738,7 @@ GameObject:
   - component: {fileID: 5822531544247354019}
   - component: {fileID: 2976858241674555945}
   - component: {fileID: 5119271135788323937}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: superchargers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36811,7 +36876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4863454924098766243}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: turretPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36844,7 +36909,7 @@ GameObject:
   - component: {fileID: 1576859052575503283}
   - component: {fileID: 6839890549694708464}
   - component: {fileID: 3565682293159323152}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: enginePipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36926,7 +36991,7 @@ GameObject:
   - component: {fileID: 3972821898298564999}
   - component: {fileID: 3309748909050669698}
   - component: {fileID: 8527290428390073507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: rearBumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

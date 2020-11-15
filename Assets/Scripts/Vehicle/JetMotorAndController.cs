@@ -74,14 +74,17 @@ public class JetMotorAndController : MonoBehaviour
         float roll      = UnityInputModule.instance.controls.Player.TankStrafe.ReadValue<float>();
         float pitch     = UnityInputModule.instance.controls.Player.TankAccelerate.ReadValue<float>();
 
-        Move(roll, pitch, accel, deccel);
+        // Space factor becomes 0 when you are in space.
+        float spaceFactor = VehicleTypeSwitch.InterpolateWithHeight(1000.0f, 2250.0f, transform.position.y);
+
+        Move(roll, pitch, accel, deccel, spaceFactor);
 
         var hoverMotor = (vehicleParent.engine as HoverTankMotor);
         var rot = Quaternion.FromToRotation(transform.up, Vector3.up);
         rigidbody.AddTorque(
             new Vector3(rot.x, rot.y, rot.z)
             * (1.0f - Utilities.ActualSmoothstep(hoverMotor.actualSpeed, hoverMotor.actualSpeed + 5.0f, vehicleParent.localVelocity.magnitude))
-            * hoverFlipOverForce);
+            * hoverFlipOverForce * spaceFactor);
     }
 
     /// <summary>
@@ -90,11 +93,11 @@ public class JetMotorAndController : MonoBehaviour
     /// Given inputs, this does the calculations to apply forces to the rigidbody for realistic flight. It considers drag,
     /// adjusting velocity based on speed/nose-direction, lift, and torques.
     /// </summary>
-    private void Move(float roll, float pitch, float accel, float deccel)
+    private void Move(float roll, float pitch, float accel, float deccel, float spaceFactor)
     {
         float brakePower = brakeDrag * deccel;
         float brakeAccel = brakeDrag * brakePower;
-        
+
         // Target an idle speed
         if (accel > 0.05f)
         {
@@ -113,8 +116,8 @@ public class JetMotorAndController : MonoBehaviour
         }
         else if (deccel > 0.05f)
         {
-            targetInputValue = Mathf.MoveTowards(targetInputValue, 0.0f, Time.deltaTime * 0.4f);
-            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.0f, Time.deltaTime * 0.4f);
+            targetInputValue = Mathf.MoveTowards(targetInputValue, 0.3f * spaceFactor, Time.deltaTime * 0.4f);
+            targetThrottleValue = Mathf.MoveTowards(targetThrottleValue, 0.3f * spaceFactor, Time.deltaTime * 0.4f);
         }
         else if (targetInputValue > idleSpeedInput)
         {
@@ -130,20 +133,21 @@ public class JetMotorAndController : MonoBehaviour
         CalculateDrag(brakeAccel, localVelocity.magnitude);
         CaluclateAerodynamicEffect(localVelocity.magnitude);
 
+
         // Main input to the rigidbody
         rigidbody.AddRelativeForce((
             (Vector3.forward * maxThrust * inputValue * FORCE_MULT)     // Driven Forces
-            + (Vector3.forward * aeroFactor))                           // Passive Forces
+            + (Vector3.forward * aeroFactor * spaceFactor))             // Passive Forces
             / rigidbody.mass, ForceMode.Acceleration);
         
-        Vector3 scaledTorque = new Vector3(Mathf.Min(pitch, Mathf.Lerp(0.2f, 1.0f, Utilities.ActualSmoothstep(15.0f, 20.0f, forwardSpeed))), 0.0f, -roll); 
+        Vector3 scaledTorque = new Vector3(
+            Mathf.Min(pitch, Mathf.Lerp(0.2f, 1.0f, Utilities.ActualSmoothstep(15.0f, 20.0f, forwardSpeed))), 
+            UnityInputModule.instance.controls.Player.Yaw.ReadValue<float>(), 
+            -roll); 
         scaledTorque.Scale(turnTorques);
         
         rigidbody.AddRelativeTorque(scaledTorque * aeroFactor * FORCE_MULT, ForceMode.Force);
-
-        // Bank effect: Separate from input control torque.
-        float bankFactor = -transform.right.y;
-        rigidbody.AddRelativeTorque(Vector3.up * bankFactor * aeroFactor * bankTorque * FORCE_MULT, ForceMode.Force);
+        rigidbody.AddRelativeTorque(Vector3.up * -transform.right.y * aeroFactor * bankTorque * FORCE_MULT * spaceFactor, ForceMode.Force);
 
         // Clamp the velocity
         rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, Mathf.Max(50.0f, topSpeed * targetInputValue));

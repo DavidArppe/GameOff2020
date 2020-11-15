@@ -123,6 +123,16 @@ public class VehicleTypeSwitch : MonoBehaviour
         rigidbody.angularDrag   = isJet ? jetController.jetAngularDrag : originalAngularDrag;
     }
 
+    static public float InterpolateWithHeight(float minHeight, float maxHeight, float height)
+    {
+        return Mathf.Clamp01(Mathf.InverseLerp(maxHeight, minHeight, height));
+    }
+
+    private float InterpolateWithHeight(float minHeight, float maxHeight)
+    {
+        return Mathf.Clamp01(Mathf.InverseLerp(maxHeight, minHeight, transform.position.y));
+    }
+
     private void LateUpdate()
     {
         // If it's a jet, or a hovercraft, the wheels should by default target hovercraft visuals
@@ -150,9 +160,19 @@ public class VehicleTypeSwitch : MonoBehaviour
             visualWheelTransforms[i].Rotate(Vector3.forward, Mathf.Repeat(Time.realtimeSinceStartup * 1080.0f, 360.0f) * Mathf.Max(realJetWheelLerp, realHoverLerp), Space.Self);
         }
 
+        if (!HasVehicleBit(VehicleType.JET))
+        {
+            Vector2 velocityXZ = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
+            if (velocityXZ.magnitude > 70.0f)
+            {
+                velocityXZ *= 0.985f;
+                rigidbody.velocity = new Vector3(velocityXZ.x, rigidbody.velocity.y, velocityXZ.y);
+            }
+        }
+
         RVP.GlobalControl.vehiclesVolumeStatic = Mathf.Lerp(originalVehicleVolume * 0.333f, originalVehicleVolume, Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
         windSoundEmitter.SetParameter("speed", relativeMagnitude * 1.5f);
-        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
+        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * InterpolateWithHeight(750.0f, 1250.0f));
 
         // TODO: Use the animator for this? Makes it more expandable
         leftWing.localPosition = Vector3.Lerp(Vector3.right * 4.0f, Vector3.zero, isJetLerpValue);
@@ -175,6 +195,9 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         hoverSoundEmitter.SetParameter("input", Utilities.ActualSmoothstep(0.0f, 20.0f, relativeMagnitude));
         hoverSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * Mathf.Max(isJetLerpValue, isHoverLerpValue));
+
+        // GRAVITY
+        Physics.gravity = new Vector3(0.0f, Mathf.Lerp(0.0f, -9.81f, InterpolateWithHeight(1000.0f, 5250.0f)), 0.0f);
     }
 
     bool HasVehicleBit(VehicleType typeToCheck)
