@@ -7,6 +7,8 @@ using Terra.Terrain;
 using Terra.Util;
 using UnityEditor;
 using Random = UnityEngine.Random;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 namespace Terra {
 	[Serializable, ExecuteInEditMode]
@@ -29,8 +31,6 @@ namespace Terra {
         public EditorStateData EditorState;
 
         public Material TerrainMaterial;
-        public float PlanetRadius;
-        public float PlanetWaterLevel;
 
         internal bool IsEditor;
 
@@ -100,15 +100,8 @@ namespace Terra {
 			}
 		}
 
-        private void OnValidate()
-        {
-            Shader.SetGlobalFloat("_PlanetRadius", PlanetRadius);
-        }
-
         void Update() {
 			if (!IsInitialized) return;
-
-            Shader.SetGlobalFloat("_PlanetRadius", PlanetRadius);
 
 			if (Application.isPlaying && Generator.Pool != null && Generator.GenerateOnStart) {
                 Generator.Pool.Update();
@@ -156,11 +149,52 @@ namespace Terra {
 			Generator.GenerateOnStart = true;
 		}
 
-		/// <summary>
-		/// Starts the generation process tailored specifically 
-		/// to the editor.
-		/// </summary>
-		public void GenerateEditor() {
+        public void GenerateTextureEditor()
+        {
+            var endGen = Graph.GetEndGenerator();
+
+            const int noiseGenSize = 2048;
+            const float terrainStep = 0.01f;
+
+            Texture2D noiseTexture = new Texture2D(noiseGenSize, noiseGenSize, TextureFormat.RFloat, false, true);
+            float[] colors = new float[noiseGenSize * noiseGenSize];
+            byte[] byteArray = new byte[colors.Length * sizeof(float)];
+
+            float min = float.MaxValue;
+            float max = float.MinValue;
+
+            int x = 0; for (float xPos = 0.0f; x < noiseGenSize; x++, xPos += terrainStep)
+            {
+                int y = 0; for (float yPos = 0.0f; y < noiseGenSize; y++, yPos += terrainStep)
+                {
+                    float genVal = endGen.GetValue(xPos, yPos, 0.0f);
+                    if (genVal < min) min = genVal;
+                    if (genVal > max) max = genVal;
+
+                    colors[x * noiseGenSize + y] = genVal;
+                }
+            }
+
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = Mathf.InverseLerp(min, max, colors[i]);
+            }
+
+            Buffer.BlockCopy(colors, 0, byteArray, 0, byteArray.Length);
+            noiseTexture.LoadRawTextureData(byteArray);
+            noiseTexture.Apply();
+
+            File.WriteAllBytes(Path.Combine(
+                Application.dataPath,
+                string.Format("Artwork/Resources/MoonTextures/{0}-Heightmap.png", SceneManager.GetActiveScene().name.Replace(' ', '_'))),
+                noiseTexture.EncodeToPNG());
+        }
+
+        /// <summary>
+        /// Starts the generation process tailored specifically 
+        /// to the editor.
+        /// </summary>
+        public void GenerateEditor() {
             CreateMTD();
             CreateTerrainParent();
 

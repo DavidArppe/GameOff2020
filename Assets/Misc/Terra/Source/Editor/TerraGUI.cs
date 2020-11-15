@@ -59,9 +59,6 @@ namespace UnityEditor.Terra {
             EditorGUILayout.LabelField("Custom Material", EditorStyles.boldLabel);
             _config.TerrainMaterial = (Material)EditorGUILayout.ObjectField(_config.TerrainMaterial, typeof(Material), true);
 
-            _config.PlanetRadius = EditorGUILayout.FloatField("Planet Radius", _config.PlanetRadius);
-            _config.PlanetWaterLevel = EditorGUILayout.FloatField("Water Level", _config.PlanetWaterLevel);
-
             //Terrain settings
             ShowTerrain();
 
@@ -88,7 +85,11 @@ namespace UnityEditor.Terra {
 			EditorGUILayout.Separator();
 			EditorGUILayout.Space();
 
-			if (GUILayout.Button("Generate")) {
+            if (GUILayout.Button("Generate Noise Texture"))
+            {
+                _config.GenerateTextureEditor();
+            }
+            if (GUILayout.Button("Generate")) {
 				if (_config.Generator.GenerationRadius > 4) {
 					int amt = TilePool.GetTilePositionsFromRadius(
 						_config.Generator.GenerationRadius, new Vector2(0, 0), _config.Generator.Length)

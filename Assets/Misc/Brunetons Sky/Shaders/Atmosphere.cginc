@@ -42,7 +42,7 @@ float mieG;
 
 #define M_PI 3.141592
 #define Rg 100000.0f
-#define Rt 106500.0f
+#define Rt 108500.0f
 
 #define RES_R 32.0
 #define RES_MU 128.0
@@ -202,7 +202,7 @@ float3 SkyRadiance(float3 camera, float3 viewdir, out float3 extinction)
     return result * SUN_INTENSITY;
 }
 
-float3 InScattering(float3 camera, float3 _point, out float3 extinction, float shaftWidth)
+float3 InScattering(float3 camera, float3 _point, out float3 extinction, float scale)
 {
 
 	// single scattered sunlight between two points
@@ -216,7 +216,7 @@ float3 InScattering(float3 camera, float3 _point, out float3 extinction, float s
 
 	float3 viewdir = _point - camera;
 	float d = length(viewdir);
-	viewdir = viewdir / d;
+	viewdir = normalize(viewdir);
 	float r = length(camera);
 
 	if (r < 0.9 * Rg)
@@ -229,7 +229,6 @@ float3 InScattering(float3 camera, float3 _point, out float3 extinction, float s
 	float mu = rMu / r;
 	float r0 = r;
 	float mu0 = mu;
-	_point -= viewdir * clamp(shaftWidth, 0.0, d);
 
 	float deltaSq = sqrt(rMu * rMu - r * r + Rt*Rt);
 	float din = max(-rMu - deltaSq, 0.0);
@@ -311,5 +310,20 @@ float3 InScattering(float3 camera, float3 _point, out float3 extinction, float s
 	}
 
 	return result * SUN_INTENSITY;
+}
 
+float3 FilmGrain(in float3 color, in float3 texcoord)
+{
+    const float quantizationSteps = 256.0;
+    const float grainBlackLimit = 0.5 * (1.0 / (quantizationSteps - 1.0));
+    const float grainAmount = 0.75 * ((1.0 / (quantizationSteps - 1.0)) - 1.0);
+    const float2 timeOffset = float2(frac(_Time.y * 0.001), frac(_Time.y * 0.001));
+
+    float x = (texcoord.x + 4.0) * (texcoord.y + 4.0) * (texcoord.z + 4.0) * (_Time.y * 10.0);
+    float3 grain = 10.0 * (fmod((fmod(x, 13.0) + 1.0) * (fmod(x, 123.0) + 1.0), 0.01) - 0.005);
+    float3 grainSq = grain * grain;
+    grain = (3.0 * grainSq - 2.0 * grainSq * abs(grain)) * sign(grain);
+
+    color.rgb *= 256.0;
+    return max((grain * min(color + grainBlackLimit, grainAmount * 10.0) + color) * rcp(256.0), 0.0);
 }

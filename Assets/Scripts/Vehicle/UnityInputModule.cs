@@ -73,7 +73,7 @@ public class UnityInputModule : MonoBehaviour
             vehicleParent.SetEbrake(controls.Player.Ebreak.ReadValue<float>());
             vehicleParent.SetBoost(controls.Player.Boost.ReadValue<float>() > 0);
             vehicleParent.SetPitch(controls.Player.Pitch.ReadValue<float>());
-            vehicleParent.SetYaw(controls.Player.Yaw.ReadValue<float>());
+            //vehicleParent.SetYaw(controls.Player.Yaw.ReadValue<float>());
             vehicleParent.SetRoll(controls.Player.Roll.ReadValue<float>());
             vehicleParent.SetRoll(controls.Player.Roll.ReadValue<float>());
         }
