@@ -101,7 +101,6 @@ namespace BrunetonsAtmosphere
 
 		void Start()
 		{
-
 			m_irradianceT = new RenderTexture[2];
 			m_inscatterT = new RenderTexture[2];
 
@@ -366,24 +365,22 @@ namespace BrunetonsAtmosphere
 
 		void OnDestroy()
 		{
-            if (m_transmittance != null || 
-                m_irradianceT != null || 
-                m_inscatterT != null || 
-                m_deltaET != null || 
-                m_deltaSRT != null || 
-                m_deltaSMT != null || 
-                m_deltaJT != null)
+            if (m_transmittanceT != null) Destroy(m_transmittanceT);
+
+            if (m_irradianceT != null)
             {
-			    Destroy(m_transmittanceT);
-                Destroy(m_irradianceT[0]);
-                Destroy(m_irradianceT[1]);
-                Destroy(m_inscatterT[0]);
-                Destroy(m_inscatterT[1]);
-                Destroy(m_deltaET);
-                Destroy(m_deltaSRT);
-                Destroy(m_deltaSMT);
-                Destroy(m_deltaJT);
+                if (m_irradianceT[0] != null) Destroy(m_irradianceT[0]);
+                if (m_irradianceT[1] != null) Destroy(m_irradianceT[1]);
             }
+            if (m_inscatterT != null)
+            {
+                if (m_inscatterT[0] != null) Destroy(m_inscatterT[0]);
+                if (m_inscatterT[1] != null) Destroy(m_inscatterT[1]);
+            }
+            if (m_deltaET != null) Destroy(m_deltaET);
+            if (m_deltaSRT != null) Destroy(m_deltaSRT);
+            if (m_deltaSMT != null) Destroy(m_deltaSMT);
+            if (m_deltaJT != null) Destroy(m_deltaJT);
 		}
 
         private void Swap(RenderTexture[] texs)

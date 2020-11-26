@@ -172,7 +172,7 @@ public class VehicleTypeSwitch : MonoBehaviour
 
         RVP.GlobalControl.vehiclesVolumeStatic = Mathf.Lerp(originalVehicleVolume * 0.333f, originalVehicleVolume, Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
         windSoundEmitter.SetParameter("speed", relativeMagnitude * 1.5f);
-        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * InterpolateWithHeight(750.0f, 1250.0f));
+        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * 0.4f * InterpolateWithHeight(750.0f, 1250.0f));
 
         // TODO: Use the animator for this? Makes it more expandable
         leftWing.localPosition = Vector3.Lerp(Vector3.right * 4.0f, Vector3.zero, isJetLerpValue);

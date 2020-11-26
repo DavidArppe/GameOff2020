@@ -19,6 +19,7 @@ namespace Terra.Terrain {
     /// </summary>
     [Serializable]
 	public class TileMesh: ISerializationCallbackReceiver {
+
 		/// <summary>
 		/// The minimum value in the heightmap after the last call 
 		/// to <see cref="CalculateHeightmap"/>. Default value is 
@@ -103,7 +104,8 @@ namespace Terra.Terrain {
 
 		private static readonly object _asyncMeshLock;
 
-		static TileMesh() {
+
+        static TileMesh() {
 			_asyncMeshLock = new object();
 		}
 
@@ -117,12 +119,13 @@ namespace Terra.Terrain {
 			Lod = lod;
         }
 
-		/// <summary>
-		/// Adds a <see cref="UnityEngine.Terrain"/> component to this <see cref="Tile"/>'s 
-		/// gameobject and sets it up according to <see cref="TerraConfig"/>. 
-		/// Overwrites <see cref="ActiveTerrain"/> if it already exists.
-		/// </summary>
-		public void AddTerrainComponent() {
+
+        /// <summary>
+        /// Adds a <see cref="UnityEngine.Terrain"/> component to this <see cref="Tile"/>'s 
+        /// gameobject and sets it up according to <see cref="TerraConfig"/>. 
+        /// Overwrites <see cref="ActiveTerrain"/> if it already exists.
+        /// </summary>
+        public void AddTerrainComponent() {
 			//Destory current Terrain instance if it exists
 			if (ActiveTerrain != null) {
 #if UNITY_EDITOR
@@ -136,11 +139,33 @@ namespace Terra.Terrain {
 			int length = conf.Generator.Length;
 			UnityEngine.Terrain t = _tile.gameObject.AddComponent<UnityEngine.Terrain>();
 
-			t.terrainData = new TerrainData();
+#if UNITY_EDITOR
+            TerrainData tDat = new TerrainData();
+            var dir = string.Format("Assets/Artwork/Resources/MoonTextures/Terrains/{0}",
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+            if (!System.IO.Directory.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
+
+            var path = string.Format("{0}/Terrain-{1}.asset", dir, _tile.gameObject.name.Replace(' ', '_'));
+
+            UnityEditor.AssetDatabase.DeleteAsset(path);
+            UnityEditor.AssetDatabase.CreateAsset(tDat, path);
+            UnityEditor.AssetDatabase.Refresh();
+            t.terrainData = UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(TerrainData)) as TerrainData;
+#else
+            t.terrainData = new TerrainData();
+#endif
+
+			t.terrainData = tDat;
 			t.terrainData.size = new Vector3(length, conf.Generator.Amplitude, length);
             t.materialTemplate = conf.TerrainMaterial;
             t.allowAutoConnect = true;
             t.drawInstanced = true;
+            t.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            t.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
 
 			TerrainCollider tc = _tile.gameObject.AddComponent<TerrainCollider>();
 			tc.terrainData = t.terrainData;
@@ -196,20 +221,25 @@ namespace Terra.Terrain {
 			}
 		}
 
-		/// <summary>
-		/// Creates a heightmap of resolution <see cref="HeightmapResolution"/> asynchronously. 
-		/// If a <see cref="Heightmap"/> of the same resolution or higher has already been 
-		/// created, this method does nothing.
-		/// A heightmap is 2D array of floats that represents the Y values (or heights) 
-		/// of to-be created vertices in 3D space.
-		/// </summary>
-		/// <param name="remapMin">Optionally linear transform the heightmap from [min, max] to [0, 1]</param>
-		/// <param name="remapMax">Optionally linear transform the heightmap from [min, max] to [0, 1]</param>
-		/// <param name="onComplete">Called when the heightmap has been created</param>
-		public void CalculateHeightmapAsync(float remapMin = 0f, float remapMax = 1f, Action onComplete = null) {
+        /// <summary>
+        /// Creates a heightmap of resolution <see cref="HeightmapResolution"/> asynchronously. 
+        /// If a <see cref="Heightmap"/> of the same resolution or higher has already been 
+        /// created, this method does nothing.
+        /// A heightmap is 2D array of floats that represents the Y values (or heights) 
+        /// of to-be created vertices in 3D space.
+        /// </summary>
+        /// <param name="remapMin">Optionally linear transform the heightmap from [min, max] to [0, 1]</param>
+        /// <param name="remapMax">Optionally linear transform the heightmap from [min, max] to [0, 1]</param>
+        /// <param name="onComplete">Called when the heightmap has been created</param>
+        public void CalculateHeightmapAsync(float remapMin = 0f, float remapMax = 1f, Action onComplete = null) {
 			_lastGeneratedLodLevel = _tile.GetLodLevel();
 			Lod = _lastGeneratedLodLevel;
+
+            #if UNITY_EDITOR
             bool shouldProfile = TerraConfig.Instance.EditorState.ShowDebugMessages;
+            #else
+            bool shouldProfile = false;
+            #endif
 
             Stopwatch wsw = null;
             if (shouldProfile) {
@@ -233,7 +263,9 @@ namespace Terra.Terrain {
             }, () => {
                 if (shouldProfile) {
                     wsw.Stop();
+                    #if UNITY_EDITOR
                     MTDispatch.Instance().Enqueue(() => { TerraConfig.Log("CalculateHM worker time elapsed " + wsw.ElapsedMilliseconds); onComplete(); });
+                    #endif
                 }
             });
 		}
@@ -471,19 +503,21 @@ namespace Terra.Terrain {
 					}
 				}
 
-				// //Update neighbor's heightmap
-				// GameObject tracked = TerraConfig.Instance.Generator.TrackedObject;
-				// bool trackedOnNeighbor = false;
-				// if (tracked != null) {
-				// 	GridPosition gp = new GridPosition(tracked, TerraConfig.Instance.Generator.Length);
-				// 	if (gp == neighbor.GridPosition) {
-				// 		trackedOnNeighbor = true;
-				// 	}
-				// }
+                // //Update neighbor's heightmap
+                // GameObject tracked = TerraConfig.Instance.Generator.TrackedObject;
+                // bool trackedOnNeighbor = false;
+                // if (tracked != null) {
+                // 	GridPosition gp = new GridPosition(tracked, TerraConfig.Instance.Generator.Length);
+                // 	if (gp == neighbor.GridPosition) {
+                // 		trackedOnNeighbor = true;
+                // 	}
+                // }
 
-				bool useCoroutine = TerraConfig.Instance.Generator.UseCoroutines &&
+#if UNITY_EDITOR
+                bool useCoroutine = TerraConfig.Instance.Generator.UseCoroutines &&
 					!TerraConfig.IsInEditMode;
 				neighbor.MeshManager.SetTerrainHeightmap();
+                #endif
 			}
 		}
 
@@ -647,7 +681,8 @@ namespace Terra.Terrain {
 		} //TODO Possibly uncomment
 
 #endregion
-	}
+
+    }
 
     public struct CalculateHeightmapJob : IJobParallelFor {
         [NativeDisableParallelForRestriction]

@@ -11,8 +11,6 @@
     #define _NORMALMAP
 #endif
 
-#define PI 3.1415926535
-
 struct Input
 {
     float4 tc;
@@ -77,23 +75,6 @@ void SplatmapVert(inout appdata_full v, out Input data)
     v.vertex.xz = (patchVertex.xy + instanceData.xy) * _TerrainHeightmapScale.xz * instanceData.z;  //(x + xBase) * hmScale.x * skipScale;
     v.vertex.y = hm * _TerrainHeightmapScale.y;
     v.vertex.w = 1.0f;
-
-    float halfCircumnference = PI * _PlanetRadius;
-
-    float4 worldPos = mul(unity_ObjectToWorld, v.vertex) + float4(0.01, 0.0, 0.01, 0.0);
-
-    float3 wPosOffset = worldPos.xyz - _WorldSpaceCameraPos.xyz;
-
-    float dist = length(wPosOffset.xz) / halfCircumnference; // 0-1
-    float angle = atan2(wPosOffset.z, wPosOffset.x) / (2.0f * PI); // 0-1
-
-    float3 newVertex;
-    newVertex.x = sin(PI * dist) *  cos(PI * 2.0f * angle);
-    newVertex.z = sin(PI * dist) *  sin(PI * 2.0f * angle);
-    newVertex.y = cos(PI * dist);
-
-    worldPos.xyz = float3(_WorldSpaceCameraPos.x, -_PlanetRadius, _WorldSpaceCameraPos.z) + newVertex * (_PlanetRadius + worldPos.y);
-    //v.vertex = lerp(v.vertex, mul(unity_WorldToObject, worldPos), 1.0f);//saturate((length(wPosOffset.xz) - 2000.0f) / 3000.0f));
 
     v.texcoord.xy = (patchVertex.xy * uvscale.zw + uvoffset.zw);
     v.texcoord3 = v.texcoord2 = v.texcoord1 = v.texcoord;

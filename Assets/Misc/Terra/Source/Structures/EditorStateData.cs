@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Terra.Structures {
+
 	/// <summary>
 	/// Container for data relating to the state of the TerraSettingsEditor
 	/// </summary>
@@ -25,10 +26,14 @@ namespace Terra.Structures {
 
         public bool ShowDebugMessages = true;
 
+        #if UNITY_EDITOR
 		public float InspectorWidth { get { return EditorGUIUtility.currentViewWidth; } }
-	}
+#else
+		public float InspectorWidth { get { return 1.0f; } }
+#endif
+    }
 
-	[Serializable]
+    [Serializable]
 	public enum ToolbarOptions {
 		General = 0,
 		Maps = 1,

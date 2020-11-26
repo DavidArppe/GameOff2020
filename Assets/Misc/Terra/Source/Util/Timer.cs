@@ -16,8 +16,10 @@ namespace Terra.Util {
             UnityEngine.Debug.Log(label + "Elapsed Time: " + _sw.ElapsedMilliseconds);
         }
 
+        #if UNITY_EDITOR
         public void StopAndPrintMT(string service = "") {
             MTDispatch.Instance().Enqueue(() => StopAndPrint(service));
         }
+        #endif
     }
 }

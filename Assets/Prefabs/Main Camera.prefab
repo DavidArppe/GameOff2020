@@ -134,6 +134,7 @@ MonoBehaviour:
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 3383
+  mainMusicEmitter: {fileID: 0}
 --- !u!114 &908368820072744251
 MonoBehaviour:
   m_ObjectHideFlags: 0

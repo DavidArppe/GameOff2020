@@ -52,39 +52,56 @@ namespace Terra {
 			}
 		}
 
-		public static bool IsInEditMode {
+#if UNITY_EDITOR
+        public static bool IsInEditMode {
 			get {
 				return !Application.isPlaying && Application.isEditor;
 			}
-		}
+        }
 
         /// <summary>
         /// Logs the passed message if ShowDebugMessages is enabled
         /// </summary>
         /// <param name="message">message to log</param>
-        public static void Log(string message) {
-            if (Instance != null && Instance.EditorState.ShowDebugMessages) {
+        public static void Log(string message)
+        {
+            if (Instance != null && Instance.EditorState.ShowDebugMessages)
+            {
                 Debug.Log(message);
             }
         }
+#else
+        public static void Log(string message)
+        {
+            Debug.Log(message);
+        }
+#endif
 
-		/// <summary>
-		/// Initializes fields to default values if they were null 
-		/// post serialization.
-		/// </summary>
-		void OnEnable() {
+
+        /// <summary>
+        /// Initializes fields to default values if they were null 
+        /// post serialization.
+        /// </summary>
+        void OnEnable() {
 			_instance = this;
 			IsInitialized = true;
 			 
 			if (Generator == null) Generator = new GenerationData();
+            #if UNITY_EDITOR
 			if (EditorState == null) EditorState = new EditorStateData();
+            #endif
             if (Placer == null) Placer = new ObjectPlacer();
             if (Worker == null) Worker = new BackgroundWorker();
 
+            #if UNITY_EDITOR
             IsEditor = IsInEditMode;
+            #else
+            IsEditor = false;
+            #endif
 		}
 
 		void Start() {
+#if UNITY_EDITOR
             //Register play mode and assembly state handlers once
             EditorApplication.playModeStateChanged -= OnPlayModeStateChange;
             EditorApplication.playModeStateChanged += OnPlayModeStateChange;
@@ -92,10 +109,13 @@ namespace Terra {
 		    AssemblyReloadEvents.beforeAssemblyReload += OnBeforeAssemblyReload;
 
             IsEditor = IsInEditMode;
-
             CreateMTD();
+#else
+            IsEditor = false;
 
-			if (Generator.GenerateOnStart) {
+#endif
+
+            if (Generator.GenerateOnStart) {
 				Generate();
 			}
 		}
@@ -112,6 +132,7 @@ namespace Terra {
 			OnEnable(); //Initialize default values
 		}    
 
+#if UNITY_EDITOR
         void OnPlayModeStateChange(PlayModeStateChange state) {
             TerraConfig.Log("Killing worker threads before exiting play mode");
 
@@ -127,12 +148,15 @@ namespace Terra {
                 Worker.ForceStop();
             }
         }
+#endif
 
 		/// <summary>
 		/// Starts the generation process (for use in play mode)
 		/// </summary>
 		public void Generate() {
+        #if UNITY_EDITOR
 			CreateMTD();
+            #endif
 
 			//Set default tracked object
 			if (Generator.TrackedObject == null) {
@@ -186,10 +210,11 @@ namespace Terra {
 
             File.WriteAllBytes(Path.Combine(
                 Application.dataPath,
-                string.Format("Artwork/Resources/MoonTextures/{0}-Heightmap.png", SceneManager.GetActiveScene().name.Replace(' ', '_'))),
+                string.Format("Artwork/Resources/MoonTextures/{0}-NoiseApprox.png", SceneManager.GetActiveScene().name.Replace(' ', '_'))),
                 noiseTexture.EncodeToPNG());
         }
 
+        #if UNITY_EDITOR
         /// <summary>
         /// Starts the generation process tailored specifically 
         /// to the editor.
@@ -328,8 +353,9 @@ namespace Terra {
 
 			Gizmos.DrawWireCube(sqrCenter, new Vector3(radius * 2, vertLen, 0f));
 			Gizmos.DrawWireCube(sqrCenter, new Vector3(0f, vertLen, radius * 2));
-		}
-	}
+        }
+#endif
+    }
 
     public static class TerraExtensions {
         public static float NextFloat(this System.Random random) {
