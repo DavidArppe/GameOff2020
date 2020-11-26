@@ -140,10 +140,12 @@ namespace Terra.Terrain {
             Tile t = Tile.CreateTileGameobject("Tile [" + p.X + ", " + p.Z + "]", p);
             t.gameObject.transform.SetParent(Config.TerrainParent.transform, true);
 
+#if UNITY_EDITOR
             t.Generate(() => {
                 AddTile(t);
                 onComplete(t);
             }, RemapMin, RemapMax);
+            #endif
         }
 
         /// <summary>

@@ -84,7 +84,7 @@ namespace RVP
                     tireScreechEmitter.EventInstance.getPitch(out float pitch);
                     
                     tireScreechEmitter.EventInstance.setVolume(Mathf.Lerp(volume, RVP.GlobalControl.vehiclesVolumeStatic * screechAmount * ((vp.groundedWheels * 1.0f) / (wheels.Length * 1.0f)), 2 * Time.deltaTime));
-                    tireScreechEmitter.EventInstance.setPitch(Mathf.Lerp(pitch, 0.5f + screechAmount * 0.9f, 2 * Time.deltaTime));
+                    tireScreechEmitter.EventInstance.setPitch(Mathf.Lerp(pitch, 0.6f + screechAmount * 0.3f, 2 * Time.deltaTime));
                 }
             }
             else if (tireScreechEmitter.IsPlaying())

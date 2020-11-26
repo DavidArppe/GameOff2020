@@ -66,7 +66,8 @@ public class FollowCam : PivotBasedCameraRig
 
     private void LateUpdate()
     {
-        mainMusicEmitter.SetParameter("is_in_space", Mathf.Clamp01(Mathf.InverseLerp(750.0f, 1250.0f, transform.position.y)));
+        mainMusicEmitter.SetParameter("is_in_space", Mathf.Clamp01(Mathf.InverseLerp(550.0f, 2550.0f, transform.position.y)));
+        mainMusicEmitter.EventInstance.setVolume(RVP.GlobalControl.musicVolumeStatic);
     }
 
     // Basic 3 way interpolation. Not quite bilinear, but since we likely won't have 3-way transitions, this is fine.
@@ -155,7 +156,7 @@ public class FollowCam : PivotBasedCameraRig
 
     void RaycastCamera()
     {
-        var pivotPushedDown = interpolatedPivotPosition - interpolatedPivotUp * 0.5f;
+        var pivotPushedDown = interpolatedPivotPosition - interpolatedPivotUp;
         var direction = expectedPositionNoClip - pivotPushedDown;
         if (Physics.SphereCast(pivotPushedDown, targetCamera.nearClipPlane * 1.5f, direction, out RaycastHit hitInfo, direction.magnitude, raycastLayerMask, QueryTriggerInteraction.Ignore))
         {

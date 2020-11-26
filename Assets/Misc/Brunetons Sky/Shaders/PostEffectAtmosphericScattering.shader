@@ -84,7 +84,7 @@ Shader "BrunetonsAtmosphere/PostEffectAtmosphericScattering"
 
                 float3 outColor = hdr(scatter);
 
-                return float4(scatter, 1.0f);
+                return float4(outColor, 1.0f);
 			    
 			}
 			ENDCG

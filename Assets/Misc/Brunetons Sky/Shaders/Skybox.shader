@@ -52,7 +52,9 @@ Shader "BrunetonsAtmosphere/Skybox"
 				float3 inscatter = SkyRadiance(_WorldSpaceCameraPos, dir, extinction);
 				float3 col = sunColor * extinction + inscatter;
                 		
-                col += (saturate(pow(texCUBE(_StarMap, dir).r, 2.75f)) * 2.0f).xxx;
+                float3 texCol = texCUBE(_StarMap, dir).rgb;
+
+                col += (saturate(pow(texCol + (length(texCol) * 0.4f), 2.75f)) * 2.0f).rgb;
 
                 //col = FilmGrain(col, dir);
 

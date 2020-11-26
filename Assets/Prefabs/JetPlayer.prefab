@@ -7230,7 +7230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950768974257503}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000000923872}
-  m_LocalPosition: {x: 0.00012779237, y: -0.1998969, z: 0.000055909113}
+  m_LocalPosition: {x: 0, y: -0.20000121, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3574950769808120550}
@@ -7311,7 +7311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950769383722246}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.000000923872}
-  m_LocalPosition: {x: 0.00001525879, y: -0.19998583, z: 0.0000051855986}
+  m_LocalPosition: {x: -0.000006198883, y: -0.20000121, z: 2.2737368e-12}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3574950770577818886}
@@ -7392,7 +7392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950769526871833}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000050663954}
-  m_LocalPosition: {x: -0.00008356568, y: -0.19993123, z: -0.000035345598}
+  m_LocalPosition: {x: 0.0000057220454, y: -0.20000121, z: 3.1832315e-12}
   m_LocalScale: {x: 0.50000006, y: 0.5, z: 0.50000006}
   m_Children: []
   m_Father: {fileID: 3574950768810312631}
@@ -12448,8 +12448,8 @@ MonoBehaviour:
   compressionFrictionFactor: 0.5
   tireRadius: 0.716
   rimRadius: 0.54
-  tireWidth: 0.275
-  rimWidth: 0.275
+  tireWidth: 0.42
+  rimWidth: 0.42
   tirePressure: 1
   popped: 0
   canPop: 1
@@ -12966,8 +12966,8 @@ MonoBehaviour:
   compressionFrictionFactor: 0.5
   tireRadius: 0.716
   rimRadius: 0.54
-  tireWidth: 0.275
-  rimWidth: 0.275
+  tireWidth: 0.42
+  rimWidth: 0.42
   tirePressure: 1
   popped: 0
   canPop: 1
@@ -22646,7 +22646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574950770390238108}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000050663954}
-  m_LocalPosition: {x: -0.00001597404, y: -0.1999872, z: -0.0000066161247}
+  m_LocalPosition: {x: 0, y: -0.20000121, z: 0}
   m_LocalScale: {x: 0.50000006, y: 0.5, z: 0.50000006}
   m_Children: []
   m_Father: {fileID: 3574950770075069198}

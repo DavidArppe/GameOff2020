@@ -2,15 +2,19 @@
 {
     Properties
     {
+        _Color("Color", Color) = (0.0, 0.0, 0.0, 0.0)
+        _MainTex("Base Color", 2D) = "white" {}
+        _Normals("Normals", 2D) = "bump" {}
+        _Metallic("Metallic", 2D) = "black" {}
+        _AO("AO", 2D) = "white" {}
+
+        _BumpScaleBigNorms("Bump Scale Big Norms", Float) = 20
+        _BumpScale("Bump Scale", Float) = 1.0
         _EdgeLength("Edge length", Range(2,50)) = 15
-        _MainTex("Base (RGB)", 2D) = "white" {}
-        _DispTex("Disp Texture", 2D) = "gray" {}
-        _NormalMap("Normalmap", 2D) = "bump" {}
+        _DispTex("Disp Texture", 2D) = "black" {}
         _Displacement("Displacement", Range(0, 1.0)) = 0.3
-        _UVScale("UV Scale", Float) = 1.0
-        _NormalsStrength("Normals Scale", Float) = 1.0
-        _Color("Color", color) = (1,1,1,0)
-        _SpecColor("Spec color", color) = (0.5,0.5,0.5,0.5)
+        _BaseHeightOffset("Height Bias", Range(-2.0, 2.0)) = 0.0
+        _InnerOuter("Inner/Outer", Vector) = (0.075, 0.09, 0.0, 0.0)
     }
     SubShader
     {
@@ -18,7 +22,7 @@
         LOD 300
 
         CGPROGRAM
-        #pragma surface surf BlinnPhong addshadow fullforwardshadows vertex:disp tessellate:tessEdge nolightmap
+        #pragma surface surf Standard vertex:disp tessellate:tessEdge nolightmap addshadow fullforwardshadows
         #pragma target 4.6
         #include "Tessellation.cginc"
 
@@ -36,10 +40,21 @@
             return UnityEdgeLengthBasedTess(v0.vertex, v1.vertex, v2.vertex, _EdgeLength);
         }
 
+        #define UV_SCALE 0.01f
+        #define BIG_UV_SCALE 0.00007f
+
         sampler2D _DispTex;
         float _UVScale;
         float _Displacement;
-        float _NormalsStrength;
+        float _BumpScale;
+        float _BumpScaleBigNorms;
+        sampler2D _MainTex;
+        sampler2D _Normals;
+        sampler2D _Metallic;
+        sampler2D _AO;
+        float4 _Color;
+        float _BaseHeightOffset;
+        float2 _InnerOuter;
 
         float3 normalsFromHeight(sampler2D heightTex, float2 uv, float texelSize, float strength)
         {
@@ -64,9 +79,9 @@
             float3 viewDir = normalize(_WorldSpaceCameraPos - vertexWP);
             float strength = pow(dot(viewDir, v.normal), 0.25f);
 
-            float d = tex2Dlod(_DispTex, float4(v.vertex.xz * _UVScale,0,0)).r * _Displacement * strength * 0.01f * smoothstep(0.075f, 0.09f, length(v.vertex.xz));
+            float d = tex2Dlod(_DispTex, float4(vertexWP.xz * BIG_UV_SCALE,0,0)).r * _Displacement * strength * 0.01f * smoothstep(_InnerOuter.x, _InnerOuter.y, length(v.vertex.xz));
+            d += _BaseHeightOffset * smoothstep(_InnerOuter.x, _InnerOuter.y, length(v.vertex.xz));
             v.vertex.xyz += v.normal * d;
-            //v.normal = normalsFromHeight(_DispTex, v.vertex.xz * _UVScale, 1.0f, strength * _NormalsStrength);
         }
 
         struct Input {
@@ -74,21 +89,24 @@
             float2 uv_MainTex;
         };
 
-        sampler2D _MainTex;
-        sampler2D _NormalMap;
-        fixed4 _Color;
-        
-        void surf(Input IN, inout SurfaceOutput o) 
+        void surf(Input IN, inout SurfaceOutputStandard o) 
         {
-            half4 c = tex2D(_MainTex, IN.uv_MainTex * _UVScale) * _Color;
-            o.Albedo = c.rgb;
-            o.Specular = 0.2;
-            o.Gloss = 1.0;
+            float2 uvs = IN.worldPos.xz * UV_SCALE;
 
-            float3 n = normalsFromHeight(_DispTex, (IN.worldPos.xz / 100000) * _UVScale, 1.0f, _NormalsStrength);
+            float3 norm = normalsFromHeight(_DispTex, (IN.worldPos.xz * BIG_UV_SCALE), 1.0f, _BumpScaleBigNorms);
+            float4 metallicRGBSmoothnessA = tex2D(_Metallic, uvs);
 
-            o.Normal = n.rbg;
-            //o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex * _UVScale));
+            float3 normal = norm.rgb;// * 2.0f - 1.0f;
+            float3 tangent = cross(norm, float3(0, 1, 0));
+            float3 bitangent = cross(norm, tangent);
+
+            float3 unpackedNorms = UnpackScaleNormal(tex2D(_Normals, uvs), _BumpScale);
+
+            o.Smoothness = metallicRGBSmoothnessA.a * 0.4;
+            o.Metallic = metallicRGBSmoothnessA.r;
+            o.Normal = normalize(tangent * -unpackedNorms.x + normal * unpackedNorms.z + bitangent * unpackedNorms.y);
+            o.Albedo = tex2D(_MainTex, uvs).rgb * _Color.rgb * tex2D(_AO, uvs).r;
+            o.Alpha = 1.0f;
         }
         ENDCG
     }
