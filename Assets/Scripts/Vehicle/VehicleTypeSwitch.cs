@@ -80,7 +80,7 @@ public class VehicleTypeSwitch : MonoBehaviour
         tireScreech     = gameObject.GetComponentInChildren<RVP.TireScreech>();
         jetController   = gameObject.GetComponentInChildren<JetMotorAndController>();
 
-        originalVehicleVolume = RVP.GlobalControl.vehiclesVolumeStatic;
+        originalVehicleVolume = GlobalControl.vehiclesVolumeStatic;
 
         originalDrag = rigidbody.drag;
         originalAngularDrag = rigidbody.angularDrag;
@@ -170,9 +170,9 @@ public class VehicleTypeSwitch : MonoBehaviour
             }
         }
 
-        RVP.GlobalControl.vehiclesVolumeStatic = Mathf.Lerp(originalVehicleVolume * 0.333f, originalVehicleVolume, Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
+        GlobalControl.vehiclesVolumeStatic = Mathf.Lerp(originalVehicleVolume * 0.333f, originalVehicleVolume, Mathf.Clamp01(Mathf.InverseLerp(2250.0f, 750.0f, transform.position.y)));
         windSoundEmitter.SetParameter("speed", relativeMagnitude * 1.5f);
-        windSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * 0.4f * InterpolateWithHeight(750.0f, 1250.0f));
+        windSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * 0.4f * InterpolateWithHeight(750.0f, 1250.0f));
 
         // TODO: Use the animator for this? Makes it more expandable
         leftWing.localPosition = Vector3.Lerp(Vector3.right * 4.0f, Vector3.zero, isJetLerpValue);
@@ -186,15 +186,15 @@ public class VehicleTypeSwitch : MonoBehaviour
         gasMotor.bodyNoiseVolume = isCarLerpValue;
         gasMotor.engineVolume = isCarLerpValue;
         gasMotor.wheelsVolume = isCarLerpValue;
-        gasMotor.bodyNoiseSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
-        gasMotor.engineSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
-        gasMotor.wheelsSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
+        gasMotor.bodyNoiseSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
+        gasMotor.engineSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
+        gasMotor.wheelsSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * isCarLerpValue);
 
         jetController.jetNoiseVolume = isJetLerpValue;
-        jetController.jetSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * isJetLerpValue);
+        jetController.jetSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * isJetLerpValue);
 
         hoverSoundEmitter.SetParameter("input", Utilities.ActualSmoothstep(0.0f, 20.0f, relativeMagnitude));
-        hoverSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * Mathf.Max(isJetLerpValue, isHoverLerpValue));
+        hoverSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * Mathf.Max(isJetLerpValue, isHoverLerpValue));
 
         // GRAVITY
         Physics.gravity = new Vector3(0.0f, Mathf.Lerp(0.0f, -9.81f, InterpolateWithHeight(1000.0f, 5250.0f)), 0.0f);

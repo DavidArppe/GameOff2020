@@ -190,7 +190,9 @@ public abstract class LODDataManager
 
     internal virtual void OnEnable()
     {
+        InitData();
     }
+
     internal virtual void OnDisable()
     {
         // Unbind from all graphics shaders (not compute)

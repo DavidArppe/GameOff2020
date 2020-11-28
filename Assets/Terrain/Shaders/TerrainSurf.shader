@@ -24,7 +24,7 @@
 
         CGPROGRAM
 
-        #pragma surface surf Standard vertex:vert fullforwardshadows addshadow nolightmap noambient 
+        #pragma surface surf Standard vertex:vert fullforwardshadows addshadow nolightmap
         #pragma target 3.0
 
 		#pragma shader_feature_local _COMPILESHADERWITHDEBUGINFO_ON

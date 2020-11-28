@@ -50,13 +50,16 @@ public class BuildCommandBuffer : BuildCommandBufferBase
         {
             _buf = new CommandBuffer();
             _buf.name = "TerrainLODData";
+
+            // TerrainRenderer.Instance.ViewCamera.RemoveCommandBuffer(CameraEvent.BeforeGBuffer, _buf);
+            // TerrainRenderer.Instance.ViewCamera.AddCommandBuffer(CameraEvent.BeforeGBuffer, _buf);
         }
 
         _buf.Clear();
 
         BuildLodData(TerrainRenderer.Instance, _buf);
-
-        // This will execute at the beginning of the frame before the graphics queue
+        
+        // // This will execute at the beginning of the frame before the graphics queue
         Graphics.ExecuteCommandBuffer(_buf);
 
         _lastUpdateFrame = TerrainRenderer.FrameCount;

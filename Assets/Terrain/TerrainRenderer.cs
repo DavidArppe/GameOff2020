@@ -313,8 +313,6 @@ public class TerrainRenderer : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void InitStatics()
     {
-        Debug.Log("Terrain Renderer Init Statics");
-
         // Init here from 2019.3 onwards
         Instance = null;
 
