@@ -67,7 +67,7 @@ public class FollowCam : PivotBasedCameraRig
     private void LateUpdate()
     {
         mainMusicEmitter.SetParameter("is_in_space", Mathf.Clamp01(Mathf.InverseLerp(550.0f, 2550.0f, transform.position.y)));
-        mainMusicEmitter.EventInstance.setVolume(RVP.GlobalControl.musicVolumeStatic);
+        mainMusicEmitter.EventInstance.setVolume(GlobalControl.musicVolumeStatic);
     }
 
     // Basic 3 way interpolation. Not quite bilinear, but since we likely won't have 3-way transitions, this is fine.

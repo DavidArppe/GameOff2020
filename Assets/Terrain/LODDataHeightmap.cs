@@ -14,6 +14,7 @@ public class LODDataHeightmap : LODDataManager
 
     Texture2D inputTexture;
     Material copyTerrainMat;
+    public PropertyWrapperMaterial copyTerrainMatPropWrapper;
 
     public LODDataHeightmap(TerrainRenderer terrain) : base(terrain)
     {
@@ -26,16 +27,17 @@ public class LODDataHeightmap : LODDataManager
 
         float scale = GenerateTerrainRenderTextures.Instance.sampleScale;
 
-        Debug.Log("Created with a scale of " + scale.ToString("F1"));
-        Debug.Log("Created with a width of " + inputTexture.width);
-
         copyTerrainMat.SetVector("_TexDims", new Vector4(inputTexture.width * scale, inputTexture.height * scale, 1.0f / (inputTexture.width * scale), 1.0f / (inputTexture.height * scale)));
         copyTerrainMat.SetTexture("_MainTex", inputTexture);
+
+        copyTerrainMatPropWrapper = new PropertyWrapperMaterial(copyTerrainMat);
     }
 
     public override void BuildCommandBuffer(TerrainRenderer terrain, CommandBuffer buf)
     {
         base.BuildCommandBuffer(terrain, buf);
+
+        Bind(copyTerrainMatPropWrapper);
 
         LODTransformTerrain lt = TerrainRenderer.Instance._lodTransform;
 

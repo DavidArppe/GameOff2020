@@ -58,6 +58,9 @@ public class TerrainChunkRenderer : MonoBehaviour
 
     void UpdateMeshBounds()
     {
+#if UNITY_EDITOR
+        if (this == null || transform == null || _mesh == null) return;
+#endif
         var newBounds = _boundsLocal;
         ExpandBoundsForDisplacements(transform, ref newBounds);
         _mesh.bounds = newBounds;
@@ -170,7 +173,6 @@ public class TerrainChunkRenderer : MonoBehaviour
     static void InitStatics()
     {
         _currentCamera = null;
-        Debug.Log("Current Camera set to Null");
     }
 
     [RuntimeInitializeOnLoadMethod]

@@ -60,7 +60,7 @@ public class JetMotorAndController : MonoBehaviour
         jetSoundEmitter.SetParameter("input", inputValue);
         jetSoundEmitter.SetParameter("throttle", targetThrottleValue);
 
-        jetSoundEmitter.EventInstance.setVolume(RVP.GlobalControl.vehiclesVolumeStatic * jetNoiseVolume);
+        jetSoundEmitter.EventInstance.setVolume(GlobalControl.vehiclesVolumeStatic * jetNoiseVolume);
     }
 
     /// <summary>
