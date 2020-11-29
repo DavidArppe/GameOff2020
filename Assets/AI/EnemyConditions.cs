@@ -5,7 +5,7 @@ using Bonsai;
 using Bonsai.Core;
 
 [BonsaiNode("Conditional/PlayerConditions/", "PlayerNear")]
-public class PlayerNearCondition : Task
+public class PlayerNear : Task
 {
     public float playerProximityRadius;
 

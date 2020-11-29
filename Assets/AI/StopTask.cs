@@ -2,12 +2,12 @@
 using Bonsai.Core;
 using UnityEngine;
 
-[BonsaiNode("Tasks/EnemyActions/", "Hide")]
-public class HideTask : Task
+[BonsaiNode("Tasks/EnemyActions/", "Stop")]
+public class StopTask : Task
 {
     public override void OnEnter()
     {
-        Actor.SendMessage("SwitchToHideMode");
+        Actor.SendMessage("StopMovement");
     }
 
     public override Status Run()

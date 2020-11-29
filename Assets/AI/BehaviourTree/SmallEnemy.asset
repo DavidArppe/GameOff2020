@@ -1,232 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8212242832903631881
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Hide
-  m_EditorClassIdentifier: Assembly-CSharp::Hide
-  preOrderIndex: 5
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -380.5, y: 370.5}
---- !u!114 &-5632288520749914300
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: PlayerNearCondition
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerNearCondition
-  preOrderIndex: 3
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -816, y: 370.5}
-  playerProximityRadius: 0
---- !u!114 &-4957201494859649612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Wander
-  m_EditorClassIdentifier: Assembly-CSharp::Wander
-  preOrderIndex: 10
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -8.5, y: 502.5}
---- !u!114 &-1971927360564226322
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98e42124d794d24baddf03f67db4d0b, type: 3}
-  m_Name: Sequence
-  m_EditorClassIdentifier: 
-  preOrderIndex: 9
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: 199.5, y: 346.5}
-  children:
-  - {fileID: -4957201494859649612}
-  - {fileID: 4924512393406928188}
-  - {fileID: 1800264258855274910}
-  - {fileID: -123050415837717636}
---- !u!114 &-880086048117575032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09a07908f6a5fd44e906d041ac135bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keys: []
---- !u!114 &-826174621591143569
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f69bc7bd609a045b4d326c41dfa200, type: 3}
-  m_Name: Interruptable
-  m_EditorClassIdentifier: 
-  preOrderIndex: 8
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: 188.5, y: 226.5}
-  child: {fileID: -1971927360564226322}
---- !u!114 &-123050415837717636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6290070e5b743314084c4bf4d7201fe5, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  preOrderIndex: 13
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: 429, y: 502.5}
-  timer:
-    interval: 5
-    deviation: 2
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e327cacc628d65b4faa51b0a82bf63c2, type: 3}
-  m_Name: SmallEnemy
-  m_EditorClassIdentifier: 
-  allNodes:
-  - {fileID: 5963501692197357130}
-  - {fileID: 2630411010129571523}
-  - {fileID: 4480086439499451330}
-  - {fileID: -5632288520749914300}
-  - {fileID: 7906165089987834182}
-  - {fileID: -8212242832903631881}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: -826174621591143569}
-  - {fileID: -1971927360564226322}
-  - {fileID: -4957201494859649612}
-  - {fileID: 4924512393406928188}
-  - {fileID: 1800264258855274910}
-  - {fileID: -123050415837717636}
-  blackboard: {fileID: -880086048117575032}
-  actor: {fileID: 0}
-  panPosition: {x: 119, y: -430}
-  zoomPosition: {x: 1.174137, y: 1.174137}
-  unusedNodes: []
---- !u!114 &1800264258855274910
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Stop
-  m_EditorClassIdentifier: Assembly-CSharp::Stop
-  preOrderIndex: 12
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: 303, y: 502.5}
---- !u!114 &2630411010129571523
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ed9224681fd2e4b81a6a1f1f647031, type: 3}
-  m_Name: ParallelSelector
-  m_EditorClassIdentifier: 
-  preOrderIndex: 1
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -68, y: 70}
-  children:
-  - {fileID: 4480086439499451330}
-  - {fileID: -826174621591143569}
---- !u!114 &4480086439499451330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98e42124d794d24baddf03f67db4d0b, type: 3}
-  m_Name: Sequence
-  m_EditorClassIdentifier: 
-  preOrderIndex: 2
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -352.5, y: 226.5}
-  children:
-  - {fileID: -5632288520749914300}
-  - {fileID: 7906165089987834182}
-  - {fileID: -8212242832903631881}
-  - {fileID: 0}
---- !u!114 &4924512393406928188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6290070e5b743314084c4bf4d7201fe5, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  preOrderIndex: 11
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: 149.5, y: 502.5}
-  timer:
-    interval: 10
-    deviation: 2
---- !u!114 &5963501692197357130
+--- !u!114 &-719775743188045339
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,10 +16,41 @@ MonoBehaviour:
   title: 
   comment: 
   bonsaiNodePosition: {x: -73.5, y: -49.5}
-  child: {fileID: 2630411010129571523}
+  child: {fileID: 0}
   loopCount: 1
   infiniteLoop: 1
---- !u!114 &7906165089987834182
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e327cacc628d65b4faa51b0a82bf63c2, type: 3}
+  m_Name: SmallEnemy
+  m_EditorClassIdentifier: 
+  allNodes:
+  - {fileID: -719775743188045339}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  blackboard: {fileID: 7602779737651732243}
+  actor: {fileID: 0}
+  panPosition: {x: -23, y: -404}
+  zoomPosition: {x: 1.3271043, y: 1.3271043}
+  unusedNodes: []
+--- !u!114 &7602779737651732243
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,13 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23dc799858adc6f4cb56e9baf9090dc8, type: 3}
-  m_Name: Interruptor
+  m_Script: {fileID: 11500000, guid: 09a07908f6a5fd44e906d041ac135bfc, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  preOrderIndex: 4
-  title: 
-  comment: 
-  bonsaiNodePosition: {x: -559.5, y: 370.5}
-  returnSuccess: 0
-  linkedInterruptables:
-  - {fileID: -826174621591143569}
+  keys: []

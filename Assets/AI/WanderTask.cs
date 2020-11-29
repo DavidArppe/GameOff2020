@@ -2,12 +2,12 @@
 using Bonsai.Core;
 using UnityEngine;
 
-[BonsaiNode("Tasks/EnemyActions/", "Hide")]
-public class HideTask : Task
+[BonsaiNode("Tasks/EnemyActions/", "Wander")]
+public class WanderTask : Task
 {
     public override void OnEnter()
     {
-        Actor.SendMessage("SwitchToHideMode");
+        Actor.SendMessage("SwitchToWanderMode");
     }
 
     public override Status Run()
