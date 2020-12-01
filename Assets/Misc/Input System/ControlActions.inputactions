@@ -102,6 +102,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Fire2",
+                    "type": "Button",
+                    "id": "64f32f92-a0b2-4baa-b382-fcad51683dcc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Boost",
                     "type": "Button",
                     "id": "2dac79c1-1eeb-435e-af0c-ae80057479d9",
@@ -426,6 +434,17 @@
                     "action": "TankTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2d9637a4-438c-465a-b61b-2223a5f6b8d8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main",
+                    "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010949257278}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.17002526, z: 0}
+  m_LocalRotation: {x: 1.7763568e-15, y: -0.70710677, z: -1.7763568e-15, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.17002505, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4000013340482694}
-  m_Father: {fileID: 4000014153105954}
+  - {fileID: 5345251359988672572}
+  m_Father: {fileID: 7892404898668549222}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &33000010100374084
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,11 +107,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011452903040}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01694496, y: 0.3766972, z: 0.079417825}
+  m_LocalRotation: {x: 7.486785e-23, y: -0.7071068, z: -7.486785e-23, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000020012261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4000011884227314}
+  m_Father: {fileID: 5345251359988672572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33000012038603456
@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 4000014153105954}
   - component: {fileID: 33000010828916876}
   - component: {fileID: 23000012204415166}
+  - component: {fileID: 8356743416311528210}
   m_Layer: 0
   m_Name: Laser_tower_v1
   m_TagString: Untagged
@@ -192,7 +193,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4000011884227314}
+  - {fileID: 7892404898668549222}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,3 +246,86 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8356743416311528210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012347617906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006f4780732ffb147bf7f39b1c522c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceUntilShooting: 500
+  gunBarrelTrans: {fileID: 5345251359988672572}
+  gunPivotTrans: {fileID: 7892404898668549222}
+  isRegularGun: 0
+  muzzleFlashes: []
+  lineRendererPrefab: {fileID: 0}
+  laserRendererPrefab: {fileID: 6939607520211383367, guid: f8646d9b7fc7c094da9c8603a8af3f92,
+    type: 3}
+  shootingTimer: 3.14
+--- !u!1 &892072069977226875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5345251359988672572}
+  m_Layer: 0
+  m_Name: LaserPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5345251359988672572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892072069977226875}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.01694496, y: 0.3766972, z: 0.079417825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4000013340482694}
+  m_Father: {fileID: 4000011884227314}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &7391326991704346661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7892404898668549222}
+  m_Layer: 0
+  m_Name: TurretPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7892404898668549222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391326991704346661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4000011884227314}
+  m_Father: {fileID: 4000014153105954}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

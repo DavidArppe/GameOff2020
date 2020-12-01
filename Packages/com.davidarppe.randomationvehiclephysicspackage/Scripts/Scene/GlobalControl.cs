@@ -59,6 +59,18 @@ public class GlobalControl : MonoBehaviour
     [Header("Global Variables Objects")]
     public GameObject player;
     public static GameObject playerStatic;
+    public static float isInBattle;
+
+    [Header("Damage Levels")]
+    public static float turretDamageAmount = 0.5f;
+    public static float laserDamageAmount = 2.0f;
+
+    [Header("Events")]
+    [FMODUnity.EventRef] public string laserEventSound;
+    [FMODUnity.EventRef] public string shootEventSound;
+    [FMODUnity.EventRef] public string explosionEventSound;
+
+    public static GlobalControl instance;
 
     void Start()
     {
@@ -76,6 +88,8 @@ public class GlobalControl : MonoBehaviour
         vehiclesVolumeStatic = vehiclesVolume;
         musicVolumeStatic = musicVolume;
         playerStatic = player;
+
+        instance = this;
     }
 
     void Update()

@@ -105,22 +105,6 @@ namespace RVP
 
         public virtual void Update()
         {
-            //Play boost particles
-            if (boostParticles.Length > 0)
-            {
-                foreach (ParticleSystem curBoost in boostParticles)
-                {
-                    if (boosting && curBoost.isStopped)
-                    {
-                        curBoost.Play();
-                    }
-                    else if (!boosting && curBoost.isPlaying)
-                    {
-                        curBoost.Stop();
-                    }
-                }
-            }
-
             if (smoke)
             {
                 ParticleSystem.EmissionModule em = smoke.emission;

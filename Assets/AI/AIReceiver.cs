@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class AIReceiver : MonoBehaviour
 {
-    public float Health = 100.0f;
-
     public GameObject wanderChild;
     public GameObject hideChild;
     public GameObject stayNearPoint;
 
     private UnityMovementAI.SteeringBasics steering;
+
+    public GameObject explosion;
+    [FMODUnity.EventRef]
+    public string explosionEvent;
+
+    public GameObject toDestroyWhenBlownUp;
+
+    public float health = 75.0f;
 
     private void Start()
     {
@@ -37,5 +43,18 @@ public class AIReceiver : MonoBehaviour
         hideChild.SetActive(false);
 
         steering.Arrive(transform.position);
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+
+        if (health < 0.0f && toDestroyWhenBlownUp != null)
+        {
+            Instantiate(explosion, toDestroyWhenBlownUp.transform.position, Quaternion.identity);
+            FMODUnity.RuntimeManager.PlayOneShot(explosionEvent, transform.position);
+            Destroy(toDestroyWhenBlownUp);
+            toDestroyWhenBlownUp = null;
+        }
     }
 }

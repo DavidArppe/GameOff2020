@@ -115,6 +115,14 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Fire2"",
+                    ""type"": ""Button"",
+                    ""id"": ""64f32f92-a0b2-4baa-b382-fcad51683dcc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Boost"",
                     ""type"": ""Button"",
                     ""id"": ""2dac79c1-1eeb-435e-af0c-ae80057479d9"",
@@ -439,6 +447,17 @@ public class @ControlActions : IInputActionCollection, IDisposable
                     ""action"": ""TankTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d9637a4-438c-465a-b61b-2223a5f6b8d8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main"",
+                    ""action"": ""Fire2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -471,6 +490,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Fire2 = m_Player.FindAction("Fire2", throwIfNotFound: true);
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
     }
@@ -534,6 +554,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Roll;
     private readonly InputAction m_Player_Camera;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Fire2;
     private readonly InputAction m_Player_Boost;
     private readonly InputAction m_Player_Switch;
     public struct PlayerActions
@@ -552,6 +573,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -599,6 +621,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Fire2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
+                @Fire2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
+                @Fire2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
                 @Boost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
                 @Boost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
                 @Boost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
@@ -645,6 +670,9 @@ public class @ControlActions : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Fire2.started += instance.OnFire2;
+                @Fire2.performed += instance.OnFire2;
+                @Fire2.canceled += instance.OnFire2;
                 @Boost.started += instance.OnBoost;
                 @Boost.performed += instance.OnBoost;
                 @Boost.canceled += instance.OnBoost;
@@ -678,6 +706,7 @@ public class @ControlActions : IInputActionCollection, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
     }

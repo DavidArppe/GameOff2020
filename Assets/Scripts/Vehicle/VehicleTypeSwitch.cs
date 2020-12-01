@@ -66,6 +66,8 @@ public class VehicleTypeSwitch : MonoBehaviour
 
     private float originalVehicleVolume;
 
+    public static VehicleTypeSwitch instance;
+
     private void Start()
     {
         // Initialize the variables we can initialize like this
@@ -79,6 +81,8 @@ public class VehicleTypeSwitch : MonoBehaviour
         transmission    = gameObject.GetComponentInChildren<RVP.Transmission>();
         tireScreech     = gameObject.GetComponentInChildren<RVP.TireScreech>();
         jetController   = gameObject.GetComponentInChildren<JetMotorAndController>();
+
+        instance = this;
 
         originalVehicleVolume = GlobalControl.vehiclesVolumeStatic;
 
@@ -200,7 +204,7 @@ public class VehicleTypeSwitch : MonoBehaviour
         Physics.gravity = new Vector3(0.0f, Mathf.Lerp(0.0f, -9.81f, InterpolateWithHeight(1000.0f, 5250.0f)), 0.0f);
     }
 
-    bool HasVehicleBit(VehicleType typeToCheck)
+    public bool HasVehicleBit(VehicleType typeToCheck)
     {
         return (vehicleType & typeToCheck) == typeToCheck;
     }

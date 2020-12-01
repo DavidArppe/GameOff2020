@@ -382,6 +382,7 @@ MonoBehaviour:
   Banks:
   - Music
   - playerSounds
+  - Weapons
   BanksToLoad:
   - 
   LiveUpdatePort: 9264
