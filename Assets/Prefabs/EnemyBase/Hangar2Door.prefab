@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5508107628376739521}
   - component: {fileID: 5479669207888646853}
   - component: {fileID: 5489669324806776841}
+  - component: {fileID: 7882255698434732702}
   m_Layer: 0
   m_Name: Structure_v3_door_T
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7882255698434732702
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564577435993143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 01de1ad56d653774683141c3dbcaaac8, type: 3}
 --- !u!1 &5511564577488459323
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +107,7 @@ GameObject:
   - component: {fileID: 5508107630461442871}
   - component: {fileID: 5479669209041041377}
   - component: {fileID: 5489669337282725277}
+  - component: {fileID: 1081371212484775627}
   m_Layer: 0
   m_Name: Structure_v3_door_stand (1)
   m_TagString: Untagged
@@ -162,6 +178,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1081371212484775627
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564577488459323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300024, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564577925602809
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +203,7 @@ GameObject:
   - component: {fileID: 5508107628896856655}
   - component: {fileID: 5479669207298143775}
   - component: {fileID: 5489669336972355577}
+  - component: {fileID: 24873147202720530}
   m_Layer: 0
   m_Name: Structure_v3_vent_b2
   m_TagString: Untagged
@@ -243,6 +274,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &24873147202720530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564577925602809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300028, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564578183505647
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5508107628070501301}
   - component: {fileID: 5617350639793357711}
+  - component: {fileID: 6614467820376271550}
   m_Layer: 0
   m_Name: Structure_v3_doors
   m_TagString: Untagged
@@ -293,6 +339,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!64 &6614467820376271550
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564578183505647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5511564578210608603
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5508107627252914241}
   - component: {fileID: 5617350640943997783}
+  - component: {fileID: 7324722113312205451}
   m_Layer: 0
   m_Name: Structure_v3_doors
   m_TagString: Untagged
@@ -343,6 +404,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!64 &7324722113312205451
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564578210608603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5511564578672211463
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +429,7 @@ GameObject:
   - component: {fileID: 5508107628579580053}
   - component: {fileID: 5479669218112317163}
   - component: {fileID: 5489669325520597879}
+  - component: {fileID: 4253529385988704397}
   m_Layer: 0
   m_Name: Structure_v3_door_D
   m_TagString: Untagged
@@ -424,6 +500,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4253529385988704397
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564578672211463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 01de1ad56d653774683141c3dbcaaac8, type: 3}
 --- !u!1 &5511564578864405127
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +525,7 @@ GameObject:
   - component: {fileID: 5508107626884712741}
   - component: {fileID: 5479669217915493795}
   - component: {fileID: 5489669325891018131}
+  - component: {fileID: 2906071357870819547}
   m_Layer: 0
   m_Name: Structure_v3_vent_s2
   m_TagString: Untagged
@@ -505,6 +596,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2906071357870819547
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564578864405127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300032, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564579041659799
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +621,7 @@ GameObject:
   - component: {fileID: 5508107629727677229}
   - component: {fileID: 5479669207248205651}
   - component: {fileID: 5489669325047504365}
+  - component: {fileID: 308360905384691187}
   m_Layer: 0
   m_Name: Structure_v3_door_D
   m_TagString: Untagged
@@ -586,6 +692,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &308360905384691187
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564579041659799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 01de1ad56d653774683141c3dbcaaac8, type: 3}
 --- !u!1 &5511564579048649247
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +717,7 @@ GameObject:
   - component: {fileID: 5508107628381212237}
   - component: {fileID: 5479669219786437761}
   - component: {fileID: 5489669326057121053}
+  - component: {fileID: 5679067182326179735}
   m_Layer: 0
   m_Name: Structure_v3_vent_s1
   m_TagString: Untagged
@@ -667,6 +788,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5679067182326179735
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564579048649247}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300030, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564579462834907
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +846,7 @@ GameObject:
   - component: {fileID: 5508107629657578613}
   - component: {fileID: 5479669220706500827}
   - component: {fileID: 5489669324597503095}
+  - component: {fileID: 1559363460234949278}
   m_Layer: 0
   m_Name: Structure_v3_door_T
   m_TagString: Untagged
@@ -781,6 +917,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1559363460234949278
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564579473910661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 01de1ad56d653774683141c3dbcaaac8, type: 3}
 --- !u!1 &5511564579867956049
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5508107629455153289}
   - component: {fileID: 5617350641735182449}
+  - component: {fileID: 1971504641336218243}
   m_Layer: 0
   m_Name: Structure_v3
   m_TagString: Untagged
@@ -838,6 +989,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!64 &1971504641336218243
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564579867956049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5511564579879105743
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +1014,7 @@ GameObject:
   - component: {fileID: 5508107626979206975}
   - component: {fileID: 5479669219299706347}
   - component: {fileID: 5489669323423154039}
+  - component: {fileID: 1265208826983329748}
   m_Layer: 0
   m_Name: Structure_v3_body
   m_TagString: Untagged
@@ -919,6 +1085,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1265208826983329748
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564579879105743}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300018, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564580158402399
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,6 +1110,7 @@ GameObject:
   - component: {fileID: 5508107629734549869}
   - component: {fileID: 5479669219951476665}
   - component: {fileID: 5489669337255425183}
+  - component: {fileID: 595370810722927212}
   m_Layer: 0
   m_Name: Structure_v3_vent_b1
   m_TagString: Untagged
@@ -1000,6 +1181,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &595370810722927212
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564580158402399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300026, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564580348700769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1206,7 @@ GameObject:
   - component: {fileID: 5508107627261233373}
   - component: {fileID: 5479669208965305413}
   - component: {fileID: 5489669323678365801}
+  - component: {fileID: 343058467055845272}
   m_Layer: 0
   m_Name: Structure_v3_sec_door
   m_TagString: Untagged
@@ -1081,6 +1277,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &343058467055845272
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564580348700769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300034, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
 --- !u!1 &5511564580957788245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1302,7 @@ GameObject:
   - component: {fileID: 5508107628826302467}
   - component: {fileID: 5479669217966193365}
   - component: {fileID: 5489669327091025313}
+  - component: {fileID: 8154167020679535135}
   m_Layer: 0
   m_Name: Structure_v3_door_stand
   m_TagString: Untagged
@@ -1162,3 +1373,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8154167020679535135
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5511564580957788245}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300024, guid: 07debbea7f9a6e94ab9f44a87cf54414, type: 3}
