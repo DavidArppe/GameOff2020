@@ -268,19 +268,18 @@ public class AtmosphericScattering : MonoBehaviour
 
         GameObject go;
 
-        if (!transform.Find("ReflectionProbe"))
+        if (transform.Find("ReflectionProbe") == null)
         {
             go = new GameObject("ReflectionProbe");
             go.transform.parent = _camera.transform;
             go.transform.position = new Vector3(0, 0, 0);
+            _reflectionProbe = go.AddComponent<ReflectionProbe>();
         }
         else
         {
             go = transform.Find("ReflectionProbe").gameObject;
+            _reflectionProbe = go.GetComponent<ReflectionProbe>();
         }
-
-
-        _reflectionProbe = go.AddComponent<ReflectionProbe>();
 
         _reflectionProbe.clearFlags = ReflectionProbeClearFlags.Skybox;
         _reflectionProbe.cullingMask = 0;

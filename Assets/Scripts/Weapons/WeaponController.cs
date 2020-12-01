@@ -118,9 +118,8 @@ public class WeaponController : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0.0f)
-        {
-            UnityEditor.SceneManagement.LoadScene()
-        }
+        //if (health <= 0.0f)
+        //{
+        //}
     }
 }

@@ -155,12 +155,13 @@ namespace Terra.Terrain {
             UnityEditor.AssetDatabase.CreateAsset(tDat, path);
             UnityEditor.AssetDatabase.Refresh();
             t.terrainData = UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(TerrainData)) as TerrainData;
+
+            t.terrainData = tDat;
 #else
             t.terrainData = new TerrainData();
 #endif
 
-			t.terrainData = tDat;
-			t.terrainData.size = new Vector3(length, conf.Generator.Amplitude, length);
+            t.terrainData.size = new Vector3(length, conf.Generator.Amplitude, length);
             t.materialTemplate = conf.TerrainMaterial;
             t.allowAutoConnect = true;
             t.drawInstanced = true;
