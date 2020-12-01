@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000011884227314}
   - component: {fileID: 33000010100374084}
   - component: {fileID: 23000014109500492}
+  - component: {fileID: 2875861050653051185}
   m_Layer: 0
   m_Name: Laser_tower_v1_arm
   m_TagString: Untagged
@@ -82,6 +83,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2875861050653051185
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010949257278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: e0d75df32d5a9b9438b98882995f1859, type: 3}
 --- !u!1 &1000011452903040
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +108,7 @@ GameObject:
   - component: {fileID: 4000013340482694}
   - component: {fileID: 33000012038603456}
   - component: {fileID: 23000013494465954}
+  - component: {fileID: 8317156879376397249}
   m_Layer: 0
   m_Name: Laser_tower_v1_laser
   m_TagString: Untagged
@@ -163,6 +179,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8317156879376397249
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011452903040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: e0d75df32d5a9b9438b98882995f1859, type: 3}
 --- !u!1 &1000012347617906
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +205,7 @@ GameObject:
   - component: {fileID: 33000010828916876}
   - component: {fileID: 23000012204415166}
   - component: {fileID: 8356743416311528210}
+  - component: {fileID: 5375132243482266908}
   m_Layer: 0
   m_Name: Laser_tower_v1
   m_TagString: Untagged
@@ -267,6 +298,21 @@ MonoBehaviour:
   laserRendererPrefab: {fileID: 6939607520211383367, guid: f8646d9b7fc7c094da9c8603a8af3f92,
     type: 3}
   shootingTimer: 3.14
+  lookSpeed: 1
+--- !u!64 &5375132243482266908
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012347617906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e0d75df32d5a9b9438b98882995f1859, type: 3}
 --- !u!1 &892072069977226875
 GameObject:
   m_ObjectHideFlags: 0
